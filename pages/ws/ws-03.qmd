@@ -1,0 +1,159 @@
+---
+title: "Worksheet 03 · NDVI und kNDVI vergleichen"
+subtitle: "Block 1 – Vegetationsindizes, Vergleichsflächen und die Aussagegrenzen einer Auswertung"
+order: 4
+format-links: [html, pdf, docx]
+format:
+  html:
+    toc: false
+    code-fold: false
+    number-sections: false
+  pdf:
+    pdf-engine: lualatex
+  docx: default
+execute:
+  eval: false
+  echo: true
+  warning: false
+  message: false
+---
+
+## Auftrag
+
+**Zeigen NDVI und kNDVI auf Wald-, Offenland- und auffälligen Flächen dieselben Unterschiede – und was lässt sich daraus schließen?**
+
+Sie verwenden die selbst beschafften Sentinel-2-Aufnahmen und die NDVI-Reihe aus [Worksheet 02](ws-02.qmd). In QGIS legen Sie drei Vergleichsflächen fest, berechnen mit einem vorbereiteten R-Skript den kNDVI und vergleichen beide Indizes über die fünf ausgewählten Sommertage. Dabei prüfen Sie, wie stark das Ergebnis von der Flächenauswahl und von der mathematischen Definition des Index abhängt.
+
+Aus Worksheet 01 übernehmen Sie die Projektstruktur, relative Pfade, das blockweise Ausführen und die Dokumentation von Entscheidungen. Aus Worksheet 02 übernehmen Sie **Ihre gewählte AOI, Ihre Aufnahmetage und Ihre Qualitätsmaske**. Für diese Sitzung werden keine zusätzlichen Satellitenaufnahmen benötigt.
+
+Am Ende liegen eine Karte der Vergleichsflächen, zwei Indexverläufe und eine kurze Interpretation vor. Die fünf Datenpunkte sind weiterhin **ein ausgewählter Sommertag pro Jahr (2018–2022)** – keine Jahres- oder Saisonmittel.
+
+## Material und Vorbereitung
+
+Arbeiten Sie im vorhandenen RStudio-Projekt. Laden Sie [06_indices_vergleichen.R](../../scripts/06_indices_vergleichen.R){download="06_indices_vergleichen.R"} in `scripts/` herunter. Benötigt werden QGIS, RStudio sowie die R-Pakete `sf` und `terra`; sie wurden bereits in den vorherigen Worksheets verwendet.
+
+Prüfen Sie, ob folgende Dateien vorliegen:
+
+| Datei | Herkunft und Funktion |
+|---|---|
+| `data/aoi.gpkg` | Ihre Untersuchungsfläche aus WS02. |
+| `data/auswahl.csv` | Ihre dokumentierten fünf Aufnahmetage. |
+| `output/ndvi_reihe.tif` | Fünf NDVI-Raster mit einheitlichem Gitter aus Skript 03. |
+| `output/ndvi_banddaten.csv` | Eindeutige Zuordnung von Rasterband und Aufnahmedatum. |
+| `data/vergleichsflaechen.gpkg` | **Neu:** Ihre drei Vergleichsflächen, die Sie in Abschnitt 1 erstellen. |
+
+Öffnen Sie in QGIS die AOI, die NDVI-Raster sowie mindestens zwei zugehörige Sentinel-Aufnahmen als RGB-Bilder. Falls die NDVI-Reihe nach Ihrer letzten Änderung der `auswahl.csv` noch nicht neu berechnet wurde, führen Sie zuerst `03_ndvi_reihe.R` aus. Verwenden Sie keine Ergebnisse aus unterschiedlichen Aufnahmekombinationen.
+
+## 1 · Drei Vergleichsflächen begründet auswählen
+
+Untersuchen Sie zunächst die NDVI-Karten und die zugehörigen RGB-Aufnahmen. Legen Sie **genau drei Polygone innerhalb Ihrer AOI** fest:
+
+| Wert im Feld `typ` | Auswahlentscheidung |
+|---|---|
+| `wald` | Ein möglichst zusammenhängender, erkennbar bewaldeter Bereich. |
+| `offenland` | Eine möglichst zusammenhängende unbewaldete Fläche, zum Beispiel Grünland oder eine offene Fläche. |
+| `auffaellig` | Ein Bereich, der sich in mindestens einer Aufnahme oder NDVI-Karte auffällig von seiner Umgebung oder zwischen zwei Terminen unterscheidet. Die Ursache bleibt zunächst offen. |
+
+Wählen Sie Flächen, die nicht nur aus einzelnen Randpixeln bestehen. Meiden Sie nach Möglichkeit Übergänge zwischen Landbedeckungen. Halten Sie die Flächengrößen in einer vergleichbaren Größenordnung; **gleich große Flächen sind nicht erforderlich**, aber eine stark unterschiedliche Pixelzahl muss bei der Interpretation berücksichtigt werden.
+
+::: {.callout-note title="GeoPackage mit drei Polygonen in QGIS erstellen" collapse="true"}
+
+1. Öffnen Sie **Layer → Layer erstellen → Neuer GeoPackage-Layer**.
+2. Speichern Sie den Layer als `data/vergleichsflaechen.gpkg`, Tabellenname `vergleichsflaechen`, Geometrietyp **Polygon**, Koordinatensystem **EPSG:32632**.
+3. Legen Sie ein Textfeld mit dem **exakten Namen** `typ` an.
+4. Zeichnen Sie drei getrennte Polygone innerhalb der AOI. Tragen Sie für `typ` genau die Werte `wald`, `offenland` und `auffaellig` ein – jeweils einmal, kleingeschrieben und ohne Umlaute.
+5. Speichern Sie die Änderungen und beenden Sie den Bearbeitungsmodus. Prüfen Sie die drei Attributwerte und die räumliche Lage.
+
+Das Skript prüft die drei Werte und erwartet genau drei gültige Flächengeometrien. Bei abweichender Schreibweise bricht es ab.
+
+:::
+
+**Kontrolle vor der Berechnung:** Liegen alle Flächen innerhalb der AOI? Sind im jeweiligen Bereich an allen fünf Terminen gültige NDVI-Pixel vorhanden? Nutzen Sie dazu die NDVI-Karten oder, falls bearbeitet, `output/pixel_counts/beobachtungs_counts.tif` aus dem [Zusatz zu WS02](ws-02-zusatz.qmd). Dort sind Pixel mit dem Wert `5` in Band `n_valid` an allen fünf Terminen gültig.
+
+**Wichtige Vorbedingung:** Wenn Ihre AOI aus WS02 ausschließlich Wald enthält, können Sie darin keine Offenlandfläche untersuchen. Zeichnen Sie dann keine Vergleichsfläche außerhalb der AOI. Wählen Sie stattdessen eine neue, passendere AOI und führen Sie für diese den Datenabruf und Skript 03 erneut aus. Archivieren Sie die bisherige Auswahl und die bisherigen Ergebnisse vorher, wie in WS02 beschrieben.
+
+**Dokumentation:** Markieren Sie die drei Polygone auf einer Übersichtskarte und ergänzen Sie in `README.md` jeweils einen Satz zur Flächenauswahl. Notieren Sie vor der Auswertung eine Erwartung: Welche der drei Flächen könnte die höchsten NDVI-Werte zeigen? Welche könnte zwischen den Terminen am stärksten variieren?
+
+## 2 · Verstehen, was der zweite Index berechnet
+
+Der NDVI aus Worksheet 02 beschreibt das Verhältnis von nahinfraroter zu roter Reflexion:
+
+$$
+NDVI = \frac{B08-B04}{B08+B04}
+$$
+
+Das vorhandene Skript 06 verwendet für den kNDVI die folgende Transformation:
+
+$$
+kNDVI = \tanh(NDVI^2)
+$$
+
+In **dieser Implementierung** wird der bereits berechnete NDVI transformiert. Es kommen keine weiteren Spektralbänder oder neuen Beobachtungen hinzu. Die Werte beider Indizes sind daher nicht unmittelbar zahlenmäßig vergleichbar. Die Transformation ist nicht linear und entfernt durch das Quadrieren das Vorzeichen des NDVI.
+
+Prüfen Sie die Wirkung mit drei Beispielwerten in der R-Konsole:
+
+```r
+ndvi_beispiel <- c(-0.5, 0.2, 0.8)
+data.frame(
+  NDVI = ndvi_beispiel,
+  kNDVI = tanh(ndvi_beispiel^2)
+)
+```
+
+**Auftrag:** Vergleichen Sie die Ergebnisse. Welche Information geht bei einem negativen NDVI verloren? Warum lässt sich aus einem höheren kNDVI-Wert gegenüber einem NDVI-Wert nicht auf „mehr Vegetation“ schließen? Beachten Sie, dass die NDVI-Maske aus WS02 auch SCL-Klasse 6 (Wasser) zulässt.
+
+## 3 · Die Indizes für dieselben Pixel berechnen
+
+Öffnen Sie `scripts/06_indices_vergleichen.R`, ergänzen Sie Name und Datum im Skriptkopf und führen Sie es zunächst abschnittsweise aus.
+
+Das Skript lädt die NDVI-Reihe und die Datumszuordnung, liest Ihre drei Flächen ein und verwendet ausschließlich Rasterzellen, die **an allen fünf Terminen gültig** sind. Für jede Fläche werden aus diesen gemeinsamen Pixeln der mittlere NDVI und der mittlere kNDVI je Aufnahmetag berechnet.
+
+Die Transformation erfolgt **für jedes Pixel vor der Mittelwertbildung**. Deshalb ist `mean(tanh(NDVI^2))` im Allgemeinen nicht dasselbe wie `tanh(mean(NDVI)^2)`.
+
+| Ergebnis unter `output/indices/` | Bedeutung |
+|---|---|
+| `kndvi_reihe.tif` | Die fünf aus NDVI abgeleiteten kNDVI-Raster. |
+| `flaechenvergleich.csv` | NDVI, kNDVI, Datum und Pixelzahl je Vergleichsfläche. |
+| `banddaten.csv` | Zuordnung der Rasterbänder zu den Aufnahmetagen. |
+| `flaechenvergleich.png` | Beide Indexverläufe für die drei Flächen. |
+
+**Prüfung:** Öffnen Sie `flaechenvergleich.csv` und `flaechenvergleich.png`. Für drei Flächen und fünf Termine erwarten Sie **15 Tabellenzeilen**. Prüfen Sie, dass jede Fläche eine positive Pixelzahl (`n_pixel`) besitzt und die Pixelzahl über die fünf Termine innerhalb einer Fläche konstant bleibt.
+
+Wenn das Skript meldet, dass keine gemeinsamen gültigen Pixel vorhanden sind, prüfen Sie zuerst Flächenlage, Datenabdeckung und Bildauswahl. Ein Fehler dieser Art darf nicht durch das Eintragen erfundener Ersatzwerte behoben werden.
+
+## 4 · Die räumlichen und zeitlichen Muster vergleichen
+
+Öffnen Sie `output/indices/flaechenvergleich.png` sowie die drei Vergleichsflächen in QGIS. Die Diagramme zeigen den NDVI links und den kNDVI rechts. **Beachten Sie die unterschiedlichen Wertebereiche der y-Achsen:** Der optische Abstand zweier Kurven ist deshalb nicht unmittelbar zwischen den Indizes vergleichbar.
+
+Bearbeiten Sie die folgenden Vergleiche mit den tatsächlichen Aufnahmedaten aus `flaechenvergleich.csv`:
+
+1. **Flächen:** Welche Fläche zeigt am ersten und welche am letzten Termin jeweils den höchsten mittleren NDVI? Entspricht die Reihenfolge beim kNDVI Ihrer Erwartung? Prüfen Sie Abweichungen anhand der Flächen und ihrer Pixelwerte.
+2. **Zeit:** Bestimmen Sie für jede Fläche den Unterschied zwischen letztem und erstem Termin, getrennt nach Index. Geben Sie die Differenzen in den **jeweiligen Indexeinheiten**, nicht in Prozent an.
+3. **Auffällige Fläche:** Suchen Sie einen Termin, an dem sich `auffaellig` deutlich von `wald` oder `offenland` unterscheidet. Vergleichen Sie die entsprechenden RGB- und NDVI-Bilder in QGIS. Was beobachten Sie direkt, und welche Erklärung wäre lediglich eine Vermutung?
+4. **Indexwahl:** Beschreiben Sie anhand eines konkreten Zahlenbeispiels, was die kNDVI-Transformation in Ihren Daten deutlicher oder weniger deutlich erscheinen lässt. Begründen Sie, warum eine andere Darstellung nicht automatisch eine bessere Messung oder Erklärung bedeutet.
+
+Vermeiden Sie Aussagen über die Vegetationsentwicklung zwischen den fünf Terminen. Ein Unterschied zwischen zwei Sommeraufnahmen kann sowohl von der Vegetation als auch von Aufnahmebedingungen, Bildauswahl oder der Zusammensetzung der Fläche beeinflusst sein.
+
+## 5 · Eine räumliche Entscheidung überprüfen
+
+Prüfen Sie, ob Ihre Interpretation von der Polygonabgrenzung abhängt. Sichern Sie dazu zunächst `output/indices/flaechenvergleich.csv` als `output/indices/flaechenvergleich_vorher.csv` und legen Sie eine Kopie von `data/vergleichsflaechen.gpkg` als `data/vergleichsflaechen_vorher.gpkg` an.
+
+Verändern Sie **nur das Polygon `auffaellig`** nachvollziehbar – beispielsweise indem Sie eine Randzone mit anderer Landbedeckung ein- oder ausschließen. Behalten Sie den Feldwert `typ = auffaellig` bei und führen Sie `06_indices_vergleichen.R` aus einer **neu gestarteten R-Sitzung** vollständig mit **Source** aus. Die übrigen Vergleichsflächen und die fünf Aufnahmetage bleiben unverändert.
+
+Vergleichen Sie für `auffaellig` vor und nach der Änderung die Anzahl `n_pixel` sowie die beiden Indexverläufe. Wenn sich wenig ändert, ist auch das ein Ergebnis. Stellen Sie die ursprüngliche Polygonabgrenzung aus Ihrer gesicherten GeoPackage-Datei wieder her, falls Sie diese für die nächste Sitzung weiterverwenden möchten.
+
+**Dokumentation:** Welche Änderung haben Sie vorgenommen? Welche Werte reagieren darauf? Hat sich Ihre fachliche Interpretation verändert? Das Skript muss mit denselben gespeicherten Eingabedateien aus einer frischen Sitzung wiederholbar bleiben.
+
+## Ergebnis der Sitzung
+
+Geben Sie folgende Ergebnisse aus Ihrem bestehenden Projekt ab:
+
+- eine Übersichtskarte mit AOI und den drei beschrifteten Vergleichsflächen;
+- `flaechenvergleich.png` sowie `flaechenvergleich.csv` mit den zugehörigen fünf Aufnahmedaten;
+- eine kurze Auswertung (etwa eine halbe Seite) zu **Flächenunterschieden**, **Änderungen zwischen den Terminen** und **Unterschieden der Indexdarstellung**;
+- die Begründung Ihrer Polygonauswahl und einen Satz zum Ergebnis der Grenzänderung;
+- `data/vergleichsflaechen.gpkg`, den verwendeten Stand von `data/auswahl.csv` und das kommentierte Skript `06_indices_vergleichen.R`.
+
+Ergänzen Sie in `README.md` die Reihenfolge zur Reproduktion: **zuerst Skript 03, danach Skript 06**. Halten Sie fest, welche fünf Termine und welche Flächenabgrenzung der abgegebenen Auswertung zugrunde liegen.
+
+**Erfolgskriterium:** Eine andere Person kann beide Indexverläufe aus Ihren eigenen Eingangsdaten und Polygonen reproduzieren und erkennen, welche Aussagen durch die Daten gestützt sind und welche zusätzliche Beobachtungen benötigen.

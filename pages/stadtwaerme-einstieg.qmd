@@ -1,0 +1,30 @@
+---
+title: "Stadtklima: Stadtwärme modellieren"
+subtitle: "Oberfläche, Umwelt und Mensch – Einstieg und Arbeitsauftrag"
+format:
+  html:
+    toc: false
+---
+
+## Wann bieten städtische Freiräume thermische Entlastung?
+
+Parks, begrünte Plätze und Wege können unterschiedliche Aufenthaltsbedingungen bieten. Wie lässt sich ihr Beitrag zur thermischen Entlastung beurteilen – für wen, zu welcher Zeit und bei welcher Tätigkeit? Welche Rolle spielt dabei die Oberflächentemperatur, und welche weiteren Größen braucht eine begründete Aussage?
+
+Eine Aussage über thermische Entlastung braucht eine Vergleichssituation, eine Zielgröße und ein begründetes Wirkungsmodell. Welche Daten dafür ausreichen, hängt von der Frage ab. Oberflächentemperatur, Luftbedingungen, Strahlung und metabolische Wärmeproduktion beschreiben verschiedene Teile dieses Zusammenhangs. Ein Park ist ein mögliches Untersuchungsbeispiel.
+
+## Die Frage bestimmt Daten und Methode
+
+Formulieren Sie eine Teilfrage zur thermischen Entlastung und begründen Sie die Zielgröße. Prüfen Sie anhand des [Modellierungskonzepts zur Stadtwärme](modellierung_luftbild_lst.qmd), welche Aussage das DLR-LST-Produkt dafür ermöglicht. Eine eigene Zeitreihe ist dann sinnvoll, wenn die Frage zeitliche Information verlangt, die im Mittelwert fehlt. Zusätzliche Oberflächenkennwerte ersetzen keine Informationen über Luftbedingungen oder den menschlichen Wärmehaushalt.
+
+[Stationsdaten, UTCI und PET](exkurs_stationen.qmd) verbinden die Beschreibung der Umwelt mit einem physiologischen Modell. Prüfen Sie, welche Tätigkeit, Bekleidung und Körperregulation der jeweilige Index annimmt und wie diese Annahmen zu Ihrer Frage passen.
+
+## Eigenständig begründen und prüfen
+
+Formulieren Sie eine präzise Frage, zeichnen Sie ein Wirkungsgefüge und begründen Sie die Datenwahl. Entwerfen Sie einen Vergleich, mit dem sich die entscheidende Annahme prüfen lässt. Benennen Sie die Grenzen Ihrer Erklärung und überarbeiten Sie sie angesichts widersprechender Befunde.
+
+Die [QGIS-Referenz](qgis-howto-stadtwaerme-marburg.qmd) und die [R-Referenz](r-werkzeuge.qmd) unterstützen die benötigten Untersuchungen. Begründen Sie: Warum dieses Produkt, warum eine eigene Berechnung, warum ein weiteres Modell – und welche Frage lässt sich damit tatsächlich beantworten?
+
+Bearbeiten Sie das [Worksheet zu UTCI und PET](ws/ws-02.qmd). Vergleichen Sie die Umweltantworten und untersuchen Sie, was sich bei veränderter metabolischer Leistung und Bekleidung modellieren lässt.
+
+
+Zurück zur [Kursübersicht](../index.qmd).
