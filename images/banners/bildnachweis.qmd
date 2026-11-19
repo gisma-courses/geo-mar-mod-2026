@@ -1,0 +1,33 @@
+---
+title: "Bildnachweis: Drei Kursbanner"
+lang: de
+format: html
+---
+
+Drei abstrakte wissenschaftliche Banner: Modellierung, Stadtklima und Starkregen. Mit dem integrierten Imagegen-Werkzeug erzeugt und auf jeweils 2560 × 196 Pixel zugeschnitten. Konzeptionelle Gestaltung; keine Mess- oder Modellergebnisse.
+
+## Prompts und Dateien
+
+### kurs
+
+Datei: [kurs.png](kurs.png)
+
+```text
+Use case: scientific-educational. Generate a finished raster website header background for a modern university geography and simulation course. Design direction: sophisticated contemporary computational-science art, minimalist, clean, precise, quietly futuristic. Requested final asset is an extremely wide thin strip, 2560 by 196 pixels, approximately 13:1. Compose to survive a central horizontal crop to that ratio: main visual gestures run horizontally through the exact middle, no necessary features above or below. Broad pale cool-white and silver negative space across the left 55 percent for black HTML title typography; concentrated fine data structures and a few subtle luminous blue/violet/cyan accents across the right, very restrained, flat panoramic field with elegant depth. Crisp digital lines, microscopic points, translucent mathematical surfaces, smooth gradients; polished scientific-journal digital art. Entirely abstract, no buildings, no landscape, no people, no icons, no devices, no lettering, no words, no numbers, no graph axes, no labels, no logos, no watercolor, no brush strokes, no paper, no parchment, no sketching, no vintage aesthetic, no decorative frame. Single continuous banner, no panels. Theme: spatial modelling across scales: a fine regular computational raster slowly dissolves into sparse network vertices, layered scalar-field isolines and a few flowing trajectories, integrated into one restrained horizontal scientific structure. Fine graphite geometry with very subtle cyan and violet refraction, airy and rigorous.
+```
+
+### stadtwaerme
+
+Datei: [stadtwaerme.png](stadtwaerme.png)
+
+```text
+Use case: scientific-educational. Generate a finished raster website header background for a modern university geography and simulation course. Design direction: sophisticated contemporary computational-science art, minimalist, clean, precise, quietly futuristic. Requested final asset is an extremely wide thin strip, 2560 by 196 pixels, approximately 13:1. Compose to survive a central horizontal crop to that ratio: main visual gestures run horizontally through the exact middle, no necessary features above or below. Broad pale cool-white and silver negative space across the left 55 percent for black HTML title typography; concentrated fine data structures and a few subtle luminous blue/violet/cyan accents across the right, very restrained, flat panoramic field with elegant depth. Crisp digital lines, microscopic points, translucent mathematical surfaces, smooth gradients; polished scientific-journal digital art. Entirely abstract, no buildings, no landscape, no people, no icons, no devices, no lettering, no words, no numbers, no graph axes, no labels, no logos, no watercolor, no brush strokes, no paper, no parchment, no sketching, no vintage aesthetic, no decorative frame. Single continuous banner, no panels. Theme: urban-climate simulation as an abstract temperature field: an extremely fine orthogonal raster over a smoothly interpolated scalar field, sparse precise isotherm curves, one restrained warm amber-to-coral thermal concentration blending toward cool cyan, faint directional air-flow traces. No actual city and no literal sun. Understated, elegant visual structure.
+```
+
+### starkregen
+
+Datei: [starkregen.png](starkregen.png)
+
+```text
+Use case: scientific-educational. Generate a finished raster website header background for a modern university geography and simulation course. Design direction: sophisticated contemporary computational-science art, minimalist, clean, precise, quietly futuristic. Requested final asset is an extremely wide thin strip, 2560 by 196 pixels, approximately 13:1. Compose to survive a central horizontal crop to that ratio: main visual gestures run horizontally through the exact middle, no necessary features above or below. Broad pale cool-white and silver negative space across the left 55 percent for black HTML title typography; concentrated fine data structures and a few subtle luminous blue/violet/cyan accents across the right, very restrained, flat panoramic field with elegant depth. Crisp digital lines, microscopic points, translucent mathematical surfaces, smooth gradients; polished scientific-journal digital art. Entirely abstract, no buildings, no landscape, no people, no icons, no devices, no lettering, no words, no numbers, no graph axes, no labels, no logos, no watercolor, no brush strokes, no paper, no parchment, no sketching, no vintage aesthetic, no decorative frame. Single continuous banner, no panels. Theme: rainfall-runoff and flood dynamics as an abstract hydrodynamic field: fine curving streamlines converge across a translucent pale blue simulation mesh, delicate elevation isolines and a few sapphire/cyan accumulation areas, sparse luminous points suggesting moving water volumes. No literal raindrops, no clouds, no river landscape, no disaster illustration.
+```

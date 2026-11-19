@@ -1,0 +1,106 @@
+---
+title: "Itzï beschaffen und einrichten"
+subtitle: "Softwareinstallation und GRASS-Projekt für Marburg"
+title-block-banner: ../images/banners/starkregen.png
+title-block-banner-color: black
+lang: de
+format:
+  html:
+    toc: true
+    toc-depth: 2
+execute:
+  eval: false
+  echo: true
+---
+
+Für die [Marburg-Untersuchung](starkregen-einstieg.qmd) verwenden wir **QGIS** zur Datenkontrolle und Rasteraufbereitung, **GRASS GIS** als räumliche Rechenumgebung und **Itzï** für die Überflutungssimulation. Die [Datenbeschaffung](starkregen-daten.qmd) kann parallel zur Installation bearbeitet werden.
+
+
+## Versionen und Werkzeuge
+
+::: {.panel-tabset}
+
+### Gemeinsamer Versionsstand
+
+[]{#gemeinsamer-versionsstand .course-anchor}
+
+Diese Anleitung verwendet **Itzï 26.6** mit INI-Konfiguration, passend zum [Reader](starkregen-reader.qmd). Dafür verlangt die versionsbezogene Installationsdokumentation **GRASS GIS ab 8.4**; das Python-Paket setzt **Python 3.12 oder 3.13** voraus. Die Entwicklungsfassung des Quellcodes kann andere Anforderungen haben. [Itzï: Installation](https://itzi.readthedocs.io/en/stable/installation.html), [Paketmetadaten für 26.6](https://pypi.org/project/itzi/26.6/).
+
+Halten Sie Betriebssystem sowie QGIS-, GRASS-, Python- und Itzï-Version im Projektprotokoll fest. Eine vorhandene GRASS-Installation aus einem älteren QGIS-Paket erfüllt die Versionsvorgabe nicht automatisch.
+
+### QGIS und GRASS beschaffen
+
+[]{#qgis-und-grass-beschaffen .course-anchor}
+
+Installieren Sie [QGIS](https://qgis.org/download/) und aktivieren Sie dessen Processing-Werkzeuge. Für das übernommene DGM-Skript benötigen Sie QGIS ab 3.34; dessen GDAL-Python-Bindings werden aus der QGIS-Installation verwendet.
+
+Beschaffen Sie GRASS über die [offizielle Downloadseite](https://grass.osgeo.org/download/) für Ihr Betriebssystem:
+
+- **Windows:** Verwenden Sie das dort angebotene GRASS-Paket beziehungsweise OSGeo4W. Bei OSGeo4W wählen Sie das stabile Paket `grass`. Prüfen Sie die tatsächliche Version nach der Installation. Ein QGIS-Processing-Anbieter allein ersetzt kein startfähiges GRASS.
+- **Linux:** Verwenden Sie den auf der Downloadseite beschriebenen Weg für Ihre Distribution. Kontrollieren Sie die Paketversion, bevor Sie ein älteres Distributionspaket als Kursumgebung verwenden.
+- **macOS:** Verwenden Sie das dort angegebene Paket beziehungsweise den dokumentierten Paketmanager. Prüfen Sie anschließend den vollständigen Pfad des GRASS-Startprogramms.
+
+Starten Sie GRASS einmal und lesen Sie die Version über die Programmoberfläche ab. Wenn `grass` in einem Terminal verfügbar ist, können Sie auch `grass --version` verwenden. Die konkrete Startdatei kann unter Windows einen Versionsnamen und die Endung `.bat` haben; diesen vollständigen Pfad benötigen Sie später in der Konfiguration.
+
+:::
+
+
+## Installation und Modellprojekt
+
+::: {.panel-tabset}
+
+### Itzï mit uv installieren
+
+[]{#itzï-mit-uv-installieren .course-anchor}
+
+Itzï wird als Python-Paket über PyPI bezogen. Die offizielle Anleitung empfiehlt **uv**, das eine eigene Python-Umgebung für das Programm verwaltet. Der Quellcode ist zusätzlich im [Itzï-Repository](https://github.com/ItziModel/itzi) verfügbar; ein Klonen oder Selbstkompilieren ist für den Kursweg nicht vorgesehen.
+
+Installieren Sie uv nach der [offiziellen Anleitung](https://docs.astral.sh/uv/getting-started/installation/). Unter Windows können Sie beispielsweise in PowerShell verwenden:
+
+```powershell
+winget install --id=astral-sh.uv -e
+```
+
+Unter macOS mit vorhandenem Homebrew:
+
+```bash
+brew install uv
+```
+
+Unter Linux bietet die uv-Anleitung unter anderem diesen Installer an:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Öffnen Sie danach ein neues Terminal beziehungsweise PowerShell-Fenster. Die folgenden Befehle gelten auf allen drei Systemen:
+
+```bash
+uv python install 3.12
+uv tool install --python 3.12 "itzi==26.6"
+uv tool update-shell
+```
+
+Öffnen Sie nach einer Pfadänderung das Terminal erneut. Behalten Sie den festgelegten Versionsstand während der gemeinsamen Untersuchung bei, damit Software und spätere Konfiguration zusammenpassen.
+
+### Ein GRASS-Projekt anlegen
+
+[]{#ein-grass-projekt-anlegen .course-anchor}
+
+1. Legen Sie im [Projektordner](starkregen-daten.qmd) den Ordner `grassdata/` an und wählen Sie ihn im GRASS-Startfenster als GIS-Datenbank.
+2. Erstellen Sie darin ein Projekt, in älteren Dialogen **Location** genannt, mit dem Namen `marburg_itzi` und **EPSG:25832**.
+3. Erstellen und öffnen Sie darin das Mapset `marburg_daten` für die aufbereiteten Geländedaten und weiteren Eingaben.
+
+Notieren Sie den vollständigen Datenbankpfad, den Projektnamen und den Mapset-Namen im Projektprotokoll. Der Datenbankpfad endet am Ordner `grassdata/`; der Projektname `marburg_itzi` und das Mapset `marburg_daten` sind davon getrennte Angaben.
+
+### Welche Einstellungen werden später benötigt?
+
+[]{#welche-einstellungen-werden-später-benötigt .course-anchor}
+
+Für einen späteren Aufruf außerhalb einer geöffneten GRASS-Sitzung kann Itzï den Datenzugriff über den Abschnitt `[grass]` seiner INI-Konfiguration erhalten. Dazu gehören der Pfad des GRASS-Startprogramms, der Datenbankordner, Projektname und Mapset. Eine gespeicherte Rechenregion legt zusätzlich Ausdehnung und Rasterweite fest. [Itzï: GRASS-Konfiguration](https://itzi.readthedocs.io/en/stable/conf_file.html#grass).
+
+Die fachlichen Eingaben werden erst nach der [Datenaufbereitung](starkregen-daten.qmd) konkretisiert: Gelände, Gebäude und Durchlässe, Rauheit, Versickerung, Regenverlauf sowie Zufluss- und Lahnrandbedingungen. Die Installation allein bestimmt diese Annahmen nicht.
+
+**Ergebnis dieses Arbeitsschritts:** dokumentierte Softwarestände, installierte Programme und ein GRASS-Projekt für die Marburger Daten. Die Anleitung endet bei der Einrichtung; Rechenläufe folgen später.
+
+:::

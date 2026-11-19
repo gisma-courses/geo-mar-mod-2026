@@ -1,6 +1,9 @@
 ---
 title: "R-Referenz: Zeitreihen und Regionen"
 subtitle: "Berechnungen für begründete Modellvergleiche"
+title-block-banner: ../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 format:
   html:
     toc: true
@@ -11,9 +14,13 @@ execute:
 
 Diese Referenz unterstützt die [Modellkritik zur Stadtwärme](modellierung_luftbild_lst.qmd). Wählen Sie die Berechnung erst, wenn klar ist, welche offene Frage sie bearbeiten soll. Eine eigene Landsat-Auswertung verändert die zeitliche und räumliche Beschreibung der Oberfläche. Lufttemperatur, Stoffwechsel und individuelle Beanspruchung werden damit noch nicht erfasst.
 
-# Zeitreihe berechnen
+## Zeitreihe berechnen
 
-## Untersuchungsgebiet und Vergleichsflächen
+::: {.panel-tabset}
+
+### Untersuchungsgebiet und Vergleichsflächen
+
+[]{#untersuchungsgebiet-und-vergleichsflächen .course-anchor}
 
 In QGIS werden zwei GeoPackages im Projektordner gespeichert:
 
@@ -24,7 +31,9 @@ In QGIS werden zwei GeoPackages im Projektordner gespeichert:
 
 Die Flächen dienen zunächst als vorab definierte Untersuchungseinheiten. Ihre Abgrenzung wird aus Landnutzung und Stadtstruktur begründet. Dafür bleibt der manuelle Vergleich mit dem Luftbild erforderlich.
 
-## Einen Termin nachvollziehen
+### Einen Termin nachvollziehen
+
+[]{#einen-termin-nachvollziehen .course-anchor}
 
 Für einen Landsat-8/9-Termin werden das Temperaturband `ST_B10` und das Qualitätsband `QA_PIXEL` benötigt. Die Verarbeitung besteht aus vier Schritten:
 
@@ -49,7 +58,9 @@ Für jedes Vergleichspolygon berechnen wir anschließend den Median seiner gült
 |---|---|---:|---:|
 | Aufnahmedatum | Park | Flächenmedian in °C | Zahl gültiger Zellen |
 
-## Wiederholung automatisieren
+### Wiederholung automatisieren
+
+[]{#wiederholung-automatisieren .course-anchor}
 
 Die Verarbeitung eines Termins wird für sämtliche ausgewählten Sommertermine wiederholt. Es werden keine besonders heißen Szenen vorab ausgewählt: Sonst beschriebe bereits der Mittelwert eine vorselektierte Hitzestichprobe.
 
@@ -103,10 +114,15 @@ source("scripts/lst_zeitreihe.R")
 
 Die Zahl gültiger Beobachtungen gehört zur Interpretation. Im Skript werden Zellen mit weniger als zehn Beobachtungen für die Kennwertkarten ausgeblendet. Dieser Arbeitswert garantiert keine stabile Schätzung: Insbesondere q95 ist bei kleinen Stichproben stark von wenigen hohen Werten abhängig. Bei ungleich verteilten Aufnahmeterminen erhalten häufig beobachtete Sommer mehr Gewicht.
 
+:::
 
-# Flächen und Regionen berechnen
+## Flächen und Regionen berechnen
 
-## Vorgegebene Gebiete aggregieren
+::: {.panel-tabset}
+
+### Vorgegebene Gebiete aggregieren
+
+[]{#vorgegebene-gebiete-aggregieren .course-anchor}
 
 Stadtquartiere, Landnutzungseinheiten oder regelmäßige Rasterquadrate können als räumliche Bezugseinheiten dienen. Dafür wird pro Gebiet und Termin ein Flächenwert berechnet. Die Wahl der Einheit bestimmt, welche Unterschiede erhalten bleiben: Große Quartiere mitteln kleine heiße Standorte stärker aus als kleine Vergleichspolygone.
 
@@ -131,7 +147,9 @@ extract(kennwerte, quartiere, fun = mean, na.rm = TRUE)
 
 Dieses Beispiel verwendet Zellen nach ihrer Lage im Polygon. Für den Einstieg werden ausreichend große Gebiete gewählt; Randzellen werden nicht nach Flächenanteil gewichtet.
 
-## Temperaturbasierte Regionen ableiten
+### Temperaturbasierte Regionen ableiten
+
+[]{#temperaturbasierte-regionen-ableiten .course-anchor}
 
 Wenn passende Gebietseinheiten fehlen, können benachbarte Rasterzellen nach thermischer Ähnlichkeit zusammengefasst werden. Jakub Nowosads R-Paket [supercells](https://jakubnowosad.com/supercells/) bildet zusammenhängende Segmente. Für diese Fallstudie verwenden wir zwei Merkmale: mittlere LST und den Abstand q95 − Mittelwert. Die Standardisierung gibt beiden Merkmalen eine vergleichbare Gewichtung.
 
@@ -160,3 +178,4 @@ Die Segmente sind thermisch begründete Analysegebiete. Ob ihre Grenzen mit Stad
 
 Für einen späteren Vergleich von Landbedeckungsmustern innerhalb solcher Gebiete bietet Nowosads [motif](https://jakubnowosad.com/motif/) weitere Methoden. Es beschreibt Muster kategorialer Raster. Die hier verwendete Regionalisierung mit `supercells` beruht auf kontinuierlichen Temperaturmerkmalen.
 
+:::

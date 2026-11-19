@@ -1,0 +1,171 @@
+---
+title: "Starkregen: Daten beschaffen und vorbereiten"
+subtitle: "DGM1, Gewässer, Bebauung und Modellantrieb für Marburg"
+title-block-banner: ../images/banners/starkregen.png
+title-block-banner-color: black
+lang: de
+format:
+  html:
+    toc: true
+    toc-depth: 2
+execute:
+  eval: false
+  echo: true
+---
+
+Die [Einstiegsfrage](starkregen-einstieg.qmd) bestimmt, welche Daten wir beschaffen: Das Marburger Stadtgebiet ist der Untersuchungsraum, Weidenhausen und das Südviertel sind die Auswertungsschwerpunkte. Das Rechengebiet umfasst zusätzlich die benötigten Zufluss- und Abflussbereiche. Die Datenbeschaffung folgt dem [GIS-Arbeitsblatt aus `geo-mod-2026`](https://gisma-courses.github.io/geo-mod-2026/pages/meander_abfluss_saga_grass.html) und dessen [Datenkompendium](https://gisma-courses.github.io/geo-mod-2026/pages/abfluss_algorithmen_quellen.html), angepasst an die zeitabhängige Überflutungsmodellierung.
+
+**Ziel dieses Arbeitsschritts:** unveränderte Quelldaten, ein geprüftes gemeinsames Höhenraster und ein nachvollziehbares Datenprotokoll. Geländeaufbereitung, hydraulische Ergänzungen und Simulationsannahmen werden getrennt dokumentiert.
+
+
+## Datenbasis vorbereiten
+
+::: {.panel-tabset}
+
+### Projektordner und Bezugssystem
+
+[]{#projektordner-und-bezugssystem .course-anchor}
+
+Legen Sie einen eigenen Arbeitsordner an und speichern Sie das QGIS-Projekt darin. Verwenden Sie **ETRS89 / UTM 32N, EPSG:25832**, mit Metern als horizontaler Einheit. Prüfen Sie den vertikalen Höhenbezug jeder Quelle zusätzlich.
+
+```text
+marburg_starkregen/
+├── marburg_starkregen.qgz
+├── daten/
+│   ├── original/
+│   │   ├── dgm1/             # nur originale Höhen-GeoTIFFs
+│   │   ├── basis_dlm/
+│   │   └── niederschlag/
+│   ├── referenz.gpkg        # Gewässer, Gebäude, Auswertungsgebiete
+│   ├── luftbild.tif
+│   └── datenprotokoll.csv
+├── processing/
+│   ├── dgm5/               # erster Aufbereitungslauf
+│   └── dgm1/               # späterer Lauf aus denselben Originalen
+├── grassdata/
+├── konfiguration/
+└── resultate/
+```
+
+Das ist die Zielstruktur; Dateien entstehen erst durch die folgenden Schritte. Im Protokoll halten Sie je Datensatz Produkt, Anbieter, Bezugs-URL, Lizenz beziehungsweise Quellenvermerk, Bezugsdatum, Erfassungsstand, Dateinamen, KBS, Höhenbezug und Verarbeitung fest. Kacheln und abgeleitete Parameterkarten müssen später eindeutig einem Simulationslauf zugeordnet werden können.
+
+### DGM1 Hessen beschaffen
+
+[]{#dgm1-hessen-beschaffen .course-anchor}
+
+1. Öffnen Sie [Geodaten online Hessen](https://gds.hessen.de/) und wählen Sie im **Downloadcenter → 3D-Daten → Digitales Geländemodell (DGM1)** das passende Angebot für Marburg beziehungsweise Marburg-Biedenkopf. Falls ganze Gebietspakete angeboten werden, wählen Sie nach dem Entpacken die benötigten Kacheln anhand ihrer tatsächlichen Ausdehnung aus.
+2. Berücksichtigen Sie neben beiden Quartieren auch relevante Zuflussgebiete und den benötigten Lahnabschnitt. Die Quartiersgrenze ist keine Vorgabe für die Kachelauswahl.
+3. Entpacken Sie die benötigten **GeoTIFF-Höhenkacheln direkt** nach `daten/original/dgm1/`. Das Aufbereitungsskript liest keine Unterordner. Speichern Sie dort keine Luftbilder oder bereits abgeleiteten Raster.
+4. Laden Sie die Kacheln in QGIS. Prüfen Sie unter **Layer-Eigenschaften → Information** KBS, Pixelgröße, Bandzahl, Ausdehnung und NoData. Prüfen Sie räumlich, ob Kacheln fehlen oder doppelt vorliegen.
+
+Produktinformationen und Zugang: [HVBG – Digitale Geländemodelle](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle). Das DGM1 hat 1 m Gitterweite. Eine Wasserfläche im Raster ist keine gesicherte Gewässersohle; Brücken und Bebauung benötigen eine gesonderte hydraulische Prüfung.
+
+Das im anderen Kurs bereitgestellte Vier-Kachel-Archiv dient dort einem Referenzlauf. **Für Marburg beschaffen wir die räumlich passenden Originalkacheln neu.**
+
+### In QGIS ein Arbeitsraster erzeugen
+
+[]{#in-qgis-ein-arbeitsraster-erzeugen .course-anchor}
+
+#### Rasterwerkzeug einbinden
+
+Laden Sie [prepare_dgm.py aus dem Quellrepo](https://raw.githubusercontent.com/gisma-courses/geo-mod-2026/c82d323/scripts/prepare_dgm.py) herunter. Verwendet wird das Originalwerkzeug aus `geo-mod-2026`, Stand `c82d323`. Es wird aus dem Quellrepo bezogen. Es benötigt QGIS 3.34 oder neuer mit den zugehörigen GDAL-Python-Bindings.
+
+Aktivieren Sie bei Bedarf **Processing** unter **Erweiterungen → Erweiterungen verwalten und installieren → Installiert**. Öffnen Sie **Verarbeitung → Werkzeugkiste → Skripte → Neues Skript erstellen**, laden beziehungsweise übernehmen Sie den Skripttext und speichern Sie ihn im Processing-Skriptordner. Anschließend erscheint **Skripte → Modellieren in der Geographie → DGM vorbereiten: Kacheln mosaikieren und Arbeitsraster erzeugen**.
+
+| Parameter | Erster Marburg-Lauf |
+|---|---|
+| Ordner mit DGM-Kacheln | `daten/original/dgm1/` |
+| Ergebnisordner | `processing/dgm5/` |
+| Zellweite | `5` Meter |
+| Ziel-KBS | `EPSG:25832` |
+
+Ausgaben sind `dgm_mosaik.vrt`, `dgm5.tif` und `dgm_pruefung.json`. Die VRT verweist auf die Originalkacheln; das GeoTIFF ist eigenständig. Der Prüfbericht dokumentiert unter anderem Quelldateien, Prüfsummen, Rastergitter und NoData-Zahlen. Vorhandene Ausgaben werden nicht überschrieben. Für weitere Varianten verwenden Sie neue Ergebnisordner.
+
+#### Verarbeitung nachvollziehen
+
+Das Werkzeug prüft gemeinsame Georeferenzierung, Pixelgrößen, Kachelanordnung und Überlappungen. Es erzeugt zuerst mit **GDAL BuildVRT** ein virtuelles Mosaik und danach mit **GDAL Warp** ein ausgerichtetes GeoTIFF mit *Average*-Resampling, `Float32` und NoData `-9999`. Genau diese Schritte könnten auch manuell in QGIS ausgeführt werden. [GDAL BuildVRT](https://gdal.org/en/stable/programs/gdalbuildvrt.html), [GDAL Warp](https://gdal.org/en/stable/programs/gdalwarp.html).
+
+Vergleichen Sie Ergebnis und Originale in QGIS: Kachelanschlüsse, Lücken, Straßendämme, Senken und Abflussverbindungen. *Average* mittelt gültige Quellwerte; kleine NoData-Lücken können dadurch im gröberen Raster verdeckt werden. Ein selbst abgeleitetes 5-m-Raster ist nicht das amtliche Produkt DGM5.
+
+Für die feinere Stufe wiederholen Sie die Aufbereitung **aus den Originalkacheln**, beispielsweise mit 1 m und `processing/dgm1/`. Ein aus dem 5-m-Raster auf 1 m hochgerechnetes Raster gewinnt keine Geländedetails zurück.
+
+#### Für Itzï: Senken erhalten und Bauwerke prüfen
+
+Die TauDEM-Kette des anderen Kurses ist keine Voraussetzung für Itzï. **Führen Sie keine pauschale Senkenfüllung aus.** Eine reale Senke ist ein möglicher Wasserspeicher. Eine automatisierte Füllung kann gerade die Überflutungsprozesse verändern, die wir untersuchen wollen.
+
+Speichern Sie spätere Korrekturen an Durchlässen, Gebäuden oder Mauern als eigene Variante, etwa `dem_hydraulik.tif`, mit Änderungsprotokoll. Das aufbereitete `dgm5.tif` enthält diese Ergänzungen noch nicht und ist deshalb noch keine fertige Modelleingabe für die Quartierssimulation.
+
+:::
+
+
+## Fachdaten ergänzen
+
+::: {.panel-tabset}
+
+### Gewässernetz und Landschaftsobjekte
+
+[]{#gewässernetz-und-landschaftsobjekte .course-anchor}
+
+#### Amtliches Gewässernetz über WFS
+
+Der im anderen Kurs verwendete [HLNUG-Dienst Gewässernetz Hessen](https://www.geoportal.hessen.de/spatial-objects/262) lässt sich auch für Marburg nutzen:
+
+1. In QGIS **Layer → Layer hinzufügen → WFS/OGC API Features-Layer hinzufügen → Neu** öffnen.
+2. Name: `HLNUG Gewässernetz Hessen`. URL:
+
+```text
+https://geodienste-umwelt.hessen.de/arcgis/services/inspire/gewaessernetz/MapServer/WFSServer?
+```
+
+3. Verbinden und den Layer **Gewaessernetz_DLM25** auswählen; der Namespace kann in der Anzeige vorangestellt sein.
+4. Den benötigten Ausschnitt über **Exportieren → Objekte speichern als …** nach `daten/referenz.gpkg`, Layer `gewaesser`, sichern. Beim Export `EPSG:25832` wählen.
+
+Der Dienst liefert Vektorlinien und Attribute. Quellenvermerk und Lizenz stehen auf der verlinkten Metadatenseite; dort wird CC BY 4.0 angegeben. Die Linien unterstützen die Orientierung und Prüfung des Gebiets. Sie liefern keine Gerinnequerschnitte, Gewässersohlhöhen oder Wasserstandszeitreihe.
+
+#### Basis-DLM und Luftbild
+
+Beziehen Sie bei Bedarf im selben [Downloadcenter](https://gds.hessen.de/) unter **Digitales Landschaftsmodell → Basis-DLM** die Landschaftsobjekte. Für QGIS ist das angebotene Shape-Format ein einfacher Einstieg; halten Sie alle zugehörigen Dateien zusammen und exportieren Sie die benötigten Objekte anschließend ins GeoPackage. Prüfen Sie Objektarten und Attribute anhand der [HVBG-Produktbeschreibung und des Objektartenkatalogs](https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell).
+
+Für die Sichtprüfung verwenden Sie den bereits im Stadtklimablock eingeführten [Hessen-DOP-WMS und GeoTIFF-Export](qgis-howto-stadtwaerme-marburg.qmd). Speichern Sie den benötigten Ausschnitt als `daten/luftbild.tif` und dokumentieren Sie Aufnahmejahr und Quellenangabe. Der WMS liefert ein Kartenbild, keine Gebäudegeometrien.
+
+### Gebäude, Boden und noch offene Eingaben
+
+[]{#gebäude-boden-und-noch-offene-eingaben .course-anchor}
+
+Für Gebäudegrundrisse nutzen Sie das Angebot **ALKIS vereinfacht** im [hessischen Open-Data-Angebot](https://hvbg.hessen.de/geoinformation/open-data). In QGIS kann als WFS-Verbindung verwendet werden:
+
+```text
+https://www.gds.hessen.de/wfs2/aaa-suite/cgi-bin/alkis/vereinf/wfs?
+```
+
+Wählen Sie den angebotenen Gebäude-/Bauwerkslayer, begrenzen Sie den Abruf auf das Modellgebiet und speichern Sie die Geometrien als Layer `gebaeude` in `daten/referenz.gpkg`. Kontrollieren Sie sie gegen das Luftbild. Grundrisse liefern noch keine vollständige hydraulische Darstellung von Hofdurchfahrten, Einfahrten und Dachentwässerung. [Metadaten: ALKIS vereinfacht](https://www.geoportal.hessen.de/spatial-objects/637).
+
+Für erste Bodenhypothesen eignen sich der [BodenViewer Hessen](https://www.hlnug.de/themen/boden/information/internetviewer/bodenviewer-hessen) und die dort beschriebenen Bodenflächendaten. Ihr Kartenmaßstab trägt keine zellgenauen Messwerte der Versickerung für 1-m-Stadtraster. Landnutzung und Bodenklassen müssen durch begründete Parameterbereiche ergänzt werden.
+
+| Eingabe | Vorgehen für den ersten Modellvergleich |
+|---|---|
+| Regen | zunächst der im [Reader](starkregen-reader.qmd) festgelegte Lehrregen: 40 mm/h für 60 Minuten; räumlich einheitlich, ohne zugewiesene Wiederkehrzeit |
+| Statistisch begründeter Modellregen | bei späterer Erweiterung [KOSTRA-DWD-2020](https://opendata.dwd.de/climate_environment/CDC/help/landing_pages/doi_landingpage_KOSTRA_DWD_2020-de.html): Rasterzelle, Dauerstufe, Wiederkehrzeit und zeitliche Verteilung dokumentieren |
+| Rauheit und Versickerung | Oberflächenklassen mit offengelegten Annahmen und Sensitivitätsbereichen verknüpfen; keine automatische Übernahme als Messwert |
+| Lahnwasserstand | zwei idealisierte Bedingungen planen; für ereignisbezogene Läufe Messreihe, Pegelnullpunkt, Höhenbezug und räumliche Übertragung zusätzlich beschaffen |
+| Kanalnetz | nur bei geeigneter Netz- und Einlaufinformation koppeln; andernfalls ausdrücklich ein Oberflächenszenario ohne Kanalentwässerung untersuchen |
+| Vorhandene Starkregenkarten | Zugang über [Stadt Marburg](https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html); Ereignisannahmen vor dem Vergleich prüfen |
+
+Der Datenbezug ist damit nicht gleichbedeutend mit einer fertigen Parametrisierung. Besonders die Lahnrandbedingung, Gebäude- und Durchlassbehandlung müssen vor den im Reader entworfenen Szenarien A–D konkretisiert werden.
+
+:::
+
+## In GRASS übernehmen
+
+Richten Sie zunächst das Projekt nach [Itzï beschaffen und einrichten](itzi-setup.qmd) ein. Verwenden Sie für die Marburg-Daten das Mapset `marburg_daten`. Importieren Sie das geprüfte Arbeitsraster über **Raster → Importieren → GDAL** oder im GRASS-Befehlsfenster; ersetzen Sie den Beispielpfad:
+
+```bash
+r.in.gdal input="/vollstaendiger/pfad/marburg_starkregen/processing/dgm5/dgm5.tif" output=dgm5
+g.region raster=dgm5 align=dgm5
+g.region -p
+r.info map=dgm5
+```
+
+Die Rechenregion bestimmt Ausdehnung und Zellweite. Speichern Sie die geprüfte Region mit `g.region save=marburg_5m`. Leiten Sie alle späteren Parameter- und Bauwerksraster auf demselben Gitter ab. Ordnen Sie jeder Zelle gültige Eingaben zu oder begründen Sie eine Maske; NoData darf nicht versehentlich einen Wasserweg abschneiden. Ein Projekt mit abweichendem KBS wird nicht durch bloßes Umdeklarieren korrigiert. [GRASS: Rasterimport](https://grass.osgeo.org/grass-stable/manuals/r.in.gdal.html), [Rechenregion](https://grass.osgeo.org/grass-stable/manuals/g.region.html).
+
+**Ergebnis:** QGIS-Projekt, Quelldatenprotokoll, aufbereitetes DGM samt JSON-Prüfbericht, lokale Referenzgeometrien und eine Liste der noch offenen hydraulischen Festlegungen. Damit lässt sich begründen, was die erste Quartierssimulation benötigt und welche Festlegungen vor einer späteren Simulation noch fehlen.

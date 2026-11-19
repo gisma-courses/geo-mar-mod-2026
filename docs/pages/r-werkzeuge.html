@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../index.qmd#starkniederschlag" rel="next">
+<link href="../pages/starkregen-einstieg.html" rel="next">
 <link href="../pages/qgis-howto-stadtwaerme-marburg.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0edd2e978850e7d69a67fc7c8ff016b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -94,19 +94,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "s"
   ],
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background-image: url(../images/banners/stadtwaerme.png);
+background-size: cover;
+      }
+</style>
+<style>
+#title-block-header .quarto-title-banner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 2560px;
+  height: 196px;
+  max-height: 196px;
+  margin-inline: auto;
+  padding: 22px 26px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,6 +171,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../css/styles.css">
 <meta property="og:title" content="R-Referenz: Zeitreihen und Regionen – Marburg modellieren">
 <meta property="og:description" content="Berechnungen für begründete Modellvergleiche">
 <meta property="og:site_name" content="Marburg modellieren">
@@ -312,27 +346,44 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">R-Referenz: Zeitreihen und Regionen</h1>
         </a>     
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">R-Referenz: Zeitreihen und Regionen</h1>
+            <p class="subtitle lead">Berechnungen für begründete Modellvergleiche</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Marburg modellieren</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -349,7 +400,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">1. Stadtklima</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -378,11 +429,17 @@ window.Quarto = {
  <span class="menu-text">Worksheet: Thermische Entlastung</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/hotspot-zu-palm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abschluss: Vom Hotspot zur Maßnahme</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Werkzeugreferenzen</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -403,12 +460,41 @@ window.Quarto = {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html#starkniederschlag" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">2. Starkniederschlag (Itzï)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-einstieg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg und Arbeitsauftrag</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reader: Wasser im Stadtraum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daten beschaffen und vorbereiten</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/itzi-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Itzï beschaffen und einrichten</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html#verkehr" class="sidebar-item-text sidebar-link">
@@ -425,49 +511,27 @@ window.Quarto = {
     <h2 id="toc-title">Inhalt</h2>
    
   <ul>
-  <li><a href="#zeitreihe-berechnen" id="toc-zeitreihe-berechnen" class="nav-link active" data-scroll-target="#zeitreihe-berechnen">Zeitreihe berechnen</a>
-  <ul class="collapse">
-  <li><a href="#untersuchungsgebiet-und-vergleichsflächen" id="toc-untersuchungsgebiet-und-vergleichsflächen" class="nav-link" data-scroll-target="#untersuchungsgebiet-und-vergleichsflächen">Untersuchungsgebiet und Vergleichsflächen</a></li>
-  <li><a href="#einen-termin-nachvollziehen" id="toc-einen-termin-nachvollziehen" class="nav-link" data-scroll-target="#einen-termin-nachvollziehen">Einen Termin nachvollziehen</a></li>
-  <li><a href="#wiederholung-automatisieren" id="toc-wiederholung-automatisieren" class="nav-link" data-scroll-target="#wiederholung-automatisieren">Wiederholung automatisieren</a></li>
-  </ul></li>
-  <li><a href="#flächen-und-regionen-berechnen" id="toc-flächen-und-regionen-berechnen" class="nav-link" data-scroll-target="#flächen-und-regionen-berechnen">Flächen und Regionen berechnen</a>
-  <ul class="collapse">
-  <li><a href="#vorgegebene-gebiete-aggregieren" id="toc-vorgegebene-gebiete-aggregieren" class="nav-link" data-scroll-target="#vorgegebene-gebiete-aggregieren">Vorgegebene Gebiete aggregieren</a></li>
-  <li><a href="#temperaturbasierte-regionen-ableiten" id="toc-temperaturbasierte-regionen-ableiten" class="nav-link" data-scroll-target="#temperaturbasierte-regionen-ableiten">Temperaturbasierte Regionen ableiten</a></li>
-  </ul></li>
+  <li><a href="#zeitreihe-berechnen" id="toc-zeitreihe-berechnen" class="nav-link active" data-scroll-target="#zeitreihe-berechnen">Zeitreihe berechnen</a></li>
+  <li><a href="#flächen-und-regionen-berechnen" id="toc-flächen-und-regionen-berechnen" class="nav-link" data-scroll-target="#flächen-und-regionen-berechnen">Flächen und Regionen berechnen</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/r-werkzeuge.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/r-werkzeuge.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">R-Referenz: Zeitreihen und Regionen</h1>
-<p class="subtitle lead">Berechnungen für begründete Modellvergleiche</p>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p>Diese Referenz unterstützt die <a href="../pages/modellierung_luftbild_lst.html">Modellkritik zur Stadtwärme</a>. Wählen Sie die Berechnung erst, wenn klar ist, welche offene Frage sie bearbeiten soll. Eine eigene Landsat-Auswertung verändert die zeitliche und räumliche Beschreibung der Oberfläche. Lufttemperatur, Stoffwechsel und individuelle Beanspruchung werden damit noch nicht erfasst.</p>
-<section id="zeitreihe-berechnen" class="level1">
-<h1>Zeitreihe berechnen</h1>
-<section id="untersuchungsgebiet-und-vergleichsflächen" class="level2">
-<h2 class="anchored" data-anchor-id="untersuchungsgebiet-und-vergleichsflächen">Untersuchungsgebiet und Vergleichsflächen</h2>
+<section id="zeitreihe-berechnen" class="level2">
+<h2 class="anchored" data-anchor-id="zeitreihe-berechnen">Zeitreihe berechnen</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Untersuchungsgebiet und Vergleichsflächen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Einen Termin nachvollziehen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Wiederholung automatisieren</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><span id="untersuchungsgebiet-und-vergleichsflächen" class="course-anchor"></span></p>
 <p>In QGIS werden zwei GeoPackages im Projektordner gespeichert:</p>
 <table class="caption-top table">
 <colgroup>
@@ -492,9 +556,9 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Die Flächen dienen zunächst als vorab definierte Untersuchungseinheiten. Ihre Abgrenzung wird aus Landnutzung und Stadtstruktur begründet. Dafür bleibt der manuelle Vergleich mit dem Luftbild erforderlich.</p>
-</section>
-<section id="einen-termin-nachvollziehen" class="level2">
-<h2 class="anchored" data-anchor-id="einen-termin-nachvollziehen">Einen Termin nachvollziehen</h2>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><span id="einen-termin-nachvollziehen" class="course-anchor"></span></p>
 <p>Für einen Landsat-8/9-Termin werden das Temperaturband <code>ST_B10</code> und das Qualitätsband <code>QA_PIXEL</code> benötigt. Die Verarbeitung besteht aus vier Schritten:</p>
 <ol type="1">
 <li>Raster auf das Untersuchungsgebiet zuschneiden.</li>
@@ -527,13 +591,13 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
 </tr>
 </tbody>
 </table>
-</section>
-<section id="wiederholung-automatisieren" class="level2">
-<h2 class="anchored" data-anchor-id="wiederholung-automatisieren">Wiederholung automatisieren</h2>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><span id="wiederholung-automatisieren" class="course-anchor"></span></p>
 <p>Die Verarbeitung eines Termins wird für sämtliche ausgewählten Sommertermine wiederholt. Es werden keine besonders heißen Szenen vorab ausgewählt: Sonst beschriebe bereits der Mittelwert eine vorselektierte Hitzestichprobe.</p>
 <p>Die Berechnung legt Szenenauswahl, Maskierung, Rasterweite und Kennwertbildung offen. Diese Festlegungen können für einen begründeten Modellvergleich verändert werden. Die Vorgaben sind keine geprüfte optimale Parametrisierung für Marburg.</p>
 <p>Einmalig in der R-Konsole:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"terra"</span>, <span class="st">"sf"</span>, <span class="st">"rstac"</span>, <span class="st">"supercells"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"terra"</span>, <span class="st">"sf"</span>, <span class="st">"rstac"</span>, <span class="st">"supercells"</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das RStudio-Projekt liegt im Ordner mit dieser Struktur:</p>
 <pre class="text"><code>stadtwaerme/
 ├── data/
@@ -546,10 +610,10 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
 └── output/</code></pre>
 <p>Die drei verlinkten Skripte werden unter <code>scripts/</code> gespeichert. Alle Pfade beziehen sich auf den Projektordner.</p>
 <p><strong>Szenen abrufen:</strong> <a href="../scripts/lst_abruf.R">lst_abruf.R</a> sucht Landsat-8/9-Oberflächentemperaturprodukte am <a href="https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2">Microsoft Planetary Computer</a>, beschränkt die Auswahl auf Juni bis August 2021–2025 und speichert nur Temperatur- und Qualitätsband im Gebiet.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lst_abruf.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lst_abruf.R"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Im Skript stehen Gebiet, Zeitraum und Wolkengrenze am Anfang. Die Wolkengrenze ist eine Vorauswahl für ganze Szenen. Die lokale QA-Maske folgt im nächsten Skript. Bei mehreren Szenen am selben Tag wird für diesen Einstieg die Szene mit dem geringsten Gesamtwolkenanteil verwendet; dadurch können an den Rändern Beobachtungen fehlen. <code>data/szenen.csv</code> hält Auswahl, Aufnahmezeit und Dateipfade fest.</p>
 <p><strong>Zeitreihe und Kennwerte berechnen:</strong> <a href="../scripts/lst_zeitreihe.R">lst_zeitreihe.R</a> bereinigt die einzelnen Termine, vereinheitlicht ihr Raster und erzeugt die Flächentabelle sowie die zeitlichen Rasterkennwerte.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lst_zeitreihe.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lst_zeitreihe.R"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -593,12 +657,17 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
 </tbody>
 </table>
 <p>Die Zahl gültiger Beobachtungen gehört zur Interpretation. Im Skript werden Zellen mit weniger als zehn Beobachtungen für die Kennwertkarten ausgeblendet. Dieser Arbeitswert garantiert keine stabile Schätzung: Insbesondere q95 ist bei kleinen Stichproben stark von wenigen hohen Werten abhängig. Bei ungleich verteilten Aufnahmeterminen erhalten häufig beobachtete Sommer mehr Gewicht.</p>
+</div>
+</div>
+</div>
 </section>
-</section>
-<section id="flächen-und-regionen-berechnen" class="level1">
-<h1>Flächen und Regionen berechnen</h1>
-<section id="vorgegebene-gebiete-aggregieren" class="level2">
-<h2 class="anchored" data-anchor-id="vorgegebene-gebiete-aggregieren">Vorgegebene Gebiete aggregieren</h2>
+<section id="flächen-und-regionen-berechnen" class="level2">
+<h2 class="anchored" data-anchor-id="flächen-und-regionen-berechnen">Flächen und Regionen berechnen</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Vorgegebene Gebiete aggregieren</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Temperaturbasierte Regionen ableiten</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><span id="vorgegebene-gebiete-aggregieren" class="course-anchor"></span></p>
 <p>Stadtquartiere, Landnutzungseinheiten oder regelmäßige Rasterquadrate können als räumliche Bezugseinheiten dienen. Dafür wird pro Gebiet und Termin ein Flächenwert berechnet. Die Wahl der Einheit bestimmt, welche Unterschiede erhalten bleiben: Große Quartiere mitteln kleine heiße Standorte stärker aus als kleine Vergleichspolygone.</p>
 <p>Zeitliche und räumliche Aggregation müssen dabei ausdrücklich benannt werden:</p>
 <table class="caption-top table">
@@ -629,30 +698,76 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>quartiere <span class="ot">&lt;-</span> <span class="fu">vect</span>(<span class="st">"data/quartiere.gpkg"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>kennwerte <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"output/lst_kennwerte.tif"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>quartiere <span class="ot">&lt;-</span> <span class="fu">project</span>(quartiere, <span class="fu">crs</span>(kennwerte))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">extract</span>(kennwerte, quartiere, <span class="at">fun =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">extract</span>(kennwerte, quartiere, <span class="at">fun =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Dieses Beispiel verwendet Zellen nach ihrer Lage im Polygon. Für den Einstieg werden ausreichend große Gebiete gewählt; Randzellen werden nicht nach Flächenanteil gewichtet.</p>
-</section>
-<section id="temperaturbasierte-regionen-ableiten" class="level2">
-<h2 class="anchored" data-anchor-id="temperaturbasierte-regionen-ableiten">Temperaturbasierte Regionen ableiten</h2>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><span id="temperaturbasierte-regionen-ableiten" class="course-anchor"></span></p>
 <p>Wenn passende Gebietseinheiten fehlen, können benachbarte Rasterzellen nach thermischer Ähnlichkeit zusammengefasst werden. Jakub Nowosads R-Paket <a href="https://jakubnowosad.com/supercells/">supercells</a> bildet zusammenhängende Segmente. Für diese Fallstudie verwenden wir zwei Merkmale: mittlere LST und den Abstand q95 − Mittelwert. Die Standardisierung gibt beiden Merkmalen eine vergleichbare Gewichtung.</p>
 <p>Das Skript <a href="../scripts/lst_regionen.R">lst_regionen.R</a> setzt diese Regionalisierung um:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lst_regionen.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lst_regionen.R"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Die Funktion <a href="https://jakubnowosad.com/supercells/reference/supercells.html">supercells()</a> verbindet Merkmalsähnlichkeit und räumliche Nähe. <code>k</code> steuert die angestrebte Zahl der Regionen, <code>compactness</code> deren räumliche Kompaktheit. Das Skript speichert die Polygone als <code>regionen.gpkg</code>, ihre Kennwerte und die erneut aggregierten ursprünglichen Zeitreihen.</p>
 <p>Damit lassen sich die beiden Aggregationsreihenfolgen für Region 1 direkt vergleichen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>reihe <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/regionen_zeitreihe.csv"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>karte <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/regionen_kennwerte.csv"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(reihe<span class="sc">$</span>lst_c[reihe<span class="sc">$</span>region_id <span class="sc">==</span> <span class="dv">1</span>], <span class="fl">0.90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>karte<span class="sc">$</span>q90[karte<span class="sc">$</span>region_id <span class="sc">==</span> <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>karte<span class="sc">$</span>q90[karte<span class="sc">$</span>region_id <span class="sc">==</span> <span class="dv">1</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Der erste Wert ist q90 der regionalen Mitteltemperaturen über die Zeit. Der zweite ist der räumliche Mittelwert der pixelweisen q90-Werte.</p>
 <p><strong>Prüfung der Gebietswahl:</strong> Begründen Sie zunächst, weshalb temperaturbasierte Gebiete für Ihre Frage geeignet sein könnten. Vergleichen Sie beispielsweise <code>k &lt;- 15</code> mit <code>k &lt;- 60</code> und bei gleicher Segmentzahl unterschiedliche Kompaktheit. Sichern Sie die Ausgaben jeder Variante vor dem nächsten Lauf in einem eigenen Ordner; die Skripte überschreiben ihre Ausgaben. Prüfen Sie, ob ein priorisierter Aufenthaltsort durch andere Grenzen anders bewertet wird. Geringe innere Temperaturstreuung ist eine Folge des Segmentierungsziels und keine unabhängige Validierung.</p>
 <p>Die Segmente sind thermisch begründete Analysegebiete. Ob ihre Grenzen mit Stadtquartieren zusammenfallen, wird anschließend anhand von Bebauung, Nutzung und Topografie untersucht. Die Wahl von Merkmalen, Segmentzahl und Kompaktheit ist Teil des räumlichen Modells. Durch Vergleich mehrerer Varianten wird sichtbar, welche Strukturen über Maßstäbe hinweg bestehen.</p>
 <p>Für einen späteren Vergleich von Landbedeckungsmustern innerhalb solcher Gebiete bietet Nowosads <a href="https://jakubnowosad.com/motif/">motif</a> weitere Methoden. Es beschreibt Muster kategorialer Raster. Die hier verwendete Regionalisierung mit <code>supercells</code> beruht auf kontinuierlichen Temperaturmerkmalen.</p>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  'use strict';
+  function zielOeffnen() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const ziel = document.getElementById(id);
+    if (!ziel) return;
+    const panes = [];
+    for (let el = ziel; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+      if (el.tagName === 'DETAILS') el.open = true;
+    }
+    for (const pane of panes) {
+      const tab = [...document.querySelectorAll('[data-bs-toggle="tab"]')]
+        .find(el => el.getAttribute('data-bs-target') === '#' + pane.id);
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+    }
+    if (panes.length) requestAnimationFrame(() => ziel.scrollIntoView());
+  }
+  function starten() {
+    for (const tab of document.querySelectorAll('.panel-tabset [role="tab"]')) {
+      const pane = document.getElementById(tab.getAttribute('aria-controls'));
+      if (!pane) continue;
+      const titel = document.createElement('h3');
+      titel.className = 'course-print-title';
+      titel.textContent = tab.textContent;
+      pane.prepend(titel);
+    }
+    zielOeffnen();
+  }
+  window.addEventListener('hashchange', zielOeffnen);
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
+      requestAnimationFrame(zielOeffnen);
+    }
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', starten);
+  else starten();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -691,12 +806,12 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopiert");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopiert");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1078,8 +1193,8 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../index.html#starkniederschlag" class="pagination-link" aria-label="2. Starkniederschlag (Itzï)">
-        <span class="nav-page-text">2. Starkniederschlag (Itzï)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/starkregen-einstieg.html" class="pagination-link" aria-label="Einstieg und Arbeitsauftrag">
+        <span class="nav-page-text">Einstieg und Arbeitsauftrag</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1088,4 +1203,4 @@ LST_{°C}=DN\cdot0{,}00341802+149-273{,}15.
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/r-werkzeuge.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/r-werkzeuge.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

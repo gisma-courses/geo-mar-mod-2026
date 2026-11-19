@@ -8,11 +8,18 @@ project:
   render:
     - "index.qmd"
     - "pages/stadtwaerme-einstieg.qmd"
+    - "pages/hotspot-zu-palm.qmd"
     - "pages/modellierung_luftbild_lst.qmd"
     - "pages/qgis-howto-stadtwaerme-marburg.qmd"
     - "pages/exkurs_stationen.qmd"
     - "pages/r-werkzeuge.qmd"
     - "pages/ws/ws-02.qmd"
+    - "pages/starkregen-einstieg.qmd"
+    - "pages/starkregen-reader.qmd"
+    - "pages/starkregen-daten.qmd"
+    - "pages/itzi-setup.qmd"
+
+lang: de
 
 website:
   title: "Marburg modellieren"
@@ -52,14 +59,24 @@ website:
               text: "Modellkritik: UTCI und PET"
             - href: pages/ws/ws-02.qmd
               text: "Worksheet: Thermische Entlastung"
+            - href: pages/hotspot-zu-palm.qmd
+              text: "Abschluss: Vom Hotspot zur Maßnahme"
             - section: "Werkzeugreferenzen"
               contents:
                 - href: pages/qgis-howto-stadtwaerme-marburg.qmd
                   text: "QGIS: Luftbild und LST"
                 - href: pages/r-werkzeuge.qmd
                   text: "R: Zeitreihen und Regionen"
-        - href: index.qmd#starkniederschlag
-          text: "2. Starkniederschlag (Itzï)"
+        - section: "2. Starkniederschlag (Itzï)"
+          contents:
+            - href: pages/starkregen-einstieg.qmd
+              text: "Einstieg und Arbeitsauftrag"
+            - href: pages/starkregen-reader.qmd
+              text: "Reader: Wasser im Stadtraum"
+            - href: pages/starkregen-daten.qmd
+              text: "Daten beschaffen und vorbereiten"
+            - href: pages/itzi-setup.qmd
+              text: "Itzï beschaffen und einrichten"
         - href: index.qmd#verkehr
           text: "3. Verkehr (NetLogo)"
 
@@ -72,14 +89,19 @@ execute:
 
 format:
   html:
+    include-in-header: css/banner-style.html
+    include-after-body: css/course-navigation.html
     code-overflow: wrap
     toc-title: "Inhalt"
     number-sections: false
     highlight-style: github
     theme:
       light: cerulean
-      dark: lumen
+      dark: [lumen, css/theme-dark.scss]
     code-copy: true
+    code-fold: true
+    code-summary: "Code anzeigen"
+    css: css/styles.css
     toc: true
     link-external-icon: false
     link-external-newwindow: true

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../pages/r-werkzeuge.html" rel="next">
-<link href="../pages/ws/ws-02.html" rel="prev">
+<link href="../pages/hotspot-zu-palm.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0edd2e978850e7d69a67fc7c8ff016b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -59,21 +59,55 @@ ul.task-list li input[type="checkbox"] {
     "s"
   ],
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background-image: url(../images/banners/stadtwaerme.png);
+background-size: cover;
+      }
+</style>
+<style>
+#title-block-header .quarto-title-banner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 2560px;
+  height: 196px;
+  max-height: 196px;
+  margin-inline: auto;
+  padding: 22px 26px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+</style>
 
 
+<link rel="stylesheet" href="../css/styles.css">
 <meta property="og:title" content="QGIS-Referenz: Stadtwärme in Marburg – Marburg modellieren">
 <meta property="og:description" content="Räumliche Operationalisierung mit Luftbild und DLR-LST-Produkt">
 <meta property="og:site_name" content="Marburg modellieren">
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -248,27 +282,44 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">QGIS-Referenz: Stadtwärme in Marburg</h1>
         </a>     
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">QGIS-Referenz: Stadtwärme in Marburg</h1>
+            <p class="subtitle lead">Räumliche Operationalisierung mit Luftbild und DLR-LST-Produkt</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Marburg modellieren</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -285,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">1. Stadtklima</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -314,11 +365,17 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Worksheet: Thermische Entlastung</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/hotspot-zu-palm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abschluss: Vom Hotspot zur Maßnahme</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Werkzeugreferenzen</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -339,12 +396,41 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html#starkniederschlag" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">2. Starkniederschlag (Itzï)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-einstieg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg und Arbeitsauftrag</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reader: Wasser im Stadtraum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daten beschaffen und vorbereiten</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/itzi-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Itzï beschaffen und einrichten</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html#verkehr" class="sidebar-item-text sidebar-link">
@@ -356,33 +442,33 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul>
+  <li><a href="#frage-und-vorbereitung" id="toc-frage-und-vorbereitung" class="nav-link active" data-scroll-target="#frage-und-vorbereitung">Frage und Vorbereitung</a></li>
+  <li><a href="#mit-luftbild-und-lst-arbeiten" id="toc-mit-luftbild-und-lst-arbeiten" class="nav-link" data-scroll-target="#mit-luftbild-und-lst-arbeiten">Mit Luftbild und LST arbeiten</a></li>
+  <li><a href="#befund-und-schlussfolgerungen" id="toc-befund-und-schlussfolgerungen" class="nav-link" data-scroll-target="#befund-und-schlussfolgerungen">Befund und Schlussfolgerungen</a></li>
+  <li><a href="#quellen-und-weitere-informationen" id="toc-quellen-und-weitere-informationen" class="nav-link" data-scroll-target="#quellen-und-weitere-informationen">Quellen und weitere Informationen</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/qgis-howto-stadtwaerme-marburg.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">QGIS-Referenz: Stadtwärme in Marburg</h1>
-<p class="subtitle lead">Räumliche Operationalisierung mit Luftbild und DLR-LST-Produkt</p>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
 
-
-<section id="welche-annahme-prüfen-wir-mit-diesen-daten" class="level1">
-<h1>Welche Annahme prüfen wir mit diesen Daten?</h1>
+<section id="frage-und-vorbereitung" class="level2">
+<h2 class="anchored" data-anchor-id="frage-und-vorbereitung">Frage und Vorbereitung</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Welche Annahme prüfen wir mit diesen Daten?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Daten und Software</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><span id="welche-annahme-prüfen-wir-mit-diesen-daten" class="course-anchor"></span></p>
 <p>Das <a href="../pages/modellierung_luftbild_lst.html">Modellierungskonzept</a> fragt, unter welchen Bedingungen städtische Freiräume thermische Entlastung bieten. Diese Referenz unterstützt einen Teil der Untersuchung: Wie passen die aus dem Luftbild abgeleiteten Erwartungen zu den mittleren Oberflächentemperaturmustern?</p>
 <p>Das DLR-Produkt ist dafür eine begründbare Datenwahl, weil es die räumliche Beschreibung bereits bereitstellt. Für diese Frage muss kein eigenes Temperaturprodukt hergestellt werden. Für Luftbedingungen, metabolische Wärmeproduktion oder die individuelle Beanspruchung der Person brauchen wir andere Größen und Wirkungsannahmen.</p>
 <p>Formulieren Sie vor dem Laden der Temperaturkarte eine Erwartung und einen möglichen Gegenbefund. Entscheiden Sie danach, welche der folgenden Werkzeuge Sie benötigen.</p>
@@ -392,16 +478,16 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Wichtig
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Direkter Datendownload:</strong> <a href="https://download.geoservice.dlr.de/LST_DE/files/Germany_LST_summer_2021-2025_mean.tif">DLR-LST-Sommermittel 2021–2025 als GeoTIFF herunterladen (ca. 1,3 GiB)</a>. Das Raster umfasst Deutschland einschließlich Marburg und enthält bereits °C. Es handelt sich um einen zeitlichen Mittelwert, nicht um ein q90- oder q95-Produkt.</p>
 </div>
 </div>
-</section>
-<section id="daten-und-software" class="level1">
-<h1>Daten und Software</h1>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><span id="daten-und-software" class="course-anchor"></span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -437,9 +523,17 @@ Important
 │   └── marburg_lst_sommermittel_2021-2025.tif
 ├── erwartungen.gpkg
 └── marburg_stadtwaerme.qgz</code></pre>
+</div>
+</div>
+</div>
 </section>
-<section id="luftbild-laden-und-lokal-speichern" class="level1">
-<h1>Luftbild laden und lokal speichern</h1>
+<section id="mit-luftbild-und-lst-arbeiten" class="level2">
+<h2 class="anchored" data-anchor-id="mit-luftbild-und-lst-arbeiten">Mit Luftbild und LST arbeiten</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Luftbild laden und lokal speichern</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Erwartung im Luftbild einzeichnen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Temperaturdatei herunterladen und Marburg ausschneiden</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Wärmebild in QGIS darstellen</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><span id="luftbild-laden-und-lokal-speichern" class="course-anchor"></span></p>
 <p>Das Land Hessen stellt RGB-Orthophotos über einen WMS bereit. Die Orthophotos sind georeferenziert; für Hessen wird eine Bodenauflösung von 20 cm angegeben. Das Aufnahmejahr ist je Ausschnitt unterschiedlich und sollte im Quellenhinweis geprüft werden.</p>
 <ul>
 <li>Dienstbeschreibung: <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/luftbilder/digitale-orthophotos-true-orthophoto">HVBG – Orthophotos und TrueDOP</a></li>
@@ -456,9 +550,9 @@ Important
 <li>Im Layer-Kontextmenü <strong>Exportieren → Speichern als…</strong> wählen. Als Format <strong>GeoTIFF</strong>, als KBS <strong>EPSG:25832</strong> und als Datei <code>daten/marburg_luftbild.tif</code> wählen. Den aktuellen Ausschnitt speichern.</li>
 </ol>
 <p>Quellenangabe für Karte und Projekt: <strong>© Hessische Verwaltung für Bodenmanagement und Geoinformation (HVBG)</strong>. Ergänze das Aufnahmejahr, wenn es in den Metadaten angezeigt wird.</p>
-</section>
-<section id="erwartung-im-luftbild-einzeichnen" class="level1">
-<h1>Erwartung im Luftbild einzeichnen</h1>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><span id="erwartung-im-luftbild-einzeichnen" class="course-anchor"></span></p>
 <p>Die Erwartung wird zuerst ohne sichtbare Temperaturkarte erstellt.</p>
 <ol type="1">
 <li>Wärmebild vorübergehend ausblenden.</li>
@@ -500,9 +594,9 @@ Important
 <li>Bearbeitungsmodus einschalten und etwa fünf größere Vergleichsflächen digitalisieren. Grenzen nur so genau ziehen, wie Luftbild und spätere Thermalauflösung es sinnvoll erlauben.</li>
 <li>Änderungen speichern und Bearbeitungsmodus beenden.</li>
 </ol>
-</section>
-<section id="temperaturdatei-herunterladen-und-marburg-ausschneiden" class="level1">
-<h1>Temperaturdatei herunterladen und Marburg ausschneiden</h1>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p><span id="temperaturdatei-herunterladen-und-marburg-ausschneiden" class="course-anchor"></span></p>
 <p><strong>Datei:</strong> <a href="https://download.geoservice.dlr.de/LST_DE/files/Germany_LST_summer_2021-2025_mean.tif">Germany_LST_summer_2021-2025_mean.tif – direkter GeoTIFF-Download</a></p>
 <p>Die Datei ist etwa <strong>1,3 GiB</strong> groß. Sie enthält ganz Deutschland und damit auch Marburg. Prüfen Sie zusätzlich die Beobachtungszahl: Eine räumlich vollständige Mittelwertkarte bedeutet keine überall gleich gut besetzte Stichprobe.</p>
 <table class="caption-top table">
@@ -555,9 +649,9 @@ Important
 </ol>
 <p><strong>Produktbeschreibung:</strong> <a href="https://geoservice.dlr.de/web/datasets/lst_de">DLR-Datensatzseite</a> · <a href="https://download.geoservice.dlr.de/LST_DE/files/LST_README.txt">README mit Einheit und KBS</a> · <a href="https://download.geoservice.dlr.de/LST_DE/files/">Downloadverzeichnis</a>.</p>
 <p>Quellenangabe: <strong>DLR/EOC, Land Surface Temperature – Aggregates – Germany, Summer 2021–2025</strong>, DOI: <a href="https://doi.org/10.15489/g3x9qw3nyj45">10.15489/g3x9qw3nyj45</a>, Lizenz CC BY 4.0. Eigene Bearbeitung: Ausschnitt Marburg.</p>
-</section>
-<section id="wärmebild-in-qgis-darstellen" class="level1">
-<h1>Wärmebild in QGIS darstellen</h1>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p><span id="wärmebild-in-qgis-darstellen" class="course-anchor"></span></p>
 <ol type="1">
 <li>Beim Marburger Temperaturlayer <strong>Eigenschaften → Symbolisierung → Einkanal-Pseudofarbe</strong> öffnen und Band 1 auswählen.</li>
 <li>Die tatsächlichen Min-/Max-Werte des lokalen Rasters laden. Einen Farbverlauf von kühl nach warm und zunächst fünf gleich breite Temperaturklassen verwenden.</li>
@@ -566,9 +660,17 @@ Important
 </ol>
 <p><strong>Keine Temperaturumrechnung:</strong> Das DLR-GeoTIFF enthält bereits Grad Celsius. Der Landsat-Skalierungsfaktor darf hier nicht erneut angewendet werden.</p>
 <p><strong>Interpretation:</strong> Die Karte zeigt den Mittelwert verfügbarer wolkenfreier Satellitenbeobachtungen in den Sommern 2021–2025. Sie ist weder ein Tagesmaximum noch ein Mittel über sämtliche Tages- und Nachtstunden. Das 30-m-Raster erzeugt gegenüber der nativen Thermalauflösung keine zusätzlichen thermischen Details.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="erwartung-mit-der-temperaturkarte-vergleichen" class="level1">
-<h1>Erwartung mit der Temperaturkarte vergleichen</h1>
+<section id="befund-und-schlussfolgerungen" class="level2">
+<h2 class="anchored" data-anchor-id="befund-und-schlussfolgerungen">Befund und Schlussfolgerungen</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Erwartung mit der Temperaturkarte vergleichen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Was bedeutet der Befund für die Entlastungsfrage?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Welche weitere Untersuchung ist begründet?</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p><span id="erwartung-mit-der-temperaturkarte-vergleichen" class="course-anchor"></span></p>
 <p>Die Erwartungsflächen mit transparenter Füllung und gut sichtbarer Umrandung darstellen. Das Temperaturbild einschalten und die gleichen Flächen abgleichen. Für das Beobachtungszahlraster denselben Ausschnitt speichern; prüfen, ob auffällige Unterschiede auf vergleichbaren Stichprobenumfängen beruhen. Eine hohe Beobachtungszahl allein garantiert keine repräsentative Auswahl der Wetterlagen.</p>
 <p>Für jede Fläche festhalten:</p>
 <table class="caption-top table">
@@ -600,19 +702,22 @@ Important
 </table>
 <p>Die zentrale Frage lautet: <strong>Wo stimmen die aus Oberflächen und Stadtstruktur abgeleiteten Erwartungen mit der Temperaturkarte überein – und wo nicht?</strong></p>
 <p>LST bezeichnet die Temperatur der Landoberfläche. Sie ist keine Messung der Lufttemperatur in zwei Metern Höhe. Das DLR-Sommermittel zeigt wiederkehrende räumliche Temperaturunterschiede in den verfügbaren wolkenfreien Sommerbeobachtungen. Es zeigt weder gleichzeitige Temperaturen an einem bestimmten Tag noch Temperaturspitzen. Luftbild und Temperaturzeitraum können außerdem unterschiedliche Bebauungszustände abbilden.</p>
-</section>
-<section id="was-bedeutet-der-befund-für-die-entlastungsfrage" class="level1">
-<h1>Was bedeutet der Befund für die Entlastungsfrage?</h1>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p><span id="was-bedeutet-der-befund-für-die-entlastungsfrage" class="course-anchor"></span></p>
 <p>Eine Übereinstimmung stützt zunächst nur die Erwartung zum Oberflächenmuster. Für eine Aussage über Aufenthaltsbedingungen bleibt zu untersuchen, welche Luft- und Strahlungsbedingungen vorliegen und wie sie mit der Wärmeproduktion und Wärmeabgabe des Körpers zusammenwirken. Ein Widerspruch verlangt eine Prüfung der Annahmen: Liegt er am Schatten, am Aufnahmezeitraum, an der räumlichen Mischung oder an einer unzutreffenden Vorstellung vom Zusammenhang zwischen Vegetation und Temperatur?</p>
 <p><strong>Ergebnis:</strong> Halten Sie fest, welche ursprüngliche Annahme bestehen bleibt, welche Sie ändern und welche zusätzliche Beobachtung Sie dafür brauchen. Formulieren Sie anschließend eine präzisere Frage zu einer gewählten Aufenthalts- oder Nutzungssituation.</p>
-</section>
-<section id="welche-weitere-untersuchung-ist-begründet" class="level1">
-<h1>Welche weitere Untersuchung ist begründet?</h1>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p><span id="welche-weitere-untersuchung-ist-begründet" class="course-anchor"></span></p>
 <p>Eine <a href="../pages/r-werkzeuge.html">eigene Zeitreihe</a> hilft, wenn offenbleibt, ob sich das Oberflächenmuster zwischen Aufnahmeterminen verändert. Dafür können die Vergleichsflächen als <code>data/flaechen.gpkg</code> mit dem Feld <code>area_id</code> und ein Polygon des Untersuchungsgebiets als <code>data/gebiet.gpkg</code> exportiert werden.</p>
 <p>Betrifft die offene Frage Luft, Strahlung oder den menschlichen Wärmehaushalt, führt sie stattdessen zur <a href="../pages/exkurs_stationen.html">Vertiefung zu Messdaten, UTCI und PET</a>. Begründen Sie den nächsten Untersuchungsschritt aus der offenen Frage.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="quellen-und-weitere-informationen" class="level1">
-<h1>Quellen und weitere Informationen</h1>
+<section id="quellen-und-weitere-informationen" class="level2">
+<h2 class="anchored" data-anchor-id="quellen-und-weitere-informationen">Quellen und weitere Informationen</h2>
 <ul>
 <li><a href="https://github.com/OGERHub/KlimaResilienzSchule/tree/main/04-summer-in-the-city">Materialanregung: Summer in the City</a></li>
 <li><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/luftbilder/digitale-orthophotos-true-orthophoto">Hessen: Orthophotos und TrueDOP</a></li>
@@ -625,6 +730,50 @@ Important
 </section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  'use strict';
+  function zielOeffnen() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const ziel = document.getElementById(id);
+    if (!ziel) return;
+    const panes = [];
+    for (let el = ziel; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+      if (el.tagName === 'DETAILS') el.open = true;
+    }
+    for (const pane of panes) {
+      const tab = [...document.querySelectorAll('[data-bs-toggle="tab"]')]
+        .find(el => el.getAttribute('data-bs-target') === '#' + pane.id);
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+    }
+    if (panes.length) requestAnimationFrame(() => ziel.scrollIntoView());
+  }
+  function starten() {
+    for (const tab of document.querySelectorAll('.panel-tabset [role="tab"]')) {
+      const pane = document.getElementById(tab.getAttribute('aria-controls'));
+      if (!pane) continue;
+      const titel = document.createElement('h3');
+      titel.className = 'course-print-title';
+      titel.textContent = tab.textContent;
+      pane.prepend(titel);
+    }
+    zielOeffnen();
+  }
+  window.addEventListener('hashchange', zielOeffnen);
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
+      requestAnimationFrame(zielOeffnen);
+    }
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', starten);
+  else starten();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -663,12 +812,12 @@ Important
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopiert");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopiert");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1045,8 +1194,8 @@ Important
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../pages/ws/ws-02.html" class="pagination-link" aria-label="Worksheet: Thermische Entlastung">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Worksheet: Thermische Entlastung</span>
+      <a href="../pages/hotspot-zu-palm.html" class="pagination-link" aria-label="Abschluss: Vom Hotspot zur Maßnahme">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abschluss: Vom Hotspot zur Maßnahme</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1060,4 +1209,4 @@ Important
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/qgis-howto-stadtwaerme-marburg.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/qgis-howto-stadtwaerme-marburg.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

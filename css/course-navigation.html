@@ -1,0 +1,44 @@
+<script>
+(() => {
+  'use strict';
+  function zielOeffnen() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const ziel = document.getElementById(id);
+    if (!ziel) return;
+    const panes = [];
+    for (let el = ziel; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+      if (el.tagName === 'DETAILS') el.open = true;
+    }
+    for (const pane of panes) {
+      const tab = [...document.querySelectorAll('[data-bs-toggle="tab"]')]
+        .find(el => el.getAttribute('data-bs-target') === '#' + pane.id);
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+    }
+    if (panes.length) requestAnimationFrame(() => ziel.scrollIntoView());
+  }
+  function starten() {
+    for (const tab of document.querySelectorAll('.panel-tabset [role="tab"]')) {
+      const pane = document.getElementById(tab.getAttribute('aria-controls'));
+      if (!pane) continue;
+      const titel = document.createElement('h3');
+      titel.className = 'course-print-title';
+      titel.textContent = tab.textContent;
+      pane.prepend(titel);
+    }
+    zielOeffnen();
+  }
+  window.addEventListener('hashchange', zielOeffnen);
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
+      requestAnimationFrame(zielOeffnen);
+    }
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', starten);
+  else starten();
+})();
+</script>

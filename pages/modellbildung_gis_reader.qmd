@@ -1,6 +1,9 @@
 ---
 title: "Modellbildung im GIS – Kurzreader"
 subtitle: "Was wir annehmen, berechnen und behaupten dürfen"
+title-block-banner: ../images/banners/starkregen.png
+title-block-banner-color: black
+lang: de
 author: "Chris Reudenbach"
 date: "2026-10-26"
 format:

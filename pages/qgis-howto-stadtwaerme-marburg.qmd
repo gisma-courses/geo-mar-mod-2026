@@ -1,13 +1,16 @@
 ---
 title: "QGIS-Referenz: Stadtwärme in Marburg"
 subtitle: "Räumliche Operationalisierung mit Luftbild und DLR-LST-Produkt"
+title-block-banner: ../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 order: 20
 #page-layout: full
 format-links: [html]
 format:
   html:
-    toc: false
-    code-fold: false
+    toc: true
+    code-fold: true
     number-sections: false
 execute:
   echo: false
@@ -15,7 +18,14 @@ execute:
   message: false
 ---
 
-# Welche Annahme prüfen wir mit diesen Daten?
+
+## Frage und Vorbereitung
+
+::: {.panel-tabset}
+
+### Welche Annahme prüfen wir mit diesen Daten?
+
+[]{#welche-annahme-prüfen-wir-mit-diesen-daten .course-anchor}
 
 Das [Modellierungskonzept](modellierung_luftbild_lst.qmd) fragt, unter welchen Bedingungen städtische Freiräume thermische Entlastung bieten. Diese Referenz unterstützt einen Teil der Untersuchung: Wie passen die aus dem Luftbild abgeleiteten Erwartungen zu den mittleren Oberflächentemperaturmustern?
 
@@ -27,7 +37,9 @@ Formulieren Sie vor dem Laden der Temperaturkarte eine Erwartung und einen mögl
 **Direkter Datendownload:** [DLR-LST-Sommermittel 2021–2025 als GeoTIFF herunterladen (ca. 1,3 GiB)](https://download.geoservice.dlr.de/LST_DE/files/Germany_LST_summer_2021-2025_mean.tif). Das Raster umfasst Deutschland einschließlich Marburg und enthält bereits °C. Es handelt sich um einen zeitlichen Mittelwert, nicht um ein q90- oder q95-Produkt.
 :::
 
-# Daten und Software
+### Daten und Software
+
+[]{#daten-und-software .course-anchor}
 
 | Eingabe | Quelle | Verwendung |
 |---|---|---|
@@ -49,7 +61,16 @@ marburg_stadtwaerme/
 └── marburg_stadtwaerme.qgz
 ```
 
-# Luftbild laden und lokal speichern
+:::
+
+
+## Mit Luftbild und LST arbeiten
+
+::: {.panel-tabset}
+
+### Luftbild laden und lokal speichern
+
+[]{#luftbild-laden-und-lokal-speichern .course-anchor}
 
 Das Land Hessen stellt RGB-Orthophotos über einen WMS bereit. Die Orthophotos sind georeferenziert; für Hessen wird eine Bodenauflösung von 20 cm angegeben. Das Aufnahmejahr ist je Ausschnitt unterschiedlich und sollte im Quellenhinweis geprüft werden.
 
@@ -68,7 +89,9 @@ In QGIS:
 
 Quellenangabe für Karte und Projekt: **© Hessische Verwaltung für Bodenmanagement und Geoinformation (HVBG)**. Ergänze das Aufnahmejahr, wenn es in den Metadaten angezeigt wird.
 
-# Erwartung im Luftbild einzeichnen
+### Erwartung im Luftbild einzeichnen
+
+[]{#erwartung-im-luftbild-einzeichnen .course-anchor}
 
 Die Erwartung wird zuerst ohne sichtbare Temperaturkarte erstellt.
 
@@ -87,7 +110,9 @@ Die Erwartung wird zuerst ohne sichtbare Temperaturkarte erstellt.
 5. Bearbeitungsmodus einschalten und etwa fünf größere Vergleichsflächen digitalisieren. Grenzen nur so genau ziehen, wie Luftbild und spätere Thermalauflösung es sinnvoll erlauben.
 6. Änderungen speichern und Bearbeitungsmodus beenden.
 
-# Temperaturdatei herunterladen und Marburg ausschneiden
+### Temperaturdatei herunterladen und Marburg ausschneiden
+
+[]{#temperaturdatei-herunterladen-und-marburg-ausschneiden .course-anchor}
 
 **Datei:** [Germany_LST_summer_2021-2025_mean.tif – direkter GeoTIFF-Download](https://download.geoservice.dlr.de/LST_DE/files/Germany_LST_summer_2021-2025_mean.tif)
 
@@ -116,7 +141,9 @@ In QGIS:
 
 Quellenangabe: **DLR/EOC, Land Surface Temperature – Aggregates – Germany, Summer 2021–2025**, DOI: [10.15489/g3x9qw3nyj45](https://doi.org/10.15489/g3x9qw3nyj45), Lizenz CC BY 4.0. Eigene Bearbeitung: Ausschnitt Marburg.
 
-# Wärmebild in QGIS darstellen
+### Wärmebild in QGIS darstellen
+
+[]{#wärmebild-in-qgis-darstellen .course-anchor}
 
 1. Beim Marburger Temperaturlayer **Eigenschaften → Symbolisierung → Einkanal-Pseudofarbe** öffnen und Band 1 auswählen.
 2. Die tatsächlichen Min-/Max-Werte des lokalen Rasters laden. Einen Farbverlauf von kühl nach warm und zunächst fünf gleich breite Temperaturklassen verwenden.
@@ -127,7 +154,16 @@ Quellenangabe: **DLR/EOC, Land Surface Temperature – Aggregates – Germany, S
 
 **Interpretation:** Die Karte zeigt den Mittelwert verfügbarer wolkenfreier Satellitenbeobachtungen in den Sommern 2021–2025. Sie ist weder ein Tagesmaximum noch ein Mittel über sämtliche Tages- und Nachtstunden. Das 30-m-Raster erzeugt gegenüber der nativen Thermalauflösung keine zusätzlichen thermischen Details.
 
-# Erwartung mit der Temperaturkarte vergleichen
+:::
+
+
+## Befund und Schlussfolgerungen
+
+::: {.panel-tabset}
+
+### Erwartung mit der Temperaturkarte vergleichen
+
+[]{#erwartung-mit-der-temperaturkarte-vergleichen .course-anchor}
 
 Die Erwartungsflächen mit transparenter Füllung und gut sichtbarer Umrandung darstellen. Das Temperaturbild einschalten und die gleichen Flächen abgleichen. Für das Beobachtungszahlraster denselben Ausschnitt speichern; prüfen, ob auffällige Unterschiede auf vergleichbaren Stichprobenumfängen beruhen. Eine hohe Beobachtungszahl allein garantiert keine repräsentative Auswahl der Wetterlagen.
 
@@ -141,19 +177,25 @@ Die zentrale Frage lautet: **Wo stimmen die aus Oberflächen und Stadtstruktur a
 
 LST bezeichnet die Temperatur der Landoberfläche. Sie ist keine Messung der Lufttemperatur in zwei Metern Höhe. Das DLR-Sommermittel zeigt wiederkehrende räumliche Temperaturunterschiede in den verfügbaren wolkenfreien Sommerbeobachtungen. Es zeigt weder gleichzeitige Temperaturen an einem bestimmten Tag noch Temperaturspitzen. Luftbild und Temperaturzeitraum können außerdem unterschiedliche Bebauungszustände abbilden.
 
-# Was bedeutet der Befund für die Entlastungsfrage?
+### Was bedeutet der Befund für die Entlastungsfrage?
+
+[]{#was-bedeutet-der-befund-für-die-entlastungsfrage .course-anchor}
 
 Eine Übereinstimmung stützt zunächst nur die Erwartung zum Oberflächenmuster. Für eine Aussage über Aufenthaltsbedingungen bleibt zu untersuchen, welche Luft- und Strahlungsbedingungen vorliegen und wie sie mit der Wärmeproduktion und Wärmeabgabe des Körpers zusammenwirken. Ein Widerspruch verlangt eine Prüfung der Annahmen: Liegt er am Schatten, am Aufnahmezeitraum, an der räumlichen Mischung oder an einer unzutreffenden Vorstellung vom Zusammenhang zwischen Vegetation und Temperatur?
 
 **Ergebnis:** Halten Sie fest, welche ursprüngliche Annahme bestehen bleibt, welche Sie ändern und welche zusätzliche Beobachtung Sie dafür brauchen. Formulieren Sie anschließend eine präzisere Frage zu einer gewählten Aufenthalts- oder Nutzungssituation.
 
-# Welche weitere Untersuchung ist begründet?
+### Welche weitere Untersuchung ist begründet?
+
+[]{#welche-weitere-untersuchung-ist-begründet .course-anchor}
 
 Eine [eigene Zeitreihe](r-werkzeuge.qmd) hilft, wenn offenbleibt, ob sich das Oberflächenmuster zwischen Aufnahmeterminen verändert. Dafür können die Vergleichsflächen als `data/flaechen.gpkg` mit dem Feld `area_id` und ein Polygon des Untersuchungsgebiets als `data/gebiet.gpkg` exportiert werden.
 
 Betrifft die offene Frage Luft, Strahlung oder den menschlichen Wärmehaushalt, führt sie stattdessen zur [Vertiefung zu Messdaten, UTCI und PET](exkurs_stationen.qmd). Begründen Sie den nächsten Untersuchungsschritt aus der offenen Frage.
 
-# Quellen und weitere Informationen
+:::
+
+## Quellen und weitere Informationen
 
 - [Materialanregung: Summer in the City](https://github.com/OGERHub/KlimaResilienzSchule/tree/main/04-summer-in-the-city)
 - [Hessen: Orthophotos und TrueDOP](https://hvbg.hessen.de/landesvermessung/geotopographie/luftbilder/digitale-orthophotos-true-orthophoto)

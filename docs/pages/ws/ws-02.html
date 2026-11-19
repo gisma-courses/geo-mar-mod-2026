@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../pages/qgis-howto-stadtwaerme-marburg.html" rel="next">
+<link href="../../pages/hotspot-zu-palm.html" rel="next">
 <link href="../../pages/exkurs_stationen.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-0edd2e978850e7d69a67fc7c8ff016b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -94,21 +94,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "s"
   ],
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background-image: url(../../images/banners/stadtwaerme.png);
+background-size: cover;
+      }
+</style>
+<style>
+#title-block-header .quarto-title-banner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 2560px;
+  height: 196px;
+  max-height: 196px;
+  margin-inline: auto;
+  padding: 22px 26px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+</style>
 
 
+<link rel="stylesheet" href="../../css/styles.css">
 <meta property="og:title" content="Worksheet 02: Thermische Entlastung modellieren – Marburg modellieren">
 <meta property="og:description" content="LST, Luftbedingungen, Stoffwechsel – UTCI oder PET?">
 <meta property="og:site_name" content="Marburg modellieren">
@@ -283,27 +317,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">Worksheet 02: Thermische Entlastung modellieren</h1>
         </a>     
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Worksheet 02: Thermische Entlastung modellieren</h1>
+            <p class="subtitle lead">LST, Luftbedingungen, Stoffwechsel – UTCI oder PET?</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">Marburg modellieren</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -320,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">1. Stadtklima</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -349,11 +400,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Worksheet: Thermische Entlastung</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/hotspot-zu-palm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abschluss: Vom Hotspot zur Maßnahme</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Werkzeugreferenzen</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -374,12 +431,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../index.html#starkniederschlag" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">2. Starkniederschlag (Itzï)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/starkregen-einstieg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg und Arbeitsauftrag</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/starkregen-reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reader: Wasser im Stadtraum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/starkregen-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daten beschaffen und vorbereiten</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/itzi-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Itzï beschaffen und einrichten</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html#verkehr" class="sidebar-item-text sidebar-link">
@@ -397,46 +483,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#eine-untersuchbare-frage-formulieren" id="toc-eine-untersuchbare-frage-formulieren" class="nav-link active" data-scroll-target="#eine-untersuchbare-frage-formulieren">Eine untersuchbare Frage formulieren</a></li>
-  <li><a href="#utci-und-pet-als-modellentscheidungen-prüfen" id="toc-utci-und-pet-als-modellentscheidungen-prüfen" class="nav-link" data-scroll-target="#utci-und-pet-als-modellentscheidungen-prüfen">UTCI und PET als Modellentscheidungen prüfen</a></li>
-  <li><a href="#annahmen-vor-der-berechnung-festhalten" id="toc-annahmen-vor-der-berechnung-festhalten" class="nav-link" data-scroll-target="#annahmen-vor-der-berechnung-festhalten">Annahmen vor der Berechnung festhalten</a></li>
-  <li><a href="#berechnung-ausführen" id="toc-berechnung-ausführen" class="nav-link" data-scroll-target="#berechnung-ausführen">Berechnung ausführen</a></li>
-  <li><a href="#ergebnisse-als-modellantworten-lesen" id="toc-ergebnisse-als-modellantworten-lesen" class="nav-link" data-scroll-target="#ergebnisse-als-modellantworten-lesen">Ergebnisse als Modellantworten lesen</a></li>
+  <li><a href="#modelle-und-berechnung" id="toc-modelle-und-berechnung" class="nav-link" data-scroll-target="#modelle-und-berechnung">Modelle und Berechnung</a></li>
   <li><a href="#das-konzept-revidieren" id="toc-das-konzept-revidieren" class="nav-link" data-scroll-target="#das-konzept-revidieren">Das Konzept revidieren</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/ws/ws-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/ws/ws-02.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">Worksheet 02: Thermische Entlastung modellieren</h1>
-<p class="subtitle lead">LST, Luftbedingungen, Stoffwechsel – UTCI oder PET?</p>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
 
-
-<section id="eine-untersuchbare-frage-formulieren" class="level1">
-<h1>Eine untersuchbare Frage formulieren</h1>
+<section id="eine-untersuchbare-frage-formulieren" class="level2">
+<h2 class="anchored" data-anchor-id="eine-untersuchbare-frage-formulieren">Eine untersuchbare Frage formulieren</h2>
 <p>Unter welchen Bedingungen bietet ein städtischer Freiraum thermische Entlastung – für wen, wann und bei welcher Tätigkeit?</p>
 <p>Wählen Sie einen Vergleich, etwa zwischen zwei Sitzplätzen, zwischen Weg und Aufenthaltsfläche oder zwischen zwei Nutzungssituationen. Legen Sie Zielgröße, Zeitpunkt und räumlichen Bezug fest. Zeichnen Sie ein Wirkungsgefüge und unterscheiden Sie Oberfläche, Umweltbedingungen und körperliche Wärmeproduktion beziehungsweise Wärmeabgabe.</p>
 <p><strong>Begründen Sie:</strong> Welche Teilfrage kann das DLR-LST-Mittel beantworten? Welche Information würde eine eigene LST-Zeitreihe hinzufügen? Welche offenen Fragen benötigen andere Größen? Verwenden Sie das <a href="../../pages/modellierung_luftbild_lst.html">Modellierungskonzept</a> als Grundlage Ihrer Argumentation.</p>
 </section>
-<section id="utci-und-pet-als-modellentscheidungen-prüfen" class="level1">
-<h1>UTCI und PET als Modellentscheidungen prüfen</h1>
+<section id="modelle-und-berechnung" class="level2">
+<h2 class="anchored" data-anchor-id="modelle-und-berechnung">Modelle und Berechnung</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">UTCI und PET als Modellentscheidungen prüfen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Annahmen vor der Berechnung festhalten</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Berechnung ausführen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Ergebnisse als Modellantworten lesen</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><span id="utci-und-pet-als-modellentscheidungen-prüfen" class="course-anchor"></span></p>
 <p>Beide Indizes verbinden Umweltgrößen mit einem Modell des menschlichen Wärmehaushalts. Ihre Referenzbedingungen und Rechenansätze unterscheiden sich. Gleiche Zahlenwerte in °C haben deshalb nicht automatisch dieselbe Bedeutung.</p>
 <table class="caption-top table">
 <colgroup>
@@ -481,9 +553,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Unterscheiden Sie zwischen Eingaben der untersuchten Situation und Bedingungen der jeweiligen Referenzumgebung. Welche Bedeutung hat dann die ausgegebene äquivalente Temperatur?</li>
 <li>Erklären Sie, weshalb eine einstellbare Altersangabe oder Körpermasse noch keine geprüfte Abbildung gesundheitlich bedingter Unterschiede in der Wärmeregulation gewährleistet.</li>
 </ol>
-</section>
-<section id="annahmen-vor-der-berechnung-festhalten" class="level1">
-<h1>Annahmen vor der Berechnung festhalten</h1>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><span id="annahmen-vor-der-berechnung-festhalten" class="course-anchor"></span></p>
 <p>Das <a href="../../scripts/thermische_indizes.py">Vergleichsskript</a> verwendet zwei angenommene Umweltsituationen:</p>
 <table class="caption-top table">
 <thead>
@@ -524,14 +596,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Diese Werte sind Szenarioannahmen. Die beiden Windwerte sind separat angenommen; das Skript rechnet keinen aus dem anderen um. Prüfen Sie, wie Sie diesen Zusammenhang am gewählten Ort messen oder modellieren würden.</p>
 <p>Für PET sind Körperhaltung und Körperparameter festgehalten. Variiert werden die metabolische Leistung mit 1,2 / 2,3 / 3,5 met und die Bekleidung mit 0,5 / 0,9 clo. Ordnen Sie die Zahlen erst nach Prüfung geeigneter Quellen einer konkreten Tätigkeit oder Bekleidung zu. Verwechseln Sie weder met mit W noch eine Leistung für den ganzen Körper mit einer Leistung pro Körperoberfläche.</p>
 <p><strong>Vorhersage:</strong> Welche Modellantwort erwarten Sie bei geringerer Strahlungstemperatur, höherer metabolischer Leistung oder anderer Bekleidung? Begründen Sie Ihre Erwartung anhand der Wärmebilanz. Kennzeichnen Sie Bedingungen, unter denen die Richtung eines Effekts nicht ohne Weiteres feststeht.</p>
-</section>
-<section id="berechnung-ausführen" class="level1">
-<h1>Berechnung ausführen</h1>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><span id="berechnung-ausführen" class="course-anchor"></span></p>
 <p>Speichern Sie das Skript und die <a href="../../scripts/requirements-thermik.txt">Paketliste</a> unter <code>scripts/</code> in Ihrem Projektordner. Die Bibliothek enthält dokumentierte Implementierungen beider Indizes. Die Modellwahl folgt aus der Frage; die gemeinsame Bibliothek erleichtert den Vergleich.</p>
 <p>Richten Sie im Projektordner einmalig eine Python-Umgebung ein:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> pip install <span class="at">-r</span> scripts/requirements-thermik.txt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> scripts/thermische_indizes.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/bin/python</span> scripts/thermische_indizes.py</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Unter Windows verwenden Sie <code>py -m venv .venv</code> und danach <code>.venv\Scripts\python.exe</code> statt <code>.venv/bin/python</code>.</p>
 <table class="caption-top table">
 <colgroup>
@@ -564,9 +636,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Das vorhandene <a href="../../scripts/utci_szenarien.R">R-Skript zu UTCI</a> bleibt ein einzelner Umweltvergleich. Für die gemeinsame Untersuchung von UTCI und PET verwenden Sie das Vergleichsskript.</p>
-</section>
-<section id="ergebnisse-als-modellantworten-lesen" class="level1">
-<h1>Ergebnisse als Modellantworten lesen</h1>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p><span id="ergebnisse-als-modellantworten-lesen" class="course-anchor"></span></p>
 <ol type="1">
 <li>Vergleichen Sie besonnt und verschattet <strong>innerhalb jedes Index</strong>. Stimmen Richtung und Rangfolge überein? Welche Änderung der Wärmebilanz liegt dem Vergleich zugrunde?</li>
 <li>Vergleichen Sie PET bei veränderter metabolischer Leistung und gleicher Bekleidung. Vergleichen Sie anschließend Bekleidungsvarianten bei gleicher metabolischer Leistung. Welche Annahmen bleiben dabei unverändert?</li>
@@ -575,9 +647,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Begründen Sie, weshalb eine Differenz zwischen PET und UTCI keine Aussage darüber erlaubt, welcher Index „richtiger“ ist. Übertragen Sie keine Belastungsklassen von einem Index auf den anderen.</li>
 <li>Welche Ihrer Fragen verlangt einen zeitlichen Verlauf? Begründen Sie, weshalb eine Folge stationärer PET-Werte allein keine physiologische Aufheiz- oder Erholungsphase beschreibt.</li>
 </ol>
+</div>
+</div>
+</div>
 </section>
-<section id="das-konzept-revidieren" class="level1">
-<h1>Das Konzept revidieren</h1>
+<section id="das-konzept-revidieren" class="level2">
+<h2 class="anchored" data-anchor-id="das-konzept-revidieren">Das Konzept revidieren</h2>
 <p>Beantworten Sie Ihre Ausgangsfrage so weit, wie die Daten und Modelle es erlauben. Unterscheiden Sie dabei:</p>
 <ul>
 <li>den beobachteten oder angenommenen Umweltunterschied,</li>
@@ -590,6 +665,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  'use strict';
+  function zielOeffnen() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const ziel = document.getElementById(id);
+    if (!ziel) return;
+    const panes = [];
+    for (let el = ziel; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+      if (el.tagName === 'DETAILS') el.open = true;
+    }
+    for (const pane of panes) {
+      const tab = [...document.querySelectorAll('[data-bs-toggle="tab"]')]
+        .find(el => el.getAttribute('data-bs-target') === '#' + pane.id);
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+    }
+    if (panes.length) requestAnimationFrame(() => ziel.scrollIntoView());
+  }
+  function starten() {
+    for (const tab of document.querySelectorAll('.panel-tabset [role="tab"]')) {
+      const pane = document.getElementById(tab.getAttribute('aria-controls'));
+      if (!pane) continue;
+      const titel = document.createElement('h3');
+      titel.className = 'course-print-title';
+      titel.textContent = tab.textContent;
+      pane.prepend(titel);
+    }
+    zielOeffnen();
+  }
+  window.addEventListener('hashchange', zielOeffnen);
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
+      requestAnimationFrame(zielOeffnen);
+    }
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', starten);
+  else starten();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -628,12 +747,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopiert");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopiert");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1015,8 +1134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../pages/qgis-howto-stadtwaerme-marburg.html" class="pagination-link" aria-label="QGIS: Luftbild und LST">
-        <span class="nav-page-text">QGIS: Luftbild und LST</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../pages/hotspot-zu-palm.html" class="pagination-link" aria-label="Abschluss: Vom Hotspot zur Maßnahme">
+        <span class="nav-page-text">Abschluss: Vom Hotspot zur Maßnahme</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1025,4 +1144,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/ws/ws-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/ws/ws-02.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

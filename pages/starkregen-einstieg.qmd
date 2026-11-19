@@ -1,0 +1,49 @@
+---
+title: "Starkregen: Marburg modellieren"
+subtitle: "Weidenhausen und Südviertel – Einstieg und Arbeitsauftrag"
+title-block-banner: ../images/banners/starkregen.png
+title-block-banner-color: black
+lang: de
+format:
+  html:
+    toc: false
+---
+
+## Klimaanpassung behauptet eine Wirkung
+
+Die Stadt Marburg nennt Entsiegelung, Versickerungsmulden und Dachbegrünung als Werkzeuge der Starkregenvorsorge. Regenwasser soll möglichst vor Ort versickern oder zurückgehalten werden, damit weniger Wasser abfließt und Überflutungen vermindert werden. Das ist eine begründete Wirkungserwartung, deren räumliche und zeitliche Bedingungen wir untersuchen. [Stadt Marburg: Klimaanpassung und Starkregenvorsorge](https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html).
+
+**Unsere Arbeitsbehauptung lautet: Mehr Versickerung und Rückhalt im Stadtgebiet verringern bei Starkregen die Überflutung in Weidenhausen und im Südviertel.** Sie ist eine für den Kurs zugespitzte Hypothese, kein wörtliches Zitat und kein vorweggenommenes Ergebnis für diese Quartiere.
+
+Wo müssten Maßnahmen liegen, wie viel Wasser müssten sie aufnehmen und unter welchen Bedingungen wäre ihre Wirkung im Quartier erkennbar? Könnte eine Maßnahme an einem Ort helfen, während sich Wasser an anderer Stelle stärker sammelt?
+
+## Das Stadtgebiet als Zusammenhang untersuchen
+
+Unser Untersuchungsraum ist das Marburger Stadtgebiet; **Weidenhausen und das Südviertel bilden die Schwerpunkte der Auswertung**. Ihre Grenzen sind keine hydraulischen Modellgrenzen. Zufließende Hanggebiete, Straßenverbindungen und die Lahn müssen bei der Festlegung des Rechengebiets berücksichtigt werden.
+
+Wir unterscheiden Regen, der unmittelbar im Quartier fällt, Oberflächenabfluss aus dem Umfeld und Wasser aus beziehungsweise Rückstau an der Lahn. Ein Starkregenereignis braucht kein gleichzeitiges Lahnhochwasser. Der Lahnwasserstand kann aber beeinflussen, wie Wasser aus dem Stadtraum abfließt. Welche dieser Beziehungen für den gewählten Ausschnitt wesentlich sind, wird anhand von Gelände, vorhandenen Karten und Modellvergleichen geprüft.
+
+## Von der Behauptung zur prüfbaren Frage
+
+Lesen Sie den [ersten Reader: Wasser im Stadtraum](starkregen-reader.qmd). Entwickeln Sie daraus eine konkrete Untersuchung:
+
+1. **Erwartung einzeichnen:** Markieren Sie im Luftbild vermutete Zuflüsse, Fließwege, Senken und mögliche Maßnahmenflächen. Begründen Sie Ihre Erwartungen zunächst ohne Überflutungskarte.
+2. **Vergleich festlegen:** Wählen Sie eine Maßnahme und eine Zielgröße, beispielsweise die maximale Wassertiefe an vorab festgelegten Straßenabschnitten. Formulieren Sie einen möglichen Gegenbefund.
+3. **Modellgebiet begründen:** Zeichnen Sie Auswertungsgebiete und Rechengebiet getrennt ein. Wie werden Wasserzufluss und Wasserabfluss an den Grenzen behandelt?
+4. **Szenarien entwerfen:** Vergleichen Sie dieselbe Regensituation mit und ohne Maßnahme. Prüfen Sie anschließend eine weitere Bedingung, etwa den Lahnwasserstand oder die verfügbare Versickerung.
+
+**Erstes Ergebnis:** Erstellen Sie eine kommentierte Karte und ein kurzes Modellkonzept mit Frage, Wirkungsannahme, Datenbedarf, Szenarien und Aussagegrenzen. Die erste Aufgabe ist die begründete Planung; ein installierter oder bereits ausgeführter Itzï-Lauf wird dafür nicht vorausgesetzt.
+
+## Was soll die Simulation beitragen?
+
+Itzï soll berechnen, wie sich Wasser unter festgelegten Annahmen im Stadtraum bewegt und sammelt. Wir prüfen damit, ob die angenommene Wirkung einer Maßnahme im Modell auftritt und unter welchen Bedingungen sie bestehen bleibt. Ein günstigeres Simulationsergebnis ist noch kein beobachteter Wirksamkeitsnachweis.
+
+Entscheidend ist die Verbindung von **Maßnahme, Wasserweg, Zielgröße und Prüfvergleich**. Eine geringere Wassertiefe auf einer einzelnen Fläche genügt nicht, wenn sich der Abfluss lediglich in eine benachbarte Straße verlagert.
+
+## Daten und Software vorbereiten
+
+Die Seite [Daten beschaffen und vorbereiten](starkregen-daten.qmd) führt durch den Bezug der hessischen Geländedaten, die QGIS-Aufbereitung und den Aufbau des Datenprotokolls. Das dort verlinkte Rasterwerkzeug wird aus dem Kursrepo `geo-mod-2026` bezogen.
+
+Richten Sie parallel die Software nach [Itzï beschaffen und einrichten](itzi-setup.qmd) ein. Die Anleitung behandelt den Softwarebezug und das GRASS-Projekt. Die fachliche Planung kann schon vor abgeschlossener Installation bearbeitet werden.
+
+Weiter zum [Reader: Wasser im Stadtraum](starkregen-reader.qmd) oder zurück zur [Kursübersicht](../index.qmd#starkniederschlag).

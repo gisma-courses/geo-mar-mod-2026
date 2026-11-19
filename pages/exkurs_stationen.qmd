@@ -1,6 +1,9 @@
 ---
 title: "Umwelt und Körper: UTCI und PET vergleichen"
 subtitle: "Luftbedingungen, Wärmehaushalt und physiologische Referenzannahmen"
+title-block-banner: ../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 format:
   html:
     toc: true
@@ -9,7 +12,14 @@ execute:
   echo: true
 ---
 
-# Warum Lufttemperatur in dieser Fallstudie?
+
+## Zielgröße und Indexwahl
+
+::: {.panel-tabset}
+
+### Warum Lufttemperatur in dieser Fallstudie?
+
+[]{#warum-lufttemperatur-in-dieser-fallstudie .course-anchor}
 
 Das [Modellierungskonzept](modellierung_luftbild_lst.qmd) fragt nach thermischer Entlastung in städtischen Freiräumen. Wenn wir Aufenthaltsbedingungen beurteilen wollen, müssen wir klären, welche Wärme ein Körper aus der Umgebung aufnimmt und unter welchen Bedingungen er eigene metabolische Wärme abgeben kann. Diese Vertiefung untersucht den Beitrag der Luftbedingungen und prüft, welche Aussagen ein Umweltindex unter physiologischen Referenzannahmen ermöglicht.
 
@@ -17,13 +27,17 @@ Warme Oberflächen beeinflussen die Umgebung durch langwellige Wärmestrahlung u
 
 Eine Station ergänzt die räumliche Momentaufnahme um die Wetterentwicklung. Sie zeigt etwa, ob der Überflug an einem außergewöhnlich warmen Tag stattfand und wie sich die Lufttemperatur danach entwickelte. Die Stationsumgebung muss zur Fragestellung passen: Eine Freilandstation beschreibt andere Bedingungen als ein dicht bebauter Straßenraum.
 
-# Welche Zielgröße brauchen wir?
+### Welche Zielgröße brauchen wir?
+
+[]{#welche-zielgröße-brauchen-wir .course-anchor}
 
 Für die Bewertung im Freien wird das Zusammenwirken von Lufttemperatur, Feuchte, Wind und Strahlung betrachtet. UTCI und PET bilden diese Einflüsse über Modelle des menschlichen Wärmehaushalts ab und drücken das Ergebnis als äquivalente Temperatur in °C aus. Individuelles Wohlbefinden und die Empfindlichkeit bestimmter Personengruppen gehen darüber hinaus.
 
 **UTCI (Universal Thermal Climate Index)** beschreibt die thermische Beanspruchung einer standardisierten Referenzperson unter vorgegebenen Aktivitäts- und Bekleidungsannahmen. Damit lassen sich Umweltsituationen vergleichen. Eine gleiche UTCI-Zahl bedeutet keine gleiche individuelle Gefährdung für alle Menschen. [ECMWF: Definition und Referenzbedingungen](https://confluence.ecmwf.int/spaces/FCST/pages/462912535/New+parameters+heat+and+cold+indices+mean+radiant+temperature+and+globe+temperature).
 
-# Wo bleibt der Stoffwechsel im UTCI?
+### Wo bleibt der Stoffwechsel im UTCI?
+
+[]{#wo-bleibt-der-stoffwechsel-im-utci .course-anchor}
 
 Der Körper produziert durch den Stoffwechsel Wärme. Tätigkeit und äußere mechanische Arbeit bestimmen mit, wie viel davon abgegeben werden muss. Lufttemperatur allein kann diese innere Wärmequelle nicht beschreiben. Kleidung und körperliche Regulation beeinflussen den Austausch mit der Umgebung; dieselbe Umwelt kann deshalb bei verschiedenen Personen oder Tätigkeiten zu unterschiedlicher Beanspruchung führen.
 
@@ -33,7 +47,9 @@ Im hier verwendeten Rechner ist der Stoffwechsel deshalb kein frei veränderbare
 
 **Auftrag vor der Berechnung:** Vergleichen Sie die Fragen „Welche Bank bietet zu einer bestimmten Zeit günstigere Umweltbedingungen?“ und „Wie unterscheidet sich die Beanspruchung beim Sitzen und Gehen?“. Für welche kann UTCI unter seinen Referenzannahmen unmittelbar einen Beitrag leisten? Welche Informationen oder anderen Modelle benötigen Sie für Unterschiede in Tätigkeit, Dauer, Bekleidung und physiologischen Voraussetzungen?
 
-# Warum auch PET?
+### Warum auch PET?
+
+[]{#warum-auch-pet .course-anchor}
 
 PET basiert auf dem Münchner Energiebilanzmodell für Individuen (MEMI). Der Index drückt die untersuchte Situation als äquivalente Lufttemperatur einer definierten Innenraumumgebung aus. [Höppe: Definition von PET](https://doi.org/10.1007/s004840050118).
 
@@ -43,7 +59,9 @@ Die verwendete Funktion `pet_steady` erlaubt Eingaben für metabolische Leistung
 
 Das [Worksheet](ws/ws-02.qmd) enthält einen direkten Modellvergleich und das [Skript `thermische_indizes.py`](../scripts/thermische_indizes.py). Es berechnet beide Indizes für besonnte und verschattete Szenarien und variiert für PET metabolische Leistung, Bekleidung und die angenommene Luftgeschwindigkeit an der Person. UTCI verwendet den Windbezug auf 10 m; die Windwerte dürfen nicht ungeprüft zwischen beiden Rechnungen übernommen werden.
 
-# Können wir LST in einen Belastungsindex umrechnen?
+### Können wir LST in einen Belastungsindex umrechnen?
+
+[]{#können-wir-lst-in-einen-belastungsindex-umrechnen .course-anchor}
 
 Eine direkte Umrechnung aus dem Satellitenraster ist nicht möglich. Für UTCI und PET benötigen wir unter anderem vier Umweltgrößen:
 
@@ -58,7 +76,16 @@ Die mittlere Strahlungstemperatur ist keine Oberflächentemperatur. Sie berücks
 
 Eine UTCI-Berechnung ist erst begründet, wenn die Frage einen Umweltvergleich unter den Referenzannahmen verlangt. Dafür müssen die vier Eingangsgrößen zeitlich und räumlich zusammenpassen. Für die Diskussion verwenden wir ein angenommenes Szenario. Es zeigt die Reaktion des Modells auf eine veränderte Eingabe; die Wirkung einer realen Maßnahme muss zusätzlich beobachtet oder modelliert werden. Die Eingangsgrößen und deren Gültigkeitsbereiche sind im [UTCI-Leitfaden des ECMWF](https://confluence.ecmwf.int/spaces/CKB/pages/650383669/UTCI+Timeseries+User+Guide) erläutert.
 
-# Einzelbeispiel in R: UTCI und Verschattung
+:::
+
+
+## Berechnung und Datenbezug
+
+::: {.panel-tabset}
+
+### Einzelbeispiel in R: UTCI und Verschattung
+
+[]{#einzelbeispiel-in-r-utci-und-verschattung .course-anchor}
 
 Wir halten Lufttemperatur, Feuchte und Wind konstant und verändern nur die angenommene Strahlungstemperatur. Das ist ein kontrollierter Vergleich zweier Szenarien; eine reale Baumpflanzung kann mehrere Größen verändern.
 
@@ -80,7 +107,9 @@ Das Skript liefert für diese Annahmen 32,9 °C UTCI am besonnten und 30,9 °C a
 
 Für eine reale räumliche UTCI-Karte müssen die vier Größen für denselben Zeitpunkt und die jeweiligen Aufenthaltsorte vorliegen. Eine einzelne Station liefert keine vollständige räumliche Verteilung dieser Größen. Eine empirische Beziehung zwischen LST und Lufttemperatur wäre ebenfalls ein eigenes, lokal zu prüfendes Modell.
 
-# Verfügbare Stationen im Großraum Mittelhessen
+### Verfügbare Stationen im Großraum Mittelhessen
+
+[]{#verfügbare-stationen-im-großraum-mittelhessen .course-anchor}
 
 Für den Einstieg eignen sich die öffentlich zugänglichen DWD-Lufttemperaturdaten. Die folgenden Beispiele sind im [DWD-Stationsverzeichnis für Stundenwerte](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/recent/TU_Stundenwerte_Beschreibung_Stationen.txt) aufgeführt; Auswahl geprüft am 5. November 2026.
 
@@ -94,13 +123,15 @@ Für die Landsat-Sommer 2021–2025 werden die entsprechenden Dateien im [histor
 
 Weitere regionale Zugänge bietet das [Wetterstationsnetz des Landesbetriebs Landwirtschaft Hessen](https://www.wetter.llh-hessen.de/). Messgrößen, Zeitauflösung und Stationsumgebung sind jeweils in der Stationsansicht zu prüfen. Die [LLH-Übersicht](https://llh.hessen.de/pflanze/wetter/) erläutert die Datenangebote.
 
-## Stationsdaten mit einem Überflug verbinden
+#### Stationsdaten mit einem Überflug verbinden
 
 Für einen einfachen Vergleich werden der nächstgelegene Stundenwert der Lufttemperatur und der LST-Wert am Stationsstandort nebeneinandergestellt. Aufnahmezeit und Stationszeit werden zuerst in UTC vereinheitlicht. Bei stündlichen Daten wird die tatsächliche Zeitdifferenz festgehalten; feinere Zeitfenster benötigen entsprechend höher aufgelöste Messungen.
 
 Das Stationspixel beantwortet eine andere räumliche Frage als der Median eines Stadtquartiers. Beide können verglichen werden, wenn der Unterschied der Bezugseinheiten ausdrücklich benannt wird. Ein Tagesmaximum der Lufttemperatur gehört ebenfalls zu einer anderen Zeitbasis als eine einzelne Überflugaufnahme.
 
-# Was bleibt für die konkrete Person offen?
+:::
+
+## Was bleibt für die konkrete Person offen?
 
 Ein Umweltindex vergleicht Bedingungen unter festgelegten Personenannahmen. Soll daraus eine Aussage über eine konkrete Nutzung oder Personengruppe werden, ist der Geltungsbereich zu prüfen. Dazu gehören der Verlauf der Exposition, die tatsächliche Tätigkeit und die körperlichen Voraussetzungen. Alter allein ersetzt diese Informationen nicht.
 

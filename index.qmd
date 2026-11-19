@@ -1,6 +1,9 @@
 ---
 title: "Marburg modellieren"
 subtitle: "Stadtklima, Starkregen und Verkehr als einfache Simulationsmodelle in Marburg"
+title-block-banner: images/banners/kurs.png
+title-block-banner-color: black
+lang: de
 format:
   html:
     toc: true
@@ -19,11 +22,15 @@ Der Vergleich von Luftbild und LST ist zunächst **eine datenbasierte Analyse un
 
 **Jetzt bearbeiten:** [Stadtwärme – Einstieg und Arbeitsauftrag](pages/stadtwaerme-einstieg.qmd). Dort finden Sie den Weg zum [Modellkonzept](pages/modellierung_luftbild_lst.qmd) und zu den QGIS- und R-Referenzen.
 
+**Abschluss in einer Sitzung:** [Vom Satelliten-Hotspot zur physikalischen Modellierung](pages/hotspot-zu-palm.qmd). Ein kurzer PALM-Reader und der KlimaCheck-Lernpfad verbinden die bisherige Analyse mit einem kontrollierten Vergleich vorhandener Oberflächenfälle.
+
 ## 2. Starkniederschlag: Wo fließt das Wasser? {#starkniederschlag}
 
 **Modellwerkzeug: Itzï.** Aus Gelände, Niederschlag und weiteren Oberflächeneigenschaften untersuchen wir Abfluss- und Überflutungsprozesse. Der Schwerpunkt verschiebt sich von der Interpretation eines Beobachtungsprodukts zur **zeitabhängigen Simulation**: Welche Annahmen und Eingangsdaten verändern räumliche Fließwege und Wasserstände? Wie unterscheiden sich Szenarien?
 
-Dieser Block folgt auf das Stadtklima-Beispiel. Ein eigener Arbeitsauftrag wird ergänzt; eine Wiederholung der allgemeinen Modellierungsgrundlagen ist nicht vorgesehen.
+**Ausgangspunkt:** Die Klimaanpassung verspricht, durch Versickerung und Rückhalt Überflutungen zu mindern. Wir untersuchen diese Behauptung im Marburger Stadtgebiet, insbesondere in **Weidenhausen und im Südviertel**. Welche Rolle spielen Gelände, Bebauung, zufließendes Wasser und der Wasserstand der Lahn? Unter welchen Bedingungen wirkt eine Maßnahme lokal oder auch im weiteren Stadtraum?
+
+**Jetzt bearbeiten:** [Starkregen – Einstieg und Arbeitsauftrag](pages/starkregen-einstieg.qmd). Der [erste Reader: Wasser im Stadtraum](pages/starkregen-reader.qmd) führt von der Klimaanpassungsbehauptung zum Modellkonzept mit Itzï. Die Referenzen zu [Datenbeschaffung und Aufbereitung](pages/starkregen-daten.qmd) sowie [Softwarebezug und Installation von Itzï](pages/itzi-setup.qmd) begleiten den Einstieg. Dieser Block nutzt die im Stadtklima-Beispiel erarbeiteten Grundlagen der Modellprüfung.
 
 ## 3. Verkehr: Wie entstehen räumliche Muster? {#verkehr}
 

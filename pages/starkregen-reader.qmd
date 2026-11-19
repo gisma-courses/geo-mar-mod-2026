@@ -1,0 +1,209 @@
+---
+title: "Starkregen: Wasser im Stadtraum"
+subtitle: "Erster Reader – Klimaanpassung in Weidenhausen und im Südviertel prüfen"
+title-block-banner: ../images/banners/starkregen.png
+title-block-banner-color: black
+lang: de
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+
+## Wasserwege und Modellgebiet
+
+::: {.panel-tabset}
+
+### Was muss die Klimaanpassungsbehauptung erklären?
+
+[]{#was-muss-die-klimaanpassungsbehauptung-erklären .course-anchor}
+
+Die [Einstiegsseite](starkregen-einstieg.qmd) formuliert eine Arbeitsbehauptung: **Mehr Versickerung und Rückhalt im Stadtgebiet verringern bei Starkregen die Überflutung in Weidenhausen und im Südviertel.** Marburg nennt entsprechende Maßnahmen als Teil seiner Starkregenvorsorge. Für unsere Untersuchung wird daraus eine Frage nach der Wirkung bestimmter Maßnahmen an bestimmten Orten. [Stadt Marburg: Klimaanpassung](https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html).
+
+Eine Maßnahme hat eine Lage, eine Aufnahmefähigkeit und einen zeitlichen Verlauf. Eine Mulde kann nur das Wasser zurückhalten, das sie erreicht; ihre Speicherkapazität ist begrenzt. Versickerung hängt vom Untergrund und dessen Zustand ab. Eine Veränderung im oberen Einzugsgebiet kann weiter unten wirksam werden. Eine Fläche im Quartier kann dagegen für einen Zufluss wirkungslos bleiben, wenn dieser an ihr vorbeifließt.
+
+Wir übersetzen die allgemeine Behauptung deshalb in eine bedingte Aussage: **Wenn eine Maßnahme Wasser aus einem relevanten Zuflussweg während des kritischen Zeitraums aufnimmt, dann sollte die Überflutung an einem festgelegten Auswertungsort gegenüber demselben Ereignis ohne Maßnahme abnehmen.** Ob diese Bedingungen erfüllt sind, ist Gegenstand der Untersuchung.
+
+**Leseauftrag:** Halten Sie zu jedem folgenden Abschnitt fest, welche zusätzliche Festlegung Ihre ursprüngliche Behauptung benötigt. Überarbeiten Sie am Ende Ihre erste Frage.
+
+### Woher kommt das Wasser?
+
+[]{#woher-kommt-das-wasser .course-anchor}
+
+Für die Interpretation einer Überflutungskarte unterscheiden wir drei Wege:
+
+| Wasserweg | Zu untersuchender Zusammenhang | Benötigte Information |
+|---|---|---|
+| Regen im Quartier | Niederschlag trifft auf Dächer, Straßen, Höfe und Freiflächen | Regenverlauf, Oberflächen und Versickerung |
+| Oberflächenzufluss aus dem Umfeld | Wasser erreicht das Quartier über Gelände, Straßen oder andere Abflussachsen | Einzugsgebiet, Hindernisse, Durchlässe und Zuflüsse |
+| Austausch mit der Lahn | Flusswasser kann ausufern; ein hoher Wasserstand kann den Abfluss aus dem Stadtraum behindern | Wasserstand im Zeitverlauf, Geländeanbindung und gegebenenfalls Gewässergeometrie |
+
+Die Wege können gleichzeitig auftreten. Eine blaue Fläche allein erklärt ihre Ursache nicht. Für die erste Untersuchung halten wir den Regen zwischen den Vergleichsläufen gleich und legen den Umgang mit der Lahn ausdrücklich fest. Die Simulation des gesamten Lahneinzugsgebiets ist dafür keine Voraussetzung: Ein Flusswasserstand kann als äußere Bedingung vorgegeben werden, sofern seine räumliche Umsetzung und die Modellmöglichkeiten dazu passen.
+
+In Weidenhausen und im Südviertel lautet eine zentrale Frage, ob sich Wasser vor allem durch lokalen Regen sammelt, aus dem Umfeld zufließt oder durch eingeschränkte Abflussmöglichkeiten länger stehen bleibt. Wir weisen diese Ursachen keinem Straßenzug vorab zu.
+
+**Auftrag:** Zeichnen Sie für beide Quartiere mögliche Wasserwege ein. Kennzeichnen Sie, was aus dem Gelände begründet ist und was erst durch zusätzliche Daten geprüft werden muss.
+
+### Welche Grenzen braucht unser Modell?
+
+[]{#welche-grenzen-braucht-unser-modell .course-anchor}
+
+Wir unterscheiden drei räumliche Ebenen:
+
+- **Untersuchungsraum:** das Marburger Stadtgebiet als Zusammenhang von Flächen, Zuflüssen und möglichen Anpassungsmaßnahmen.
+- **Modellgebiet:** das tatsächlich berechnete Gebiet einschließlich relevanter Zuflüsse und Abflussmöglichkeiten. Es kann über Stadt- oder Quartiersgrenzen hinausreichen.
+- **Auswertungsgebiete:** Weidenhausen und das Südviertel sowie vorab ausgewählte Straßenabschnitte, Freiflächen oder Gebäudeumfelder.
+
+Eine Stadtteilgrenze verhindert keinen Wasserfluss. Ein eng ausgeschnittenes Raster kann Zufluss abschneiden; ein geschlossener Rand kann einen künstlichen Einstau erzeugen. Ein offener Rand kann Wasser aus dem Modell entfernen, obwohl es in der Wirklichkeit auf ein Hindernis träfe. Auch der Rand eines fein aufgelösten Teilmodells braucht daher begründete Bedingungen.
+
+Bei Itzï sind Randbedingungen ausdrücklich zu konfigurieren; in der Dokumentation der Version 26.6 sind geschlossene Ränder der Standard. Eine feste Wassertiefe ist außerdem von einer Wasserstandshöhe zu unterscheiden: Der Wasserspiegel ergibt sich aus Geländehöhe plus Wassertiefe. Ein Pegelwert kann erst nach Prüfung von Höhenbezug und räumlicher Übertragung verwendet werden. [Itzï: Eingaben und Randbedingungen](https://itzi.readthedocs.io/en/stable/conf_file.html#boundary-conditions).
+
+**Entscheidung:** Begründen Sie ein gemeinsames Modellgebiet für den städtischen Zusammenhang. Falls eine feinere Teilrechnung nötig wird, dokumentieren Sie, wie sie Wasser vom größeren Gebiet erhält. Eine automatische Kopplung der Auflösungen wird hier nicht vorausgesetzt.
+
+:::
+
+
+## Rechnung und Eingaben
+
+::: {.panel-tabset}
+
+### Was berechnet Itzï?
+
+[]{#was-berechnet-itzï .course-anchor}
+
+Itzï verbindet Niederschlag und Versickerung mit einer zeitabhängigen Berechnung des zweidimensionalen Oberflächenabflusses auf einem regelmäßigen Raster in GRASS GIS. Eine Kopplung an ein eindimensionales Kanalnetz über SWMM ist möglich. Für die Auflösung des Oberflächenrasters ist die GRASS-Rechenregion maßgeblich. [Itzï: Modellbeschreibung](https://www.itzi.org/about/).
+
+Wir unterscheiden **Geländehöhe** $z$, **Wassertiefe** $h$ und **Wasserspiegelhöhe** $\eta$:
+
+$$
+\eta = z + h.
+$$
+
+Eine tiefe Geländestelle muss nicht überflutet sein, wenn sie kein Wasser erreicht. Eine geringe Wassertiefe auf höherem Gelände kann mit einem höheren Wasserspiegel verbunden sein als eine große Tiefe in einer Senke. Für die Bewegung des Wassers sind die räumlichen Unterschiede des Wasserspiegels zusammen mit Fließwiderstand und Dynamik relevant.
+
+Das Oberflächenmodell verwendet eine lokale Trägheitsnäherung der Flachwassergleichungen, bei der die konvektive Beschleunigung entfällt. Bei schnellen, schießenden Strömungen und abrupten Übergängen ist die Eignung besonders zu prüfen. Für sehr geringe Wassertiefen verwendet Itzï ein gesondertes Routingverfahren. Eine Animation fein gezeichneter Wasserwege hebt diese Vereinfachungen nicht auf. [Itzï: Technische Grundlagen](https://www.itzi.org/technic/).
+
+### Die Wasserbilanz als erste Prüfung
+
+[]{#die-wasserbilanz-als-erste-prüfung .course-anchor}
+
+Für das gesamte Oberflächenmodell lässt sich die Bilanz über einen gewählten Zeitraum vereinfacht schreiben als:
+
+$$
+\Delta V = V_P + V_{\mathrm{zu}} - V_I - V_{\mathrm{ab}} - V_K + \varepsilon.
+$$
+
+Hier ist $\Delta V$ die Änderung des oberirdisch gespeicherten Wassers, $V_P$ das Regenvolumen, $V_{\mathrm{zu}}$ der Zufluss, $V_I$ die Versickerung und $V_{\mathrm{ab}}$ der Abfluss. $V_K$ bezeichnet den Nettoabfluss in ein gegebenenfalls gekoppeltes Kanalnetz; bei Nettozufluss aus dem Kanal wird er negativ. $\varepsilon$ steht für den numerischen Bilanzrest. Weitere modellierte Verluste müssten ergänzt werden. Alle Terme sind Volumina für denselben Zeitraum.
+
+**Gedankenexperiment:** Auf einen Hektar fallen 60 mm Regen. Das entspricht $10\,000\,\mathrm{m^2}\times0{,}06\,\mathrm{m}=600\,\mathrm{m^3}$ Wasser. Eine zunächst leere Mulde mit 100 m³ Speicher kann ohne zusätzliche Versickerung oder Abfluss höchstens ein Sechstel dieses Volumens aufnehmen. Ob sie einen kritischen Spitzenabfluss beeinflusst, hängt auch davon ab, wann und auf welchem Weg das Wasser eintrifft.
+
+Rückhalt entfernt Wasser nicht automatisch aus dem Gebiet: Es bleibt zunächst gespeichert und kann später versickern oder abfließen. **Rauheit ist ebenfalls keine Versickerung.** Eine Erhöhung des Fließwiderstands verändert den Transport; Wasser verschwindet dadurch nicht aus der Bilanz.
+
+Für jeden Lauf prüfen wir Regenmenge, Zufluss, Versickerung, Abfluss, verbleibenden Speicher und Bilanzrest. Eine gute Bilanz ist notwendig, belegt aber weder eine richtige Geländeabbildung noch eine realistische Maßnahmenwirkung.
+
+### Welche Daten tragen welche Annahme?
+
+[]{#welche-daten-tragen-welche-annahme .course-anchor}
+
+Die [Datenreferenz](starkregen-daten.qmd) übersetzt die folgenden Anforderungen in konkrete Bezugs- und Aufbereitungsschritte. Die [Setup-Anleitung](itzi-setup.qmd) beschreibt Softwarebezug, Installation und das GRASS-Projekt.
+
+| Eingabe | Verwendung im Modell | Zu prüfende Annahme |
+|---|---|---|
+| DGM1 aus Hessen | Gelände und Gefälle | Erfassungszeitpunkt, Höhenfehler und hydraulisch relevante Details |
+| Gebäudegrundrisse und Luftbild | Gebäude, Höfe und Oberflächen unterscheiden | Gebäude als Hindernisse; Behandlung des auf Dächer fallenden Regens |
+| Straßen, Mauern, Unterführungen und Durchlässe | Wasserwege und Barrieren ergänzen | Welche Verbindungen sind offen, erhöht oder unterbrochen? |
+| Regenverlauf | Wasserzufuhr über Raum und Zeit | Modellregen oder beobachtetes Ereignis; Dauer und Intensität |
+| Rauheit und Versickerungsparameter | Widerstand und Wasseraufnahme | begründete Wertebereiche für unterschiedliche Oberflächen |
+| Lahnwasserstand und Gewässerinformationen | Austausch beziehungsweise Randbedingung | Höhenbezug, Verlauf und hydraulische Anbindung |
+| Kanalnetz, falls verfügbar | Entwässerung und gegebenenfalls Überstau | Netzgeometrie, Einläufe und Kopplung an die Oberfläche |
+
+Hessen bietet das DGM1 kostenfrei an. Die Metadaten nennen eine Rasterweite von 1 m; Brücken sind nicht Bestandteil des DGM. Gebäude müssen für das gewählte Oberflächenmodell gesondert behandelt werden. Ein Oberflächenmodell mit Baumkronen wäre wiederum keine unmittelbar geeignete hydraulische Ersatzoberfläche. [HVBG: Digitale Geländemodelle](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle).
+
+Eine Gebäudegrundfläche pauschal auszumaskieren kann auch den dort fallenden Regen aus der Rechnung entfernen. Die Behandlung von Dachwasser gehört deshalb zur Modellannahme. Ebenso liefert ein Geländeraster allein keine gesicherte Unterwassergeometrie der Lahn.
+
+Ohne Kanalnetzdaten beginnen wir mit einem ausdrücklich als solchen bezeichneten **Oberflächenszenario ohne Kanalentwässerung**. Es beschreibt nicht automatisch den ungünstigsten möglichen Fall, weil auch Zufluss durch Kanalüberstau fehlen kann. Eine pauschale Verlustannahme ist kein räumlich aufgelöstes Kanalnetzmodell.
+
+### Wie fein muss die Stadt aufgelöst werden?
+
+[]{#wie-fein-muss-die-stadt-aufgelöst-werden .course-anchor}
+
+Wir schlagen für die Kursuntersuchung zwei Bearbeitungsstufen vor: zunächst einen Überblick mit **5 m**, anschließend ausgewählte Vergleiche mit **1–2 m**. Die feinere Stufe soll zeigen, ob Straßenräume, Gebäudestellungen oder Durchlässe die Aussage verändern. Diese Rasterweiten sind Arbeitsentscheidungen, keine bereits geprüfte optimale Parametrisierung für Marburg.
+
+Bei gleicher Fläche enthält ein 1-m-Raster 25-mal so viele Zellen wie ein 5-m-Raster. Die Laufzeit kann zusätzlich durch kleinere numerische Zeitschritte steigen. Deshalb wird der Rechenaufwand vor einer Ausweitung auf das gesamte Stadtgebiet an einem begründeten Ausschnitt geprüft.
+
+Ein feines Raster ergänzt keine fehlende Mauer und korrigiert keinen falschen Durchlass. Bei der Vergröberung können schmale Hindernisse oder Verbindungen verschwinden. Für einen Auflösungsvergleich halten wir Ereignis, Gebiet und fachliche Annahmen möglichst gleich und dokumentieren, wie die Geländeinformation übertragen wurde. Ausgewertet werden dieselben Straßenabschnitte oder Flächen; Zellzahlen allein sind zwischen Auflösungen nicht vergleichbar.
+
+:::
+
+
+## Szenarien und Prüfung
+
+::: {.panel-tabset}
+
+### Ein erster kontrollierter Szenariovergleich
+
+[]{#ein-erster-kontrollierter-szenariovergleich .course-anchor}
+
+Als **frei gewähltes Lehrszenario** verwenden wir zunächst räumlich einheitlich 40 mm/h für 60 Minuten, danach keinen Regen. Das ergibt 40 mm Gesamtniederschlag. Daraus wird keine Wiederkehrzeit für Marburg abgeleitet. Wir starten mit trockener Oberfläche; dies legt die Bodenfeuchte noch nicht fest. Nach Regenende rechnen wir weiter, bis der für die Frage relevante Abfluss- und Speicherverlauf erfasst ist.
+
+Vor dem Rechnen legen wir eine konkrete Maßnahmenfläche fest. Bei einer Entsiegelung wird zunächst nur die angenommene Versickerung dieser Fläche verändert. Bei einer Mulde muss stattdessen ein begründetes Speichervolumen über die Geometrie abgebildet werden; zusätzliche Versickerung wäre eine weitere Festlegung. Lage, Fläche, Kapazität und Ausgangszustand werden dokumentiert.
+
+| Lauf | Maßnahme | Äußere Bedingung an der Lahn | Zweck |
+|---|---|---|---|
+| A | ohne | niedrigerer Wasserstand | Ausgangsszenario |
+| B | mit | wie A | Maßnahmenwirkung: B mit A vergleichen |
+| C | ohne | höherer Wasserstand | Einfluss der äußeren Bedingung: C mit A vergleichen |
+| D | wie B | wie C | Maßnahmenwirkung bei höherem Wasserstand: D mit C vergleichen |
+
+Die beiden Wasserstandsverläufe müssen vor der Umsetzung mit Höhenbezug und räumlicher Anwendung definiert werden. Ohne Ereignisdaten bleiben sie idealisierte Annahmen. Regen, Bodenparameter, Geometrie außerhalb der Maßnahme und numerische Einstellungen bleiben innerhalb dieses Vergleichs gleich. Die Auflösung wird in einem eigenen Vergleich untersucht.
+
+**Prüffrage:** Bleibt die Wirkung zwischen B–A und D–C ähnlich? Wird die Maßnahme wirkungslos, ist zu klären, ob sie sich füllt, hydraulisch nicht erreicht wird oder ein anderer Wasserweg die Überflutung bestimmt. Solche Ergebnisse schränken die Ausgangsbehauptung ein.
+
+### Was gilt als Entlastung?
+
+[]{#was-gilt-als-entlastung .course-anchor}
+
+Wir legen vorab fest, an welchen Orten und anhand welcher Größen eine Wirkung beurteilt wird. Mögliche Größen sind die maximale Wassertiefe an definierten Auswertungsorten, die Dauer oberhalb einer begründeten Wassertiefe, das Wasser auf einer bestimmten Straßenfläche oder der zeitliche Abfluss an einem festgelegten Querschnitt.
+
+Für die maximale Wassertiefe kann eine Differenzkarte verwendet werden:
+
+$$
+\Delta h_{\max}(x,y) = h_{\max,\,\mathrm{mit}}(x,y) - h_{\max,\,\mathrm{ohne}}(x,y).
+$$
+
+Negative Werte zeigen geringere Maxima. Diese Maxima können zu unterschiedlichen Zeitpunkten auftreten; ergänzend betrachten wir deshalb Zeitreihen. Eine geringere Tiefe neben einem Gebäude kann außerdem mit einer höheren Fließgeschwindigkeit oder einer größeren Ansammlung an anderer Stelle verbunden sein. Beide Quartiere und die Nachbarschaft der Maßnahme werden gemeinsam geprüft.
+
+Falls eine Überflutungsfläche über einen Schwellenwert abgegrenzt wird, ist dieser als Auswertungsentscheidung zu begründen. Ein solcher Wert ist keine allgemeine Sicherheitsgrenze. Wassertiefen und Fließgeschwindigkeiten beschreiben zunächst die modellierte **Gefährdung**. Für eine Risiko- oder Schadensaussage brauchen wir zusätzlich Informationen zu betroffenen Menschen, Nutzungen und deren Verletzlichkeit.
+
+### Woran prüfen wir das Ergebnis?
+
+[]{#woran-prüfen-wir-das-ergebnis .course-anchor}
+
+Die Stadt verweist auf vorhandene Karten aus ihrer Niederschlags-Abfluss-Simulation im Geoportal „Marburg in Karten“. Sie bieten einen Ausgangspunkt für den räumlichen Vergleich. Vor einem Vergleich müssen Regenszenario, Gelände, Randbedingungen und Kanalbehandlung soweit verfügbar gegenübergestellt werden. [Stadt Marburg: vorhandene Analysen und Karten](https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html).
+
+Eine Übereinstimmung zweier Modellkarten ist keine unabhängige Validierung. Dafür sind möglichst ereignisbezogene Beobachtungen nötig, etwa dokumentierte Wasserstände, zeitlich zugeordnete Fotos oder beobachtete Fließwege. Ohne sie bleibt das Ergebnis eine Szenario- und Sensitivitätsuntersuchung. Auch dann können wir prüfen, welche Annahmen das Ergebnis besonders verändern und welche Aussagen über mehrere plausible Annahmen hinweg bestehen bleiben.
+
+**Erster Arbeitsauftrag:** Erstellen Sie eine Karte mit Modellgebiet, beiden Auswertungsgebieten, vermuteten Wasserwegen und einer Maßnahmenfläche. Ergänzen Sie ein kurzes Konzept mit:
+
+- einer bedingten Hypothese und einem möglichen Gegenbefund;
+- der Zielgröße und vorab bestimmten Auswertungsorten;
+- der Trennung von vorhandenen Daten, noch benötigten Daten und Szenarioannahmen;
+- dem Vergleich mit und ohne Maßnahme sowie einer zusätzlich geprüften Bedingung;
+- einer Bilanzprüfung, einem möglichen Beobachtungsvergleich und den verbleibenden Grenzen.
+
+Begründen Sie abschließend, welchen Teil der Klimaanpassungsbehauptung Ihr Modell prüfen kann. Eine Wirkung auf Starkregenabfluss belegt noch keine thermische Entlastung; dafür wäre die [Stadtklima-Fragestellung](stadtwaerme-einstieg.qmd) mit ihren eigenen Zielgrößen zu bearbeiten.
+
+:::
+
+## Quellen und technische Vertiefung
+
+- [Stadt Marburg: Klimaanpassung, Starkregenvorsorge und Zugang zu Karten](https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html)
+- [HVBG: DGM1, Datenbereitstellung und Qualitätsangaben](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle)
+- [Itzï: Modellbeschreibung und Prozesse](https://www.itzi.org/about/)
+- [Itzï: Numerische Grundlagen](https://www.itzi.org/technic/)
+- [Itzï 26.6: Eingaben, Randbedingungen, Ausgaben und Bilanzstatistik](https://itzi.readthedocs.io/en/stable/conf_file.html)
+
+Die konkreten Konfigurationsschlüssel müssen zur eingesetzten Itzï-Version passen. Dieser Reader entwickelt das Modellkonzept; [Datenbeschaffung](starkregen-daten.qmd) und [Softwarebezug und Installation](itzi-setup.qmd) stehen in den zugehörigen Werkzeugreferenzen. Für den gemeinsamen Einstieg wird dort Itzï 26.6 verwendet.
+
+Zurück zu [Einstieg und Arbeitsauftrag](starkregen-einstieg.qmd) oder zur [Kursübersicht](../index.qmd#starkniederschlag).

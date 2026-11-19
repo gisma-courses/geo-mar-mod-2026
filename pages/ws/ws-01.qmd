@@ -1,9 +1,10 @@
 ---
 title: "Worksheet 01 · Ein kleines R-Projekt"
 subtitle: "Verzeichnisse, Skriptstruktur und kontrollierte Änderungen"
-order: 1
-title-block-banner: ../../images/placeholder.png
+title-block-banner: ../../images/banners/stadtwaerme.png
 title-block-banner-color: black
+lang: de
+order: 1
 format-links: [html, pdf, docx]
 format:
   html:

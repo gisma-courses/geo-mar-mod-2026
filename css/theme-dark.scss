@@ -1,0 +1,8 @@
+/*-- scss:rules --*/
+
+// The pale banner artwork keeps the explicitly requested black title text.
+#title-block-header .quarto-title-banner,
+#title-block-header .quarto-title-banner h1.title,
+#title-block-header .quarto-title-banner .subtitle {
+  color: #000;
+}

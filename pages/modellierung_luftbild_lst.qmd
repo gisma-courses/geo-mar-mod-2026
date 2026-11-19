@@ -1,6 +1,9 @@
 ---
 title: "Stadtwärme: Was muss unser Modell erklären?"
 subtitle: "Vom Oberflächenbild zur Wärmebilanz des Menschen"
+title-block-banner: ../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 format:
   html:
     toc: true
@@ -9,7 +12,14 @@ execute:
   echo: true
 ---
 
-# Ausgangsfrage: Wo finden Menschen thermische Entlastung?
+
+## Fragestellung und Oberflächendaten
+
+::: {.panel-tabset}
+
+### Ausgangsfrage: Wo finden Menschen thermische Entlastung?
+
+[]{#ausgangsfrage-wo-finden-menschen-thermische-entlastung .course-anchor}
 
 Parks, begrünte Plätze und andere städtische Freiräume werden als mögliche Aufenthalts- und Rückzugsorte bei Hitze betrachtet. Wie lässt sich beurteilen, unter welchen Bedingungen sie diese Funktion erfüllen? Welche Unterschiede bestehen innerhalb eines Ortes, zwischen Tageszeiten und zwischen verschiedenen Nutzungen?
 
@@ -19,7 +29,9 @@ Parks, begrünte Plätze und andere städtische Freiräume werden als mögliche 
 
 **Erster Auftrag:** Wählen Sie eine räumliche Situation und eine Nutzung. Formulieren Sie eine erste Vergleichsfrage und skizzieren Sie die vermuteten Wirkungszusammenhänge. Welche Größen müssten beobachtet werden? Welche können die verfügbaren Daten überhaupt erfassen? Halten Sie offene Beziehungen fest, ohne bereits für jede ein fertiges Modell vorauszusetzen.
 
-# Das erste Modell: Was lässt sich aus der Oberfläche ableiten?
+### Das erste Modell: Was lässt sich aus der Oberfläche ableiten?
+
+[]{#das-erste-modell-was-lässt-sich-aus-der-oberfläche-ableiten .course-anchor}
 
 Ein möglicher Einstieg ist die Hypothese: Vegetationsgeprägte Flächen weisen unter bestimmten Aufnahmebedingungen geringere Oberflächentemperaturen auf als benachbarte versiegelte Flächen. Diese Hypothese betrifft zunächst die Oberfläche. Ob daraus günstigere Aufenthaltsbedingungen für Menschen folgen, ist eine weitere Frage mit zusätzlichen Wirkungszusammenhängen.
 
@@ -27,7 +39,9 @@ Das Luftbild erlaubt Hypothesen zu Vegetation, Versiegelung und Schatten. LST be
 
 **Prüffrage:** Welche Aussage wollen Sie untersuchen: einen Unterschied der Oberflächen, der Aufenthaltsumgebung oder der menschlichen Beanspruchung? Formulieren Sie einen Vergleich mit passendem räumlichem und zeitlichem Bezug. Benennen Sie eine Beobachtung, die gegen Ihre Hypothese sprechen würde. Wenn die verfügbaren Daten die gewählte Zielgröße nicht erfassen, bestimmen Sie den zusätzlichen Informationsbedarf.
 
-# Warum das DLR-LST-Produkt?
+### Warum das DLR-LST-Produkt?
+
+[]{#warum-das-dlr-lst-produkt .course-anchor}
 
 Das DLR-Sommermittel bietet eine vorhandene, räumlich zusammenhängende Beschreibung von Oberflächentemperaturmustern. Es eignet sich, um eine erste Hypothese zu prüfen: Sind die aus dem Luftbild als warm oder kühl eingeschätzten größeren Flächen auch in den verfügbaren Satellitenbeobachtungen entsprechend auffällig? Die eigene Herstellung eines solchen Mittelwertbilds hätte für diese Frage zunächst keinen notwendigen Erkenntnisgewinn.
 
@@ -35,7 +49,9 @@ Das Produkt mittelt gültige wolkenfreie Landsat-Beobachtungen der Sommer 2021�
 
 **Entscheidung:** Für eine Frage nach mittleren Oberflächenmustern kann dieses Produkt ausreichen. Für die Situation einer Person an einem bestimmten Nachmittag reicht es nicht. Begründen Sie die Eignung anhand von Zielgröße, Zeitpunkt und räumlichem Bezug. Die [QGIS-Referenz](qgis-howto-stadtwaerme-marburg.qmd) unterstützt diesen Vergleich.
 
-# Warum eine eigene LST-Auswertung – und wann hilft sie nicht weiter?
+### Warum eine eigene LST-Auswertung – und wann hilft sie nicht weiter?
+
+[]{#warum-eine-eigene-lst-auswertung-und-wann-hilft-sie-nicht-weiter .course-anchor}
 
 Eine eigene Zeitreihe wird sinnvoll, sobald die Fragestellung die im Mittelwert verlorene zeitliche Information benötigt. Etwa: Bleibt der Park an besonders warmen Aufnahmeterminen gegenüber dem Umfeld kühler? Wird der Unterschied auf dem Weg und im Park an denselben Terminen beobachtet? Welche Rolle spielt die Auswahl wolkenfreier Tage?
 
@@ -52,7 +68,16 @@ Eine eigene Berechnung legt Entscheidungen über Zeitraum, Wolkenmaske, Raster u
 
 **Auftrag:** Entscheiden Sie, ob Ihre Frage eine eigene LST-Auswertung verlangt. Nennen Sie den erwarteten Erkenntnisgewinn und eine Frage zur thermischen Entlastung am gewählten Aufenthaltsort, die auch danach offenbleibt. Die begründete Entscheidung, mit dem vorhandenen Produkt weiterzuarbeiten, ist ein vollständiges Ergebnis.
 
-# Warum die Luft dazugehört
+:::
+
+
+## Umwelt und Wärmehaushalt
+
+::: {.panel-tabset}
+
+### Warum die Luft dazugehört
+
+[]{#warum-die-luft-dazugehört .course-anchor}
 
 Der Körper tauscht Wärme mit der umgebenden Luft aus. Dieser Austausch hängt unter anderem vom Temperaturunterschied zwischen Haut und Luft sowie von der Luftbewegung ab. Eine kühle Oberfläche garantiert keine ausreichend kühle Luft am Aufenthaltsort. Umgekehrt kann Schatten die Strahlung auf den Menschen verringern, während die Lufttemperatur ähnlich bleibt.
 
@@ -62,7 +87,9 @@ Eine Wetterstation liefert einen zeitlichen Bezug. Ob sie die Luft im Park, auf 
 
 **Auftrag:** Entwerfen Sie einen Vergleich zwischen einer besonnten und einer verschatteten Bank. Welche Größen müssen zeitgleich beobachtet werden, um die Hypothese „Schatten verringert die Beanspruchung“ zu untersuchen? Welche Alternativerklärung bleibt bei einer bloßen Messung der Lufttemperatur bestehen?
 
-# Warum der Stoffwechsel dazugehört
+### Warum der Stoffwechsel dazugehört
+
+[]{#warum-der-stoffwechsel-dazugehört .course-anchor}
 
 Auch in einer kühlen Umgebung erzeugt der Körper durch den Stoffwechsel Wärme. Beim Gehen, Treppensteigen oder Tragen steigt die Wärmeproduktion gegenüber dem ruhigen Sitzen. Ob der Körper Wärme speichert, ergibt sich aus dem Zusammenwirken dieser inneren Produktion mit den Austauschprozessen zur Umgebung.
 
@@ -78,7 +105,9 @@ Die Bilanz ordnet die Erklärungen: LST liefert Hinweise für einen Teil der Umg
 
 **Gedankenexperiment:** Vergleichen Sie zunächst ruhiges Sitzen und Gehen unter denselben angenommenen Umweltbedingungen. Welche Bilanzgröße verändert sich durch die Tätigkeit? Welche Größen müssten für einen fairen Vergleich gleich gehalten werden? Überlegen Sie anschließend, welche zusätzlichen Informationen nötig wären, um Unterschiede zwischen Personen zu untersuchen. Eine Altersgruppe allein legt weder die Tätigkeit noch die individuelle Wärmeregulation fest.
 
-# Welcher Index passt zur Frage: UTCI oder PET?
+### Welcher Index passt zur Frage: UTCI oder PET?
+
+[]{#welcher-index-passt-zur-frage-utci-oder-pet .course-anchor}
 
 Die Indexwahl legt Personen- und Referenzannahmen fest: UTCI verbindet Lufttemperatur, Feuchte, Wind und mittlere Strahlungstemperatur mit einem Modell menschlicher Thermoregulation. Stoffwechsel und Bekleidung sind darin bereits über Referenzannahmen berücksichtigt. Die Referenztätigkeit entspricht Gehen mit etwa 4 km/h und einer metabolischen Leistung von 135 W/m². [UTCI: Herleitung und Referenzbedingungen](https://www.utci.org/resources/utci_poster.pdf).
 
@@ -90,13 +119,24 @@ PET (Physiologisch Äquivalente Temperatur) ist eine weitere Möglichkeit, die U
 
 Im [Worksheet zu UTCI und PET](ws/ws-02.qmd) können Sie beide Indizes für angenommene Umweltsituationen berechnen und die PET-Antwort auf veränderte metabolische Leistung, Bekleidung und Luftgeschwindigkeit untersuchen.
 
-# Welche räumlichen Einheiten passen zur Frage?
+:::
+
+
+## Raum und Modellprüfung
+
+::: {.panel-tabset}
+
+### Welche räumlichen Einheiten passen zur Frage?
+
+[]{#welche-räumlichen-einheiten-passen-zur-frage .course-anchor}
 
 Ein Parkmittel, eine thermisch homogene Region und der konkrete Weg zur Bank beziehen sich auf verschiedene Gegenstände. Ein kühler Flächenmittelwert kann einen besonnten Aufenthaltsort verdecken. Deshalb werden Gebiete aus der Fragestellung begründet: Geht es um Oberflächenmuster, Aufenthaltsorte oder die zeitliche Exposition entlang eines Wegs?
 
 Eine Segmentierung mit `supercells` kann thermisch ähnliche Oberflächen zusammenfassen. Sie erzeugt dadurch weder Zonen gleicher menschlicher Beanspruchung noch eine Erklärung der Temperaturunterschiede. Die [R-Referenz](r-werkzeuge.qmd) ermöglicht den Vergleich mit vorab abgegrenzten Flächen. Prüfen Sie, ob sich Ihre Aussage durch andere Grenzen oder durch die Reihenfolge räumlicher und zeitlicher Aggregation verändert. Eine rechnerisch homogene Region kann für die Frage nach dem Aufenthalt trotzdem ungeeignet sein.
 
-# Ein eigenes Modell begründen {#planungsauftrag}
+### Ein eigenes Modell begründen {#planungsauftrag}
+
+[]{#planungsauftrag .course-anchor}
 
 **Auftrag:** Leiten Sie aus der übergeordneten Frage eine untersuchbare Teilfrage zur thermischen Entlastung in einem städtischen Freiraum ab. Legen Sie Vergleichsort oder Vergleichssituation, Zeitraum, Nutzung und Zielgröße fest.
 
@@ -122,7 +162,9 @@ Falls Sie daraus einen Prüfstandort für Hitzeschutz ableiten, begründen Sie i
 
 Prüfen Sie, ob Frage, Wirkungsmodell, Datenwahl und Prüfvergleich zusammenpassen. Benennen Sie, welche Annahme Sie aufgrund welcher Befunde geändert haben.
 
-# Das Konzept zur Diskussion stellen
+### Das Konzept zur Diskussion stellen
+
+[]{#das-konzept-zur-diskussion-stellen .course-anchor}
 
 - Erläutern Sie, welche Aussage Ihr Modell ermöglicht und welche Frage offenbleibt.
 - Prüfen Sie am Konzept einer anderen Gruppe, ob die Daten die gewählte Zielgröße erfassen und die behaupteten Zusammenhänge tragen.
@@ -131,3 +173,5 @@ Prüfen Sie, ob Frage, Wirkungsmodell, Datenwahl und Prüfvergleich zusammenpass
 - Überarbeiten Sie Ihr Konzept anhand der begründeten Einwände. Halten Sie fest, welche zusätzliche Berechnung oder Messung dadurch erforderlich wird.
 
 Materialanregung: [Summer in the City, KlimaResilienzSchule](https://github.com/OGERHub/KlimaResilienzSchule/tree/main/04-summer-in-the-city).
+
+:::

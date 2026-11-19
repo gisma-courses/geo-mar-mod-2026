@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Starkregen: Wasser im Stadtraum – Marburg modellieren</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../pages/starkregen-daten.html" rel="next">
+<link href="../pages/starkregen-einstieg.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0edd2e978850e7d69a67fc7c8ff016b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background-image: url(../images/banners/starkregen.png);
+background-size: cover;
+      }
+</style>
+<style>
+#title-block-header .quarto-title-banner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 2560px;
+  height: 196px;
+  max-height: 196px;
+  margin-inline: auto;
+  padding: 22px 26px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../css/styles.css">
+<meta property="og:title" content="Starkregen: Wasser im Stadtraum – Marburg modellieren">
+<meta property="og:description" content="Erster Reader – Klimaanpassung in Weidenhausen und im Südviertel prüfen">
+<meta property="og:site_name" content="Marburg modellieren">
+<meta name="twitter:title" content="Starkregen: Wasser im Stadtraum – Marburg modellieren">
+<meta name="twitter:description" content="Erster Reader – Klimaanpassung in Weidenhausen und im Südviertel prüfen">
+<meta name="twitter:creator" content="@gisma">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Starkregen: Wasser im Stadtraum</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Starkregen: Wasser im Stadtraum</h1>
+            <p class="subtitle lead">Erster Reader – Klimaanpassung in Weidenhausen und im Südviertel prüfen</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Marburg modellieren</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kursüberblick</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">1. Stadtklima</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/stadtwaerme-einstieg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg und Arbeitsauftrag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/modellierung_luftbild_lst.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modellkonzept: Oberfläche, Umwelt, Mensch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/exkurs_stationen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modellkritik: UTCI und PET</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/ws/ws-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worksheet: Thermische Entlastung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/hotspot-zu-palm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abschluss: Vom Hotspot zur Maßnahme</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Werkzeugreferenzen</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/qgis-howto-stadtwaerme-marburg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QGIS: Luftbild und LST</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/r-werkzeuge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R: Zeitreihen und Regionen</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Starkniederschlag (Itzï)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-einstieg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg und Arbeitsauftrag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-reader.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Reader: Wasser im Stadtraum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/starkregen-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daten beschaffen und vorbereiten</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/itzi-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Itzï beschaffen und einrichten</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html#verkehr" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Verkehr (NetLogo)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#wasserwege-und-modellgebiet" id="toc-wasserwege-und-modellgebiet" class="nav-link active" data-scroll-target="#wasserwege-und-modellgebiet">Wasserwege und Modellgebiet</a></li>
+  <li><a href="#rechnung-und-eingaben" id="toc-rechnung-und-eingaben" class="nav-link" data-scroll-target="#rechnung-und-eingaben">Rechnung und Eingaben</a></li>
+  <li><a href="#szenarien-und-prüfung" id="toc-szenarien-und-prüfung" class="nav-link" data-scroll-target="#szenarien-und-prüfung">Szenarien und Prüfung</a></li>
+  <li><a href="#quellen-und-technische-vertiefung" id="toc-quellen-und-technische-vertiefung" class="nav-link" data-scroll-target="#quellen-und-technische-vertiefung">Quellen und technische Vertiefung</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/starkregen-reader.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="wasserwege-und-modellgebiet" class="level2">
+<h2 class="anchored" data-anchor-id="wasserwege-und-modellgebiet">Wasserwege und Modellgebiet</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Was muss die Klimaanpassungsbehauptung erklären?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Woher kommt das Wasser?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Welche Grenzen braucht unser Modell?</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><span id="was-muss-die-klimaanpassungsbehauptung-erklären" class="course-anchor"></span></p>
+<p>Die <a href="../pages/starkregen-einstieg.html">Einstiegsseite</a> formuliert eine Arbeitsbehauptung: <strong>Mehr Versickerung und Rückhalt im Stadtgebiet verringern bei Starkregen die Überflutung in Weidenhausen und im Südviertel.</strong> Marburg nennt entsprechende Maßnahmen als Teil seiner Starkregenvorsorge. Für unsere Untersuchung wird daraus eine Frage nach der Wirkung bestimmter Maßnahmen an bestimmten Orten. <a href="https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html">Stadt Marburg: Klimaanpassung</a>.</p>
+<p>Eine Maßnahme hat eine Lage, eine Aufnahmefähigkeit und einen zeitlichen Verlauf. Eine Mulde kann nur das Wasser zurückhalten, das sie erreicht; ihre Speicherkapazität ist begrenzt. Versickerung hängt vom Untergrund und dessen Zustand ab. Eine Veränderung im oberen Einzugsgebiet kann weiter unten wirksam werden. Eine Fläche im Quartier kann dagegen für einen Zufluss wirkungslos bleiben, wenn dieser an ihr vorbeifließt.</p>
+<p>Wir übersetzen die allgemeine Behauptung deshalb in eine bedingte Aussage: <strong>Wenn eine Maßnahme Wasser aus einem relevanten Zuflussweg während des kritischen Zeitraums aufnimmt, dann sollte die Überflutung an einem festgelegten Auswertungsort gegenüber demselben Ereignis ohne Maßnahme abnehmen.</strong> Ob diese Bedingungen erfüllt sind, ist Gegenstand der Untersuchung.</p>
+<p><strong>Leseauftrag:</strong> Halten Sie zu jedem folgenden Abschnitt fest, welche zusätzliche Festlegung Ihre ursprüngliche Behauptung benötigt. Überarbeiten Sie am Ende Ihre erste Frage.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><span id="woher-kommt-das-wasser" class="course-anchor"></span></p>
+<p>Für die Interpretation einer Überflutungskarte unterscheiden wir drei Wege:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wasserweg</th>
+<th>Zu untersuchender Zusammenhang</th>
+<th>Benötigte Information</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regen im Quartier</td>
+<td>Niederschlag trifft auf Dächer, Straßen, Höfe und Freiflächen</td>
+<td>Regenverlauf, Oberflächen und Versickerung</td>
+</tr>
+<tr class="even">
+<td>Oberflächenzufluss aus dem Umfeld</td>
+<td>Wasser erreicht das Quartier über Gelände, Straßen oder andere Abflussachsen</td>
+<td>Einzugsgebiet, Hindernisse, Durchlässe und Zuflüsse</td>
+</tr>
+<tr class="odd">
+<td>Austausch mit der Lahn</td>
+<td>Flusswasser kann ausufern; ein hoher Wasserstand kann den Abfluss aus dem Stadtraum behindern</td>
+<td>Wasserstand im Zeitverlauf, Geländeanbindung und gegebenenfalls Gewässergeometrie</td>
+</tr>
+</tbody>
+</table>
+<p>Die Wege können gleichzeitig auftreten. Eine blaue Fläche allein erklärt ihre Ursache nicht. Für die erste Untersuchung halten wir den Regen zwischen den Vergleichsläufen gleich und legen den Umgang mit der Lahn ausdrücklich fest. Die Simulation des gesamten Lahneinzugsgebiets ist dafür keine Voraussetzung: Ein Flusswasserstand kann als äußere Bedingung vorgegeben werden, sofern seine räumliche Umsetzung und die Modellmöglichkeiten dazu passen.</p>
+<p>In Weidenhausen und im Südviertel lautet eine zentrale Frage, ob sich Wasser vor allem durch lokalen Regen sammelt, aus dem Umfeld zufließt oder durch eingeschränkte Abflussmöglichkeiten länger stehen bleibt. Wir weisen diese Ursachen keinem Straßenzug vorab zu.</p>
+<p><strong>Auftrag:</strong> Zeichnen Sie für beide Quartiere mögliche Wasserwege ein. Kennzeichnen Sie, was aus dem Gelände begründet ist und was erst durch zusätzliche Daten geprüft werden muss.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><span id="welche-grenzen-braucht-unser-modell" class="course-anchor"></span></p>
+<p>Wir unterscheiden drei räumliche Ebenen:</p>
+<ul>
+<li><strong>Untersuchungsraum:</strong> das Marburger Stadtgebiet als Zusammenhang von Flächen, Zuflüssen und möglichen Anpassungsmaßnahmen.</li>
+<li><strong>Modellgebiet:</strong> das tatsächlich berechnete Gebiet einschließlich relevanter Zuflüsse und Abflussmöglichkeiten. Es kann über Stadt- oder Quartiersgrenzen hinausreichen.</li>
+<li><strong>Auswertungsgebiete:</strong> Weidenhausen und das Südviertel sowie vorab ausgewählte Straßenabschnitte, Freiflächen oder Gebäudeumfelder.</li>
+</ul>
+<p>Eine Stadtteilgrenze verhindert keinen Wasserfluss. Ein eng ausgeschnittenes Raster kann Zufluss abschneiden; ein geschlossener Rand kann einen künstlichen Einstau erzeugen. Ein offener Rand kann Wasser aus dem Modell entfernen, obwohl es in der Wirklichkeit auf ein Hindernis träfe. Auch der Rand eines fein aufgelösten Teilmodells braucht daher begründete Bedingungen.</p>
+<p>Bei Itzï sind Randbedingungen ausdrücklich zu konfigurieren; in der Dokumentation der Version 26.6 sind geschlossene Ränder der Standard. Eine feste Wassertiefe ist außerdem von einer Wasserstandshöhe zu unterscheiden: Der Wasserspiegel ergibt sich aus Geländehöhe plus Wassertiefe. Ein Pegelwert kann erst nach Prüfung von Höhenbezug und räumlicher Übertragung verwendet werden. <a href="https://itzi.readthedocs.io/en/stable/conf_file.html#boundary-conditions">Itzï: Eingaben und Randbedingungen</a>.</p>
+<p><strong>Entscheidung:</strong> Begründen Sie ein gemeinsames Modellgebiet für den städtischen Zusammenhang. Falls eine feinere Teilrechnung nötig wird, dokumentieren Sie, wie sie Wasser vom größeren Gebiet erhält. Eine automatische Kopplung der Auflösungen wird hier nicht vorausgesetzt.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="rechnung-und-eingaben" class="level2">
+<h2 class="anchored" data-anchor-id="rechnung-und-eingaben">Rechnung und Eingaben</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Was berechnet Itzï?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Die Wasserbilanz als erste Prüfung</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Welche Daten tragen welche Annahme?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Wie fein muss die Stadt aufgelöst werden?</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><span id="was-berechnet-itzï" class="course-anchor"></span></p>
+<p>Itzï verbindet Niederschlag und Versickerung mit einer zeitabhängigen Berechnung des zweidimensionalen Oberflächenabflusses auf einem regelmäßigen Raster in GRASS GIS. Eine Kopplung an ein eindimensionales Kanalnetz über SWMM ist möglich. Für die Auflösung des Oberflächenrasters ist die GRASS-Rechenregion maßgeblich. <a href="https://www.itzi.org/about/">Itzï: Modellbeschreibung</a>.</p>
+<p>Wir unterscheiden <strong>Geländehöhe</strong> <span class="math inline">\(z\)</span>, <strong>Wassertiefe</strong> <span class="math inline">\(h\)</span> und <strong>Wasserspiegelhöhe</strong> <span class="math inline">\(\eta\)</span>:</p>
+<p><span class="math display">\[
+\eta = z + h.
+\]</span></p>
+<p>Eine tiefe Geländestelle muss nicht überflutet sein, wenn sie kein Wasser erreicht. Eine geringe Wassertiefe auf höherem Gelände kann mit einem höheren Wasserspiegel verbunden sein als eine große Tiefe in einer Senke. Für die Bewegung des Wassers sind die räumlichen Unterschiede des Wasserspiegels zusammen mit Fließwiderstand und Dynamik relevant.</p>
+<p>Das Oberflächenmodell verwendet eine lokale Trägheitsnäherung der Flachwassergleichungen, bei der die konvektive Beschleunigung entfällt. Bei schnellen, schießenden Strömungen und abrupten Übergängen ist die Eignung besonders zu prüfen. Für sehr geringe Wassertiefen verwendet Itzï ein gesondertes Routingverfahren. Eine Animation fein gezeichneter Wasserwege hebt diese Vereinfachungen nicht auf. <a href="https://www.itzi.org/technic/">Itzï: Technische Grundlagen</a>.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><span id="die-wasserbilanz-als-erste-prüfung" class="course-anchor"></span></p>
+<p>Für das gesamte Oberflächenmodell lässt sich die Bilanz über einen gewählten Zeitraum vereinfacht schreiben als:</p>
+<p><span class="math display">\[
+\Delta V = V_P + V_{\mathrm{zu}} - V_I - V_{\mathrm{ab}} - V_K + \varepsilon.
+\]</span></p>
+<p>Hier ist <span class="math inline">\(\Delta V\)</span> die Änderung des oberirdisch gespeicherten Wassers, <span class="math inline">\(V_P\)</span> das Regenvolumen, <span class="math inline">\(V_{\mathrm{zu}}\)</span> der Zufluss, <span class="math inline">\(V_I\)</span> die Versickerung und <span class="math inline">\(V_{\mathrm{ab}}\)</span> der Abfluss. <span class="math inline">\(V_K\)</span> bezeichnet den Nettoabfluss in ein gegebenenfalls gekoppeltes Kanalnetz; bei Nettozufluss aus dem Kanal wird er negativ. <span class="math inline">\(\varepsilon\)</span> steht für den numerischen Bilanzrest. Weitere modellierte Verluste müssten ergänzt werden. Alle Terme sind Volumina für denselben Zeitraum.</p>
+<p><strong>Gedankenexperiment:</strong> Auf einen Hektar fallen 60 mm Regen. Das entspricht <span class="math inline">\(10\,000\,\mathrm{m^2}\times0{,}06\,\mathrm{m}=600\,\mathrm{m^3}\)</span> Wasser. Eine zunächst leere Mulde mit 100 m³ Speicher kann ohne zusätzliche Versickerung oder Abfluss höchstens ein Sechstel dieses Volumens aufnehmen. Ob sie einen kritischen Spitzenabfluss beeinflusst, hängt auch davon ab, wann und auf welchem Weg das Wasser eintrifft.</p>
+<p>Rückhalt entfernt Wasser nicht automatisch aus dem Gebiet: Es bleibt zunächst gespeichert und kann später versickern oder abfließen. <strong>Rauheit ist ebenfalls keine Versickerung.</strong> Eine Erhöhung des Fließwiderstands verändert den Transport; Wasser verschwindet dadurch nicht aus der Bilanz.</p>
+<p>Für jeden Lauf prüfen wir Regenmenge, Zufluss, Versickerung, Abfluss, verbleibenden Speicher und Bilanzrest. Eine gute Bilanz ist notwendig, belegt aber weder eine richtige Geländeabbildung noch eine realistische Maßnahmenwirkung.</p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p><span id="welche-daten-tragen-welche-annahme" class="course-anchor"></span></p>
+<p>Die <a href="../pages/starkregen-daten.html">Datenreferenz</a> übersetzt die folgenden Anforderungen in konkrete Bezugs- und Aufbereitungsschritte. Die <a href="../pages/itzi-setup.html">Setup-Anleitung</a> beschreibt Softwarebezug, Installation und das GRASS-Projekt.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Eingabe</th>
+<th>Verwendung im Modell</th>
+<th>Zu prüfende Annahme</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DGM1 aus Hessen</td>
+<td>Gelände und Gefälle</td>
+<td>Erfassungszeitpunkt, Höhenfehler und hydraulisch relevante Details</td>
+</tr>
+<tr class="even">
+<td>Gebäudegrundrisse und Luftbild</td>
+<td>Gebäude, Höfe und Oberflächen unterscheiden</td>
+<td>Gebäude als Hindernisse; Behandlung des auf Dächer fallenden Regens</td>
+</tr>
+<tr class="odd">
+<td>Straßen, Mauern, Unterführungen und Durchlässe</td>
+<td>Wasserwege und Barrieren ergänzen</td>
+<td>Welche Verbindungen sind offen, erhöht oder unterbrochen?</td>
+</tr>
+<tr class="even">
+<td>Regenverlauf</td>
+<td>Wasserzufuhr über Raum und Zeit</td>
+<td>Modellregen oder beobachtetes Ereignis; Dauer und Intensität</td>
+</tr>
+<tr class="odd">
+<td>Rauheit und Versickerungsparameter</td>
+<td>Widerstand und Wasseraufnahme</td>
+<td>begründete Wertebereiche für unterschiedliche Oberflächen</td>
+</tr>
+<tr class="even">
+<td>Lahnwasserstand und Gewässerinformationen</td>
+<td>Austausch beziehungsweise Randbedingung</td>
+<td>Höhenbezug, Verlauf und hydraulische Anbindung</td>
+</tr>
+<tr class="odd">
+<td>Kanalnetz, falls verfügbar</td>
+<td>Entwässerung und gegebenenfalls Überstau</td>
+<td>Netzgeometrie, Einläufe und Kopplung an die Oberfläche</td>
+</tr>
+</tbody>
+</table>
+<p>Hessen bietet das DGM1 kostenfrei an. Die Metadaten nennen eine Rasterweite von 1 m; Brücken sind nicht Bestandteil des DGM. Gebäude müssen für das gewählte Oberflächenmodell gesondert behandelt werden. Ein Oberflächenmodell mit Baumkronen wäre wiederum keine unmittelbar geeignete hydraulische Ersatzoberfläche. <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG: Digitale Geländemodelle</a>.</p>
+<p>Eine Gebäudegrundfläche pauschal auszumaskieren kann auch den dort fallenden Regen aus der Rechnung entfernen. Die Behandlung von Dachwasser gehört deshalb zur Modellannahme. Ebenso liefert ein Geländeraster allein keine gesicherte Unterwassergeometrie der Lahn.</p>
+<p>Ohne Kanalnetzdaten beginnen wir mit einem ausdrücklich als solchen bezeichneten <strong>Oberflächenszenario ohne Kanalentwässerung</strong>. Es beschreibt nicht automatisch den ungünstigsten möglichen Fall, weil auch Zufluss durch Kanalüberstau fehlen kann. Eine pauschale Verlustannahme ist kein räumlich aufgelöstes Kanalnetzmodell.</p>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p><span id="wie-fein-muss-die-stadt-aufgelöst-werden" class="course-anchor"></span></p>
+<p>Wir schlagen für die Kursuntersuchung zwei Bearbeitungsstufen vor: zunächst einen Überblick mit <strong>5 m</strong>, anschließend ausgewählte Vergleiche mit <strong>1–2 m</strong>. Die feinere Stufe soll zeigen, ob Straßenräume, Gebäudestellungen oder Durchlässe die Aussage verändern. Diese Rasterweiten sind Arbeitsentscheidungen, keine bereits geprüfte optimale Parametrisierung für Marburg.</p>
+<p>Bei gleicher Fläche enthält ein 1-m-Raster 25-mal so viele Zellen wie ein 5-m-Raster. Die Laufzeit kann zusätzlich durch kleinere numerische Zeitschritte steigen. Deshalb wird der Rechenaufwand vor einer Ausweitung auf das gesamte Stadtgebiet an einem begründeten Ausschnitt geprüft.</p>
+<p>Ein feines Raster ergänzt keine fehlende Mauer und korrigiert keinen falschen Durchlass. Bei der Vergröberung können schmale Hindernisse oder Verbindungen verschwinden. Für einen Auflösungsvergleich halten wir Ereignis, Gebiet und fachliche Annahmen möglichst gleich und dokumentieren, wie die Geländeinformation übertragen wurde. Ausgewertet werden dieselben Straßenabschnitte oder Flächen; Zellzahlen allein sind zwischen Auflösungen nicht vergleichbar.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="szenarien-und-prüfung" class="level2">
+<h2 class="anchored" data-anchor-id="szenarien-und-prüfung">Szenarien und Prüfung</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Ein erster kontrollierter Szenariovergleich</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Was gilt als Entlastung?</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Woran prüfen wir das Ergebnis?</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p><span id="ein-erster-kontrollierter-szenariovergleich" class="course-anchor"></span></p>
+<p>Als <strong>frei gewähltes Lehrszenario</strong> verwenden wir zunächst räumlich einheitlich 40 mm/h für 60 Minuten, danach keinen Regen. Das ergibt 40 mm Gesamtniederschlag. Daraus wird keine Wiederkehrzeit für Marburg abgeleitet. Wir starten mit trockener Oberfläche; dies legt die Bodenfeuchte noch nicht fest. Nach Regenende rechnen wir weiter, bis der für die Frage relevante Abfluss- und Speicherverlauf erfasst ist.</p>
+<p>Vor dem Rechnen legen wir eine konkrete Maßnahmenfläche fest. Bei einer Entsiegelung wird zunächst nur die angenommene Versickerung dieser Fläche verändert. Bei einer Mulde muss stattdessen ein begründetes Speichervolumen über die Geometrie abgebildet werden; zusätzliche Versickerung wäre eine weitere Festlegung. Lage, Fläche, Kapazität und Ausgangszustand werden dokumentiert.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lauf</th>
+<th>Maßnahme</th>
+<th>Äußere Bedingung an der Lahn</th>
+<th>Zweck</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>ohne</td>
+<td>niedrigerer Wasserstand</td>
+<td>Ausgangsszenario</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>mit</td>
+<td>wie A</td>
+<td>Maßnahmenwirkung: B mit A vergleichen</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>ohne</td>
+<td>höherer Wasserstand</td>
+<td>Einfluss der äußeren Bedingung: C mit A vergleichen</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>wie B</td>
+<td>wie C</td>
+<td>Maßnahmenwirkung bei höherem Wasserstand: D mit C vergleichen</td>
+</tr>
+</tbody>
+</table>
+<p>Die beiden Wasserstandsverläufe müssen vor der Umsetzung mit Höhenbezug und räumlicher Anwendung definiert werden. Ohne Ereignisdaten bleiben sie idealisierte Annahmen. Regen, Bodenparameter, Geometrie außerhalb der Maßnahme und numerische Einstellungen bleiben innerhalb dieses Vergleichs gleich. Die Auflösung wird in einem eigenen Vergleich untersucht.</p>
+<p><strong>Prüffrage:</strong> Bleibt die Wirkung zwischen B–A und D–C ähnlich? Wird die Maßnahme wirkungslos, ist zu klären, ob sie sich füllt, hydraulisch nicht erreicht wird oder ein anderer Wasserweg die Überflutung bestimmt. Solche Ergebnisse schränken die Ausgangsbehauptung ein.</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p><span id="was-gilt-als-entlastung" class="course-anchor"></span></p>
+<p>Wir legen vorab fest, an welchen Orten und anhand welcher Größen eine Wirkung beurteilt wird. Mögliche Größen sind die maximale Wassertiefe an definierten Auswertungsorten, die Dauer oberhalb einer begründeten Wassertiefe, das Wasser auf einer bestimmten Straßenfläche oder der zeitliche Abfluss an einem festgelegten Querschnitt.</p>
+<p>Für die maximale Wassertiefe kann eine Differenzkarte verwendet werden:</p>
+<p><span class="math display">\[
+\Delta h_{\max}(x,y) = h_{\max,\,\mathrm{mit}}(x,y) - h_{\max,\,\mathrm{ohne}}(x,y).
+\]</span></p>
+<p>Negative Werte zeigen geringere Maxima. Diese Maxima können zu unterschiedlichen Zeitpunkten auftreten; ergänzend betrachten wir deshalb Zeitreihen. Eine geringere Tiefe neben einem Gebäude kann außerdem mit einer höheren Fließgeschwindigkeit oder einer größeren Ansammlung an anderer Stelle verbunden sein. Beide Quartiere und die Nachbarschaft der Maßnahme werden gemeinsam geprüft.</p>
+<p>Falls eine Überflutungsfläche über einen Schwellenwert abgegrenzt wird, ist dieser als Auswertungsentscheidung zu begründen. Ein solcher Wert ist keine allgemeine Sicherheitsgrenze. Wassertiefen und Fließgeschwindigkeiten beschreiben zunächst die modellierte <strong>Gefährdung</strong>. Für eine Risiko- oder Schadensaussage brauchen wir zusätzlich Informationen zu betroffenen Menschen, Nutzungen und deren Verletzlichkeit.</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p><span id="woran-prüfen-wir-das-ergebnis" class="course-anchor"></span></p>
+<p>Die Stadt verweist auf vorhandene Karten aus ihrer Niederschlags-Abfluss-Simulation im Geoportal „Marburg in Karten“. Sie bieten einen Ausgangspunkt für den räumlichen Vergleich. Vor einem Vergleich müssen Regenszenario, Gelände, Randbedingungen und Kanalbehandlung soweit verfügbar gegenübergestellt werden. <a href="https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html">Stadt Marburg: vorhandene Analysen und Karten</a>.</p>
+<p>Eine Übereinstimmung zweier Modellkarten ist keine unabhängige Validierung. Dafür sind möglichst ereignisbezogene Beobachtungen nötig, etwa dokumentierte Wasserstände, zeitlich zugeordnete Fotos oder beobachtete Fließwege. Ohne sie bleibt das Ergebnis eine Szenario- und Sensitivitätsuntersuchung. Auch dann können wir prüfen, welche Annahmen das Ergebnis besonders verändern und welche Aussagen über mehrere plausible Annahmen hinweg bestehen bleiben.</p>
+<p><strong>Erster Arbeitsauftrag:</strong> Erstellen Sie eine Karte mit Modellgebiet, beiden Auswertungsgebieten, vermuteten Wasserwegen und einer Maßnahmenfläche. Ergänzen Sie ein kurzes Konzept mit:</p>
+<ul>
+<li>einer bedingten Hypothese und einem möglichen Gegenbefund;</li>
+<li>der Zielgröße und vorab bestimmten Auswertungsorten;</li>
+<li>der Trennung von vorhandenen Daten, noch benötigten Daten und Szenarioannahmen;</li>
+<li>dem Vergleich mit und ohne Maßnahme sowie einer zusätzlich geprüften Bedingung;</li>
+<li>einer Bilanzprüfung, einem möglichen Beobachtungsvergleich und den verbleibenden Grenzen.</li>
+</ul>
+<p>Begründen Sie abschließend, welchen Teil der Klimaanpassungsbehauptung Ihr Modell prüfen kann. Eine Wirkung auf Starkregenabfluss belegt noch keine thermische Entlastung; dafür wäre die <a href="../pages/stadtwaerme-einstieg.html">Stadtklima-Fragestellung</a> mit ihren eigenen Zielgrößen zu bearbeiten.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="quellen-und-technische-vertiefung" class="level2">
+<h2 class="anchored" data-anchor-id="quellen-und-technische-vertiefung">Quellen und technische Vertiefung</h2>
+<ul>
+<li><a href="https://www.marburg.de/portal/seiten/an-die-folgen-des-klimawandels-anpassen-900002717-23001.html">Stadt Marburg: Klimaanpassung, Starkregenvorsorge und Zugang zu Karten</a></li>
+<li><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG: DGM1, Datenbereitstellung und Qualitätsangaben</a></li>
+<li><a href="https://www.itzi.org/about/">Itzï: Modellbeschreibung und Prozesse</a></li>
+<li><a href="https://www.itzi.org/technic/">Itzï: Numerische Grundlagen</a></li>
+<li><a href="https://itzi.readthedocs.io/en/stable/conf_file.html">Itzï 26.6: Eingaben, Randbedingungen, Ausgaben und Bilanzstatistik</a></li>
+</ul>
+<p>Die konkreten Konfigurationsschlüssel müssen zur eingesetzten Itzï-Version passen. Dieser Reader entwickelt das Modellkonzept; <a href="../pages/starkregen-daten.html">Datenbeschaffung</a> und <a href="../pages/itzi-setup.html">Softwarebezug und Installation</a> stehen in den zugehörigen Werkzeugreferenzen. Für den gemeinsamen Einstieg wird dort Itzï 26.6 verwendet.</p>
+<p>Zurück zu <a href="../pages/starkregen-einstieg.html">Einstieg und Arbeitsauftrag</a> oder zur <a href="../index.html#starkniederschlag">Kursübersicht</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+(() => {
+  'use strict';
+  function zielOeffnen() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const ziel = document.getElementById(id);
+    if (!ziel) return;
+    const panes = [];
+    for (let el = ziel; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+      if (el.tagName === 'DETAILS') el.open = true;
+    }
+    for (const pane of panes) {
+      const tab = [...document.querySelectorAll('[data-bs-toggle="tab"]')]
+        .find(el => el.getAttribute('data-bs-target') === '#' + pane.id);
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+    }
+    if (panes.length) requestAnimationFrame(() => ziel.scrollIntoView());
+  }
+  function starten() {
+    for (const tab of document.querySelectorAll('.panel-tabset [role="tab"]')) {
+      const pane = document.getElementById(tab.getAttribute('aria-controls'));
+      if (!pane) continue;
+      const titel = document.createElement('h3');
+      titel.className = 'course-print-title';
+      titel.textContent = tab.textContent;
+      pane.prepend(titel);
+    }
+    zielOeffnen();
+  }
+  window.addEventListener('hashchange', zielOeffnen);
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
+      requestAnimationFrame(zielOeffnen);
+    }
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', starten);
+  else starten();
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gisma-courses\.github\.io\/geo-mar-mod-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../pages/starkregen-einstieg.html" class="pagination-link" aria-label="Einstieg und Arbeitsauftrag">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Einstieg und Arbeitsauftrag</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../pages/starkregen-daten.html" class="pagination-link" aria-label="Daten beschaffen und vorbereiten">
+        <span class="nav-page-text">Daten beschaffen und vorbereiten</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/pages/starkregen-reader.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

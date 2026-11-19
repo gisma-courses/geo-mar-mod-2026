@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/itzi-setup.html</loc>
+    <lastmod>2026-11-19T00:22:53.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/starkregen-reader.html</loc>
+    <lastmod>2026-11-19T00:17:28.118Z</lastmod>
+  </url>
+  <url>
     <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/ws/ws-02.html</loc>
-    <lastmod>2026-11-05T09:45:49.437Z</lastmod>
+    <lastmod>2026-11-19T00:17:27.751Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/exkurs_stationen.html</loc>
-    <lastmod>2026-11-05T09:46:47.933Z</lastmod>
+    <lastmod>2026-11-19T00:17:26.955Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/modellierung_luftbild_lst.html</loc>
-    <lastmod>2026-11-05T09:46:47.933Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/index.html</loc>
-    <lastmod>2026-11-18T22:49:45.719Z</lastmod>
+    <lastmod>2026-11-19T00:22:53.039Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/stadtwaerme-einstieg.html</loc>
-    <lastmod>2026-11-18T22:50:46.937Z</lastmod>
+    <lastmod>2026-11-19T00:08:03.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/index.html</loc>
+    <lastmod>2026-11-19T00:08:03.883Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/hotspot-zu-palm.html</loc>
+    <lastmod>2026-11-19T00:17:29.394Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/qgis-howto-stadtwaerme-marburg.html</loc>
-    <lastmod>2026-11-05T09:46:47.933Z</lastmod>
+    <lastmod>2026-11-19T00:17:27.355Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/r-werkzeuge.html</loc>
-    <lastmod>2026-11-05T09:42:53.674Z</lastmod>
+    <lastmod>2026-11-19T00:22:53.040Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/starkregen-einstieg.html</loc>
+    <lastmod>2026-11-18T23:53:37.604Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mar-mod-2026/pages/starkregen-daten.html</loc>
+    <lastmod>2026-11-19T00:17:28.445Z</lastmod>
   </url>
 </urlset>

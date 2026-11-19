@@ -1,6 +1,9 @@
 ---
 title: "Worksheet 03 · NDVI und kNDVI vergleichen"
 subtitle: "Block 1 – Vegetationsindizes, Vergleichsflächen und die Aussagegrenzen einer Auswertung"
+title-block-banner: ../../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 order: 4
 format-links: [html, pdf, docx]
 format:

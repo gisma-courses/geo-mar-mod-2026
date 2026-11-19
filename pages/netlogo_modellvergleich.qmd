@@ -1,6 +1,9 @@
 ---
 title: "Ähnliche Muster – unterschiedliche Modelle"
 subtitle: "Drei NetLogo-Modelle zwischen Heuristik und physikalischer Prozessbeschreibung"
+title-block-banner: ../images/banners/kurs.png
+title-block-banner-color: black
+lang: de
 date: "2026-10-26"
 format:
   revealjs:

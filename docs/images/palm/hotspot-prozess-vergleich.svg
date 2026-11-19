@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" role="img" aria-labelledby="title desc">
+<title id="title">Vom Oberflächenmuster zum kontrollierten Vergleich</title><desc id="desc">Drei Schritte: Beobachtung aus der Satellitenkarte, Prozesshypothese und Ist-Maßnahmen-Vergleich unter gleichen Bedingungen.</desc>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#344956" stroke-width="2"/></marker></defs>
+<rect width="960" height="260" rx="16" fill="#f4f7f8"/>
+<g font-family="sans-serif" fill="#1e3540"><g stroke="#617d87" stroke-width="2"><rect x="20" y="30" width="270" height="190" rx="12" fill="#fff0dc"/><rect x="345" y="30" width="270" height="190" rx="12" fill="#eef5de"/><rect x="670" y="30" width="270" height="190" rx="12" fill="#e1eff9"/><path d="M300 125h32M625 125h32" marker-end="url(#a)"/></g>
+<g text-anchor="middle"><text x="155" y="64" font-size="23" font-weight="bold">1 · Beobachtung</text><text x="480" y="64" font-size="23" font-weight="bold">2 · Hypothese</text><text x="805" y="64" font-size="23" font-weight="bold">3 · Modellvergleich</text>
+<text x="155" y="109" font-size="19">Wo fällt die LST auf?</text><text x="155" y="142" font-size="18">Ort · Zeitraum · Produkt</text><text x="155" y="188" font-size="17">Ein Muster ist noch keine Ursache.</text>
+<text x="480" y="109" font-size="19">Welcher Prozess erklärt es?</text><text x="480" y="142" font-size="18">Strahlung · Wasser · Material</text><text x="480" y="188" font-size="17">Erwartung und Gegenbefund nennen.</text>
+<text x="805" y="109" font-size="19">Was ändert eine Maßnahme?</text><text x="805" y="142" font-size="18">Ist ↔ Maßnahme</text><text x="805" y="188" font-size="17">Gleiches Wetter, Gitter und Uhrzeit.</text></g></g>
+<text x="480" y="246" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#52616b">Schema · unterschiedliche Erkenntnisansprüche · keine Mess- oder Ergebnisdaten</text></svg>

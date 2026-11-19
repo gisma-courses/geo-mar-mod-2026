@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-0edd2e978850e7d69a67fc7c8ff016b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -57,21 +57,55 @@ ul.task-list li input[type="checkbox"] {
     "s"
   ],
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background-image: url(images/banners/kurs.png);
+background-size: cover;
+      }
+</style>
+<style>
+#title-block-header .quarto-title-banner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 2560px;
+  height: 196px;
+  max-height: 196px;
+  margin-inline: auto;
+  padding: 22px 26px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+</style>
 
 
+<link rel="stylesheet" href="css/styles.css">
 <meta property="og:title" content="Marburg modellieren">
 <meta property="og:description" content="Stadtklima, Starkregen und Verkehr als einfache Simulationsmodelle in Marburg">
 <meta property="og:site_name" content="Marburg modellieren">
@@ -246,27 +280,44 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">Marburg modellieren</h1>
         </a>     
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Marburg modellieren</h1>
+            <p class="subtitle lead">Stadtklima, Starkregen und Verkehr als einfache Simulationsmodelle in Marburg</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Marburg modellieren</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -283,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">1. Stadtklima</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -312,11 +363,17 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Worksheet: Thermische Entlastung</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pages/hotspot-zu-palm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abschluss: Vom Hotspot zur Maßnahme</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Werkzeugreferenzen</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -337,12 +394,41 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html#starkniederschlag" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">2. Starkniederschlag (Itzï)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pages/starkregen-einstieg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg und Arbeitsauftrag</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pages/starkregen-reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reader: Wasser im Stadtraum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pages/starkregen-daten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daten beschaffen und vorbereiten</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pages/itzi-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Itzï beschaffen und einrichten</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html#verkehr" class="sidebar-item-text sidebar-link">
@@ -364,30 +450,14 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#verkehr" id="toc-verkehr" class="nav-link" data-scroll-target="#verkehr">3. Verkehr: Wie entstehen räumliche Muster?</a></li>
   <li><a href="#gemeinsamer-arbeitsgang" id="toc-gemeinsamer-arbeitsgang" class="nav-link" data-scroll-target="#gemeinsamer-arbeitsgang">Gemeinsamer Arbeitsgang</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">Marburg modellieren</h1>
-<p class="subtitle lead">Stadtklima, Starkregen und Verkehr als einfache Simulationsmodelle in Marburg</p>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p>In diesem Kurs untersuchen wir räumliche Prozesse in Marburg mit Geodaten und Modellen. Drei Themen dienen dazu, unterschiedliche Modellierungsansätze kennenzulernen und miteinander zu vergleichen. Es geht nicht nur darum, plausible Karten oder Simulationen zu erzeugen, sondern ihre Annahmen, Eingaben und Aussagegrenzen zu verstehen.</p>
@@ -397,11 +467,13 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Ausgangspunkt:</strong> Luftbilder und satellitengestützte Landoberflächentemperaturen (LST) zeigen unterschiedliche Eigenschaften städtischer Oberflächen. Wir formulieren Hypothesen, vergleichen räumliche Muster und prüfen, welche Aussagen daraus über thermische Entlastung möglich sind. Die Unterscheidung zwischen Oberflächentemperatur, Aufenthaltsumgebung und menschlicher Wärmebelastung ist dabei zentral.</p>
 <p>Der Vergleich von Luftbild und LST ist zunächst <strong>eine datenbasierte Analyse und Modellprüfung, keine dynamische Stadtklimasimulation</strong>. Weitere Modelle, etwa UTCI und PET, kommen nur hinzu, wenn die Fragestellung ihre Zielgrößen verlangt.</p>
 <p><strong>Jetzt bearbeiten:</strong> <a href="./pages/stadtwaerme-einstieg.html">Stadtwärme – Einstieg und Arbeitsauftrag</a>. Dort finden Sie den Weg zum <a href="./pages/modellierung_luftbild_lst.html">Modellkonzept</a> und zu den QGIS- und R-Referenzen.</p>
+<p><strong>Abschluss in einer Sitzung:</strong> <a href="./pages/hotspot-zu-palm.html">Vom Satelliten-Hotspot zur physikalischen Modellierung</a>. Ein kurzer PALM-Reader und der KlimaCheck-Lernpfad verbinden die bisherige Analyse mit einem kontrollierten Vergleich vorhandener Oberflächenfälle.</p>
 </section>
 <section id="starkniederschlag" class="level2">
 <h2 class="anchored" data-anchor-id="starkniederschlag">2. Starkniederschlag: Wo fließt das Wasser?</h2>
 <p><strong>Modellwerkzeug: Itzï.</strong> Aus Gelände, Niederschlag und weiteren Oberflächeneigenschaften untersuchen wir Abfluss- und Überflutungsprozesse. Der Schwerpunkt verschiebt sich von der Interpretation eines Beobachtungsprodukts zur <strong>zeitabhängigen Simulation</strong>: Welche Annahmen und Eingangsdaten verändern räumliche Fließwege und Wasserstände? Wie unterscheiden sich Szenarien?</p>
-<p>Dieser Block folgt auf das Stadtklima-Beispiel. Ein eigener Arbeitsauftrag wird ergänzt; eine Wiederholung der allgemeinen Modellierungsgrundlagen ist nicht vorgesehen.</p>
+<p><strong>Ausgangspunkt:</strong> Die Klimaanpassung verspricht, durch Versickerung und Rückhalt Überflutungen zu mindern. Wir untersuchen diese Behauptung im Marburger Stadtgebiet, insbesondere in <strong>Weidenhausen und im Südviertel</strong>. Welche Rolle spielen Gelände, Bebauung, zufließendes Wasser und der Wasserstand der Lahn? Unter welchen Bedingungen wirkt eine Maßnahme lokal oder auch im weiteren Stadtraum?</p>
+<p><strong>Jetzt bearbeiten:</strong> <a href="./pages/starkregen-einstieg.html">Starkregen – Einstieg und Arbeitsauftrag</a>. Der <a href="./pages/starkregen-reader.html">erste Reader: Wasser im Stadtraum</a> führt von der Klimaanpassungsbehauptung zum Modellkonzept mit Itzï. Die Referenzen zu <a href="./pages/starkregen-daten.html">Datenbeschaffung und Aufbereitung</a> sowie <a href="./pages/itzi-setup.html">Softwarebezug und Installation von Itzï</a> begleiten den Einstieg. Dieser Block nutzt die im Stadtklima-Beispiel erarbeiteten Grundlagen der Modellprüfung.</p>
 </section>
 <section id="verkehr" class="level2">
 <h2 class="anchored" data-anchor-id="verkehr">3. Verkehr: Wie entstehen räumliche Muster?</h2>
@@ -448,6 +520,50 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  'use strict';
+  function zielOeffnen() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const ziel = document.getElementById(id);
+    if (!ziel) return;
+    const panes = [];
+    for (let el = ziel; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+      if (el.tagName === 'DETAILS') el.open = true;
+    }
+    for (const pane of panes) {
+      const tab = [...document.querySelectorAll('[data-bs-toggle="tab"]')]
+        .find(el => el.getAttribute('data-bs-target') === '#' + pane.id);
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+    }
+    if (panes.length) requestAnimationFrame(() => ziel.scrollIntoView());
+  }
+  function starten() {
+    for (const tab of document.querySelectorAll('.panel-tabset [role="tab"]')) {
+      const pane = document.getElementById(tab.getAttribute('aria-controls'));
+      if (!pane) continue;
+      const titel = document.createElement('h3');
+      titel.className = 'course-print-title';
+      titel.textContent = tab.textContent;
+      pane.prepend(titel);
+    }
+    zielOeffnen();
+  }
+  window.addEventListener('hashchange', zielOeffnen);
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
+      requestAnimationFrame(zielOeffnen);
+    }
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', starten);
+  else starten();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -486,12 +602,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopiert");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopiert");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -871,4 +987,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/gisma-courses/geo-mar-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

@@ -1,6 +1,9 @@
 ---
 title: "Modellbildung im GIS"
 subtitle: "Heuristische Regeln, physikalische Näherungen, Prozessmodelle"
+title-block-banner: ../images/banners/kurs.png
+title-block-banner-color: black
+lang: de
 author: "KlimaResilienzSchule"
 date: "2026-10-26"
 format:

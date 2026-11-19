@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" role="img" aria-labelledby="title desc">
+<title id="title">PALM-Modellaufbau und Kursauswahl</title><desc id="desc">Modellgitter mit Boden, Gebäude und Baum. Geometrie und Eigenschaften bilden räumliche Eingaben; Wetter und Anfangszustand kommen hinzu. Der Kurs verwendet den Oberflächenmodus mit vorgegebener Luft und Wind. LES ist eine mögliche spätere Vertiefung.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9db4bf" stroke-width="1"/></pattern></defs>
+<rect width="960" height="450" rx="16" fill="#f3f7f9"/>
+<g font-family="sans-serif" fill="#20363e"><text x="25" y="35" font-size="23" font-weight="bold">Raum + Eigenschaften + Wetter + Anfangszustand</text>
+<rect x="25" y="65" width="540" height="250" fill="#e1eff6" stroke="#496574" stroke-width="2"/><rect x="25" y="65" width="540" height="250" fill="url(#grid)"/>
+<rect x="80" y="160" width="125" height="125" fill="#8b9a9e" stroke="#3f5962" stroke-width="2"/><path d="M205 160 235 140V265L205 285Z" fill="#71858b"/><path d="M80 160 110 140H235L205 160Z" fill="#bec9cb"/>
+<rect x="345" y="202" width="17" height="83" fill="#82634c"/><ellipse cx="354" cy="175" rx="56" ry="65" fill="#84b36c" fill-opacity=".85" stroke="#386a45" stroke-width="2"/>
+<rect x="25" y="285" width="540" height="30" fill="#a28c71"/><text x="255" y="304" font-size="16" fill="#fff">Boden / Schichten</text><text x="95" y="245" font-size="16">Gebäude</text><text x="326" y="179" font-size="16">Krone</text>
+<text x="35" y="340" font-size="17">Statischer Treiber: Geometrie, Materialien, Pflanzen</text><text x="35" y="367" font-size="16">Modellgitter schematisch, nicht maßstäblich</text>
+<rect x="600" y="75" width="335" height="145" rx="12" fill="#dfefdf" stroke="#35744b" stroke-width="2"/><text x="620" y="108" font-size="22" font-weight="bold">Im Kurs: Oberfläche</text><text x="620" y="141" font-size="18">Strahlung und Oberflächen</text><text x="620" y="170" font-size="18">Luft und Wind vorgegeben</text><text x="620" y="199" font-size="17">Vorhandene Fälle vergleichen</text>
+<rect x="600" y="245" width="335" height="130" rx="12" fill="#e5e9ee" stroke="#6d7d8b" stroke-width="2"/><text x="620" y="278" font-size="22" font-weight="bold">Später möglich: LES</text><text x="620" y="311" font-size="18">Zusätzlich Luftströmung und</text><text x="620" y="340" font-size="18">thermodynamische Entwicklung</text>
+<text x="480" y="425" text-anchor="middle" font-size="15">Gleiche Geometrie bedeutet nicht automatisch gleiches Wetter oder vergleichbare Ausgabezeiten.</text></g></svg>

@@ -1,6 +1,9 @@
 ---
 title: "Stadtklima: Stadtwärme modellieren"
 subtitle: "Oberfläche, Umwelt und Mensch – Einstieg und Arbeitsauftrag"
+title-block-banner: ../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 format:
   html:
     toc: false
@@ -26,5 +29,9 @@ Die [QGIS-Referenz](qgis-howto-stadtwaerme-marburg.qmd) und die [R-Referenz](r-w
 
 Bearbeiten Sie das [Worksheet zu UTCI und PET](ws/ws-02.qmd). Vergleichen Sie die Umweltantworten und untersuchen Sie, was sich bei veränderter metabolischer Leistung und Bekleidung modellieren lässt.
 
+
+## Abschluss: Vom Hotspot zur Maßnahme
+
+Nach Ihrer Satellitenauswertung folgt [eine Sitzung zur physikalischen Modellierung mit PALM und KlimaCheck](hotspot-zu-palm.qmd). Der Kurzreader erklärt Modellgitter, Oberflächenenergiebilanz und Modellgrenzen. Der Lernpfad verbindet Beobachtung, Prozesshypothese und eine einzelne Maßnahme mit einem vorhandenen Modellvergleich; neue Modellläufe sind keine Voraussetzung.
 
 Zurück zur [Kursübersicht](../index.qmd).

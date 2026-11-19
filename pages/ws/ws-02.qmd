@@ -1,6 +1,9 @@
 ---
 title: "Worksheet 02: Thermische Entlastung modellieren"
 subtitle: "LST, Luftbedingungen, Stoffwechsel – UTCI oder PET?"
+title-block-banner: ../../images/banners/stadtwaerme.png
+title-block-banner-color: black
+lang: de
 order: 2
 format:
   html:
@@ -10,7 +13,7 @@ execute:
   echo: true
 ---
 
-# Eine untersuchbare Frage formulieren
+## Eine untersuchbare Frage formulieren
 
 Unter welchen Bedingungen bietet ein städtischer Freiraum thermische Entlastung – für wen, wann und bei welcher Tätigkeit?
 
@@ -18,7 +21,14 @@ Wählen Sie einen Vergleich, etwa zwischen zwei Sitzplätzen, zwischen Weg und A
 
 **Begründen Sie:** Welche Teilfrage kann das DLR-LST-Mittel beantworten? Welche Information würde eine eigene LST-Zeitreihe hinzufügen? Welche offenen Fragen benötigen andere Größen? Verwenden Sie das [Modellierungskonzept](../modellierung_luftbild_lst.qmd) als Grundlage Ihrer Argumentation.
 
-# UTCI und PET als Modellentscheidungen prüfen
+
+## Modelle und Berechnung
+
+::: {.panel-tabset}
+
+### UTCI und PET als Modellentscheidungen prüfen
+
+[]{#utci-und-pet-als-modellentscheidungen-prüfen .course-anchor}
 
 Beide Indizes verbinden Umweltgrößen mit einem Modell des menschlichen Wärmehaushalts. Ihre Referenzbedingungen und Rechenansätze unterscheiden sich. Gleiche Zahlenwerte in °C haben deshalb nicht automatisch dieselbe Bedeutung.
 
@@ -36,7 +46,9 @@ Quellen: [UTCI-Modellkonzept](https://www.utci.org/resources/utci_poster.pdf), [
 3. Unterscheiden Sie zwischen Eingaben der untersuchten Situation und Bedingungen der jeweiligen Referenzumgebung. Welche Bedeutung hat dann die ausgegebene äquivalente Temperatur?
 4. Erklären Sie, weshalb eine einstellbare Altersangabe oder Körpermasse noch keine geprüfte Abbildung gesundheitlich bedingter Unterschiede in der Wärmeregulation gewährleistet.
 
-# Annahmen vor der Berechnung festhalten
+### Annahmen vor der Berechnung festhalten
+
+[]{#annahmen-vor-der-berechnung-festhalten .course-anchor}
 
 Das [Vergleichsskript](../../scripts/thermische_indizes.py) verwendet zwei angenommene Umweltsituationen:
 
@@ -54,7 +66,9 @@ Für PET sind Körperhaltung und Körperparameter festgehalten. Variiert werden 
 
 **Vorhersage:** Welche Modellantwort erwarten Sie bei geringerer Strahlungstemperatur, höherer metabolischer Leistung oder anderer Bekleidung? Begründen Sie Ihre Erwartung anhand der Wärmebilanz. Kennzeichnen Sie Bedingungen, unter denen die Richtung eines Effekts nicht ohne Weiteres feststeht.
 
-# Berechnung ausführen
+### Berechnung ausführen
+
+[]{#berechnung-ausführen .course-anchor}
 
 Speichern Sie das Skript und die [Paketliste](../../scripts/requirements-thermik.txt) unter `scripts/` in Ihrem Projektordner. Die Bibliothek enthält dokumentierte Implementierungen beider Indizes. Die Modellwahl folgt aus der Frage; die gemeinsame Bibliothek erleichtert den Vergleich.
 
@@ -77,7 +91,9 @@ Unter Windows verwenden Sie `py -m venv .venv` und danach `.venv\Scripts\python.
 
 Das vorhandene [R-Skript zu UTCI](../../scripts/utci_szenarien.R) bleibt ein einzelner Umweltvergleich. Für die gemeinsame Untersuchung von UTCI und PET verwenden Sie das Vergleichsskript.
 
-# Ergebnisse als Modellantworten lesen
+### Ergebnisse als Modellantworten lesen
+
+[]{#ergebnisse-als-modellantworten-lesen .course-anchor}
 
 1. Vergleichen Sie besonnt und verschattet **innerhalb jedes Index**. Stimmen Richtung und Rangfolge überein? Welche Änderung der Wärmebilanz liegt dem Vergleich zugrunde?
 2. Vergleichen Sie PET bei veränderter metabolischer Leistung und gleicher Bekleidung. Vergleichen Sie anschließend Bekleidungsvarianten bei gleicher metabolischer Leistung. Welche Annahmen bleiben dabei unverändert?
@@ -86,7 +102,9 @@ Das vorhandene [R-Skript zu UTCI](../../scripts/utci_szenarien.R) bleibt ein ein
 5. Begründen Sie, weshalb eine Differenz zwischen PET und UTCI keine Aussage darüber erlaubt, welcher Index „richtiger“ ist. Übertragen Sie keine Belastungsklassen von einem Index auf den anderen.
 6. Welche Ihrer Fragen verlangt einen zeitlichen Verlauf? Begründen Sie, weshalb eine Folge stationärer PET-Werte allein keine physiologische Aufheiz- oder Erholungsphase beschreibt.
 
-# Das Konzept revidieren
+:::
+
+## Das Konzept revidieren
 
 Beantworten Sie Ihre Ausgangsfrage so weit, wie die Daten und Modelle es erlauben. Unterscheiden Sie dabei:
 

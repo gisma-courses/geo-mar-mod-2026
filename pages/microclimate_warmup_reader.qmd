@@ -1,9 +1,10 @@
 ---
 title: "Mikroklima-Warmup"
 subtitle: "Messpunkte, Raumfüllung und einfache Modellkritik"
-order: 10
-title-block-banner: ../images/placeholder.png
+title-block-banner: ../images/banners/stadtwaerme.png
 title-block-banner-color: black
+lang: de
+order: 10
 #page-layout: full
 format-links: [html, pdf, docx]
 format:
